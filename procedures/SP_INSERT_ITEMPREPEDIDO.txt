@@ -1,4 +1,4 @@
-﻿create OR REPLACE procedure SP_INSERT_ITEMPREPEDIDO (IN COD_NEMP SMALLINT,
+create OR REPLACE procedure SP_INSERT_ITEMPREPEDIDO (IN COD_NEMP SMALLINT,
                                             IN COD_PRE_PEDIDO BIGINT,
 											IN SEQ_ITEM SMALLINT,
 											IN COD_OCORRENCIA SMALLINT,

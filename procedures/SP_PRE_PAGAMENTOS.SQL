@@ -41,7 +41,7 @@ BEGIN
            
            then
               set status_msg = 1;
-              set msg = 'campo: numeroEmpresa, codigoCliente, numeroTitulo, tipoLancamento, dataEmissao, dataPagamento, dataVencimento, valorTitulo, valorPagamento, codigoTransacao, n∆o pode ser null';
+              set msg = 'campo: numeroEmpresa, codigoCliente, numeroTitulo, tipoLancamento, dataEmissao, dataPagamento, dataVencimento, valorTitulo, valorPagamento, codigoTransacao, n√Üo pode ser null';
         else
            
            

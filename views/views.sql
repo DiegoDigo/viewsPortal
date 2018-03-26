@@ -3623,7 +3623,3 @@ AS
              FROM    tbblocli 
              WHERE   tbblocli. "vdcadblo_cod" = 
                      cadcli61. "vdclicli_motblo") = 1 ;
-
-
-       
-       

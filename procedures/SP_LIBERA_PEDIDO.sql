@@ -1,4 +1,4 @@
-CREATE PROCEDURE SP_LIBERA_PEDIDO(IN nremp SMALLINT,
+CREATE or replace PROCEDURE SP_LIBERA_PEDIDO(IN nremp SMALLINT,
                                   IN numeroPedido BIGINT, 
                             in codigoStatus smallint,
 							out alterou  smallint)

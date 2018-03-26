@@ -1,4 +1,4 @@
-﻿CREATE OR REPLACE PROCEDURE SP_CRIA_VISITA(IN QTD_DIAS_SMALLINT)
+CREATE OR REPLACE PROCEDURE SP_CRIA_VISITA(IN QTD_DIAS_SMALLINT)
 
 LANGUAGE SQL
 
@@ -24,7 +24,7 @@ BEGIN
   SET intCountDays = 1;  
   SET strCondicao1 = '*';
   
-  # Alterar - deve ser passado o schema
+  
   SET strUser = SELECT TRIM(CURRENT_USER);
   
   SET strSql = 'SELECT table_name FROM systable WHERE table_type = ''TABLE'' AND table_owner = ''';

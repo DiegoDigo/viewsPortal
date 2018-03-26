@@ -1,24 +1,4 @@
-﻿################################################################################
-# Copyright(c) 1991-2017 Control Informática. 
-# All rights reserved.
-################################################################################
-# Data Criação: 03/10/2017
-# Versão......: 1.0.0
-# Alterações (Data - Autor - Motivo) ###########################################
-# 
-################################################################################
-# 1. Objetivo:
-#    Esta procedure lê os campos VISITA da tabela PASTACaa e cria uma nova
-#    tabela inserindo o número das pastas com seus respectivos dias de visita.
-# 2. Definições:
-#    (1) Passar parâmetro informando a quantidade de dias que deseja criar.
-#    (2) A partir da data atual a quantidade de dias será criado para cada pasta.
-#    (3) Caso a tabela pasta_visita não exista, será criada.
-# 3. Para executar a SQL Procedure
-# 
-################################################################################
-
-CREATE OR REPLACE PROCEDURE SP_CRIA_VISITA(IN QTD_DIAS SMALLINT)
+﻿CREATE OR REPLACE PROCEDURE SP_CRIA_VISITA(IN QTD_DIAS SMALLINT)
 
 LANGUAGE SQL
 

@@ -339,7 +339,7 @@ SELECT VDFATNFR_NNF,
 FROM VDFATN61 
 WHERE ((VDFATNFR_NNF = @NNF OR @NNF = 0 )     AND 
        (VDFATNFR_SERIE = @SNF OR @SNF = ' ')) AND 
-       (VDFATNFR_DEMI = (DATETOSTR(Curdate() - 45 , 'yyyy/mm/dd')));
+       (VDFATNFR_DEMI > (DATETOSTR(Curdate() - 45 , 'yyyy/mm/dd')));
        
        
        
@@ -3624,16 +3624,6 @@ AS
              WHERE   tbblocli. "vdcadblo_cod" = 
                      cadcli61. "vdclicli_motblo") = 1 ;
 
-DECLARE SET INT @NNF = 0;
-DECLARE SET CHAR @SNF = ' ';
-CREATE OR REPLACE VIEW "VW_CH_NFISCAL"  
-AS 
-SELECT VDFATNFR_NNF, 
-       VDFATNFR_SERIE, 
-       VDFATNFR_IDENT_NF 
-FROM   VDFATN01 
-WHERE ((VDFATNFR_NNF = @NNF OR @NNF = 0 )     AND 
-       (VDFATNFR_SERIE = @SNF OR @SNF = ' ')) AND 
-       (VDFATNFR_DEMI > (DATETOSTR(Curdate() - 45 , 'yyyy/mm/dd')));
+
        
        

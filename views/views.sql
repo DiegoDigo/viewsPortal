@@ -780,7 +780,8 @@ AS
                      END)                                 AS codigo_cliente_erp, 
           cadcli61. "vdclicli_endfat_tip" AS SIGLA_LOGRADOURO_ERP 
   FROM    cadcli61 
-  WHERE    ( Cast(Concat(CASE 
+  WHERE     cadcli61. "vdclicli_dtult" > cast((DATETOSTR(Curdate() - 90 , 'yyyy/mm/dd')) as int)
+        and ( Cast(Concat(CASE 
                              WHEN Length(Cast( cadcli61. 
                                               "vdclicli_regi" 
                                               AS 
@@ -929,7 +930,8 @@ AS
           cadcli61. "vdclicli_endcob_tip" AS 
          SIGLA_LOGRADOURO_REC_ID 
   FROM    cadcli61 
-  WHERE    
+  WHERE   cadcli61. "vdclicli_dtult" > cast((DATETOSTR(Curdate() - 90 , 'yyyy/mm/dd')) as int)
+        and   
           ( Cast(Concat(CASE 
                              WHEN Length(Cast( cadcli61. 
                                               "vdclicli_regi" 
@@ -1079,7 +1081,8 @@ AS
           cadcli61. "vdclicli_endent_tip" AS 
          SIGLA_LOGRADOURO_REC_ID 
   FROM    cadcli61 
-WHERE     ( Cast(Concat(CASE 
+WHERE   cadcli61. "vdclicli_dtult" > cast((DATETOSTR(Curdate() - 90 , 'yyyy/mm/dd')) as int)
+        and    ( Cast(Concat(CASE 
                              WHEN Length(Cast( cadcli61. 
                                               "vdclicli_regi" 
                                               AS 
@@ -2794,7 +2797,8 @@ AS
           cadcli61. "vdclicli_tpcobra" AS 
          CODIGO_TIPO_COBRANCA_ERP 
   FROM    cadcli61 
-  WHERE  ( Concat(CASE 
+  WHERE  cadcli61. "vdclicli_dtult" > cast((DATETOSTR(Curdate() - 90 , 'yyyy/mm/dd')) as int)
+        and ( Concat(CASE 
                     WHEN Length(Cast( cadcli61. "vdclicli_regi" 
                                      AS 
                                      CHAR(4) 

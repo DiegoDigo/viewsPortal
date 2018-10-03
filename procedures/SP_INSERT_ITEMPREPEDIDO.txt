@@ -45,6 +45,13 @@ BEGIN
    declare ITEM bigint;
    declare ORIGEM char(001);
    
+   declare codprd integer;
+   
+   
+   set codprd = select cast(concat(repeat('0',3 - length(cast(VDPRDPRD_CFAM as varchar(3)))),cast(VDPRDPRD_CFAM as varchar(3)))||
+       concat(repeat('0',3 - length(cast(VDPRDPRD_NRO as varchar(3)))), cast(VDPRDPRD_NRO as varchar(3))) as int)
+       from cadprd61 where VDPRDPRD_CODR  = COD_RED;
+   
     SET ITEM = SELECT VDPEDIPP_PRE_PED FROM VDPEDIPP WHERE VDPEDIPP_PRE_PED = COD_PRE_PEDIDO AND VDPEDIPP_NREMP = COD_NEMP AND VDPEDIPP_ITEM = SEQ_ITEM;
    
     IF ITEM <> NULL THEN
@@ -78,7 +85,8 @@ BEGIN
 							VDPEDIPP_PRE_PED    ,     
 							VDPEDIPP_ITEM       ,                    
 							VDPEDIPP_OCOKD      ,         
-							VDPEDIPP_CODR       ,         
+							VDPEDIPP_CODR       ,
+                            VDPEDIPP_PROD       ,	
 							VDPEDIPP_QTD        ,          
 							VDPEDIPP_QTDS       ,          
 							VDPEDIPP_TBPRD      ,          
@@ -94,6 +102,7 @@ BEGIN
 							SEQ_ITEM                         ,
 							COD_OCORRENCIA                   ,
 							COD_RED                          ,
+							codprd                           ,
 							QUANTIDADE_CX                    ,
 							QUANTIDADE_UN                    ,
 							TABLEPRECO                       ,
@@ -114,7 +123,8 @@ BEGIN
 								VDPEDIPP_PRE_PED    ,     
 								VDPEDIPP_ITEM       ,                    
 								VDPEDIPP_OCOKD      ,         
-								VDPEDIPP_CODR       ,         
+								VDPEDIPP_CODR       , 
+                                VDPEDIPP_PROD       ,								
 								VDPEDIPP_QTD        ,          
 								VDPEDIPP_QTDS       ,          
 								VDPEDIPP_TBPRD      ,          
@@ -158,6 +168,7 @@ BEGIN
 								SEQ_ITEM          ,
 								COD_OCORRENCIA    ,
 								COD_RED           ,
+								codprd            ,
 								QUANTIDADE_CX     ,
 								QUANTIDADE_UN     ,
 								TABLEPRECO        ,

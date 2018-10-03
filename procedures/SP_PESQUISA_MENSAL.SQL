@@ -1,16 +1,16 @@
 create or replace procedure sp_pesquisa_mensal(in cod_vendedor    varchar(008),
-                                            in regiao_cliente  varchar(004),
-											in numero_cliente  varchar(004),
-											in versao_pesq     VARCHAR(003),
-											in codigo_produto  varchar(010),
-											in concorrente     varchar(003),
-											in motivo          char(01),
-											in data_pesq       varchar(008),
-											in quant_compra    varchar(010),
-											in preco_compra_cx decimal(13,2),
-											in preco_venda_un  decimal(13,2),
-											out cod_status     smallint,
-											out status_msg     varchar(255)
+                                               in regiao_cliente  varchar(004),
+											   in numero_cliente  varchar(004),
+											   in versao_pesq     VARCHAR(003),
+											   in codigo_produto  varchar(010),
+											   in concorrente     varchar(003),
+											   in motivo          char(01),
+											   in data_pesq       varchar(008),
+											   in quant_compra    varchar(010),
+											   in preco_compra_cx decimal(13,2),
+											   in preco_venda_un  decimal(13,2),
+											   out cod_status     smallint,
+											   out status_msg     varchar(255)
 											)
 											
 											

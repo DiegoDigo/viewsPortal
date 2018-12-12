@@ -2765,7 +2765,7 @@ AS
   WHERE  ( "vdfatbli_nped" = @numero_pedido OR @numero_pedido = 0 ) and vdfatbli_nremp = @numero_empresa AND vdfatbli_cancsn = 0;
 
 
-DECLARE SET smallint  @odigo_banco = 0;
+DECLARE SET smallint  @codigo_banco = 0;
 DECLARE SET integer   @nosso_numero = 0;
 DECLARE SET smallint  @sequencia_geracao = 0;
 DECLARE SET smallint  @numero_empresa = 0;

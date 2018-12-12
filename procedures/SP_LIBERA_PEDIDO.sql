@@ -10,11 +10,11 @@ BEGIN
 	declare pedido BIGINT;	
 	declare capaPedido BIGINT;	
 		
-	set pedido = SELECT VDPEDCPE_NPED FROM PEDCP01 where VDPEDCPE_NPED =  numeroPedido;	
+	set pedido = SELECT VDPEDCPE_NPED FROM PEDCP61 where VDPEDCPE_NPED =  numeroPedido;	
     set capaPedido = SELECT VDPEDFLC_NPED FROM VDPEDFLC where VDPEDFLC_NPED =  numeroPedido;	
 	
 	if pedido <> null then 
-	    update PEDCP01 set VDPEDCPE_FL = codigoStatus where VDPEDCPE_NPED =numeroPedido; 	    
+	    update PEDCP61 set VDPEDCPE_FL = codigoStatus where VDPEDCPE_NPED =numeroPedido; 	    
         IF capaPedido = null then
 			INSERT INTO VDPEDFLC VALUES (nremp, numeroPedido, situacaoPedido, numeroPedido, situacaoPedido, numeroPedido,0 ,' ', 0, 0, 0, 'D', 0,0,0);		
 		else 
@@ -30,3 +30,4 @@ BEGIN
 	
 	
 END;
+

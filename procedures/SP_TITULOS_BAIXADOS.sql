@@ -1,5 +1,5 @@
 create or replace procedure
-		SP_MOVIMENTO_FINANCEIRO_GLOBAL_BROKER(in cpfCnpj VARCHAR(15),
+		SP_TITULOS_BAIXADOS(in cpfCnpj VARCHAR(15),
 											  in numeroTitulo VARCHAR(8),
 											  in numeroParcela varchar(2),
 											  in tipoTitulo smallint,

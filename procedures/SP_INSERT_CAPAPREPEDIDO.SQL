@@ -1,4 +1,4 @@
-create OR REPLACE procedure SP_INSERT_CAPAPREPEDIDO ( in  NEMP          smallint,
+﻿create OR REPLACE procedure SP_INSERT_CAPAPREPEDIDO ( in  NEMP          smallint,
 												   in  CODCLI        INT, 
 												   in  CNPJ_CPF      VARCHAR(015),
 												   in  origem        Char(001),
@@ -40,7 +40,8 @@ create OR REPLACE procedure SP_INSERT_CAPAPREPEDIDO ( in  NEMP          smallint
 													IN pedidoTransmitido SMALLINT,
 													IN desbloqueioGPSERP    SMALLINT,
 													in dataPrimeiraParcela INT,
-												   OUT  NUMPREPEDIDO BIGINT, 
+                                                                                                        in codigoErpTerceiro,
+                         									   OUT  NUMPREPEDIDO BIGINT, 
 												   OUT STATUSMSG     SMALLINT,
 												   out msg           varchar(255)
 												   )
@@ -160,7 +161,8 @@ create OR REPLACE procedure SP_INSERT_CAPAPREPEDIDO ( in  NEMP          smallint
 								VDPEDCPP_VAL_VERBA_UTILIZ    ,
 								VDPEDCPP_PEDIDO_TRANSMITIDO  ,								
 								VDPEDCPP_DESBLOQUEIO_GPS     ,
-                                VDPEDCPP_DT1VC               								
+                                VDPEDCPP_DT1VC ,
+                                VDPEDCPP_CODERP_TERCEIRO ,             								
 							 ) 
 							 VALUES (   NEMP,
 										NUMEROPEDIDO,
@@ -205,7 +207,8 @@ create OR REPLACE procedure SP_INSERT_CAPAPREPEDIDO ( in  NEMP          smallint
 										valorVerbaUtilizadaGL          ,  
 										pedidoTransmitido              ,  										
 										desbloqueioGPSERP               ,
-										dataPrimeiraParcela
+										dataPrimeiraParcela,
+                                                                                codigoErpTerceiro
 
 										);	
                     end if;										

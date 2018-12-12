@@ -2794,7 +2794,7 @@ AS
          "vdfatblt_emp_nome"           AS BENEFICIARIO_BOLETO,
          "vdfatblt_emp_ender"          AS ENDERECO_BENEFICIARIO_BOLETO,
          "vdfatblt_emp_cgc"            AS CNPJ_BENEFICIARIO_BOLETO,
-         "vdfatblt_par_data"           AS DATA_EMISSAO_BOLETO,
+         "vdfatblt_par_data"           AS DATA_BOLETO,
          "vdfatblt_espec_doc"          AS ESPECIE_DOCUMENTO_BOLETO,
          "vdfatblt_aceite"             AS ACEITE_BOLETO,
          "vdfatblt_par2_data"          AS DATA_PROCESSAMENTO_BOLETO,

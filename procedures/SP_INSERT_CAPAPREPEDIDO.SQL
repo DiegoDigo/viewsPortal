@@ -40,7 +40,7 @@
 													IN pedidoTransmitido SMALLINT,
 													IN desbloqueioGPSERP    SMALLINT,
 													in dataPrimeiraParcela INT,
-                                                                                                        in codigoErpTerceiro,
+                                                                                                        in codigoErpTerceiro smallint,
                          									   OUT  NUMPREPEDIDO BIGINT, 
 												   OUT STATUSMSG     SMALLINT,
 												   out msg           varchar(255)

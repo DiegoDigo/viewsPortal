@@ -2262,8 +2262,8 @@ SELECT
     tpcobr61."vdcadtco_perm06" AS PERM06,
     tpcobr61."vdcadtco_perm07" AS PERM07,
     tpcobr61."vdcadtco_perm08" AS PERM08,
-    tpcobr61."vdcadtco_perm09" AS PERM09 FROM
-    TPCOBR61
+    tpcobr61."vdcadtco_perm09" AS PERM09 
+	FROM TPCOBR61
 WHERE
     (
         tpcobr61."vdcadtco_cod" = @CODIGO_TIPO_COBRANCA

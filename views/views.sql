@@ -771,8 +771,8 @@ SELECT
     pedcp61."vdpedcpe_tpcobr" AS CODIGO_TIPO_COBRANCA_REC_ID,
     CADCLI61.VDCLICLI_CGC as CNPJ_CPF,
     CADCLI61.VDCLICLI_RAZAO50 AS RAZAO_CLIENTE,
-    condpg01.VDCADPAG_DESCR AS DESCRICAO_CONDICAO_PAGAMENTO,
-    tpcobr01."vdcadtco_descricao" AS DESCRICAO_TIPO_COBRANCA,
+    condpg61.VDCADPAG_DESCR AS DESCRICAO_CONDICAO_PAGAMENTO,
+    tpcobr61."vdcadtco_descricao" AS DESCRICAO_TIPO_COBRANCA,
     VDPEDCPE_SERIE AS SFISCAL,
     VDPEDCPE_NFIS AS NFISCAL_INI,
     VDPEDCPE_NFISULT AS NFISCAL_ULT
@@ -804,8 +804,8 @@ FROM
             4
         ) as int
     )
-    inner join CONDPG01 on condpg01."vdcadpag_cod" = vdpedcpe_cpg
-    inner join TPCOBR01 on VDPEDCPE_TPCOBR = tpcobr01.VDCADTCO_COD
+    inner join CONDPG61 on condpg61."vdcadpag_cod" = vdpedcpe_cpg
+    inner join TPCOBR61 on VDPEDCPE_TPCOBR = tpcobr61.VDCADTCO_COD
 WHERE
     (
         Cast(pedcp61."vdpedcpe_nped" AS VARCHAR(12)) = @numero_pedido
@@ -2262,8 +2262,7 @@ SELECT
     tpcobr61."vdcadtco_perm06" AS PERM06,
     tpcobr61."vdcadtco_perm07" AS PERM07,
     tpcobr61."vdcadtco_perm08" AS PERM08,
-    tpcobr61."vdcadtco_perm09" AS PERM09
-FROM
+    tpcobr61."vdcadtco_perm09" AS PERM09 FROM
     TPCOBR61
 WHERE
     (
@@ -2326,7 +2325,7 @@ WHERE
                 Cast(cadcli61."vdclicli_num" AS VARCHAR(4))
             ) WHEN Length(Cast(cadcli61."vdclicli_num" AS CHAR(4))) = 4 THEN Cast(cadcli61."vdclicli_num" AS VARCHAR (4)) END
         ) = @codigoclienteerp
-    OR @codigoclienteerp = '';
+    OR @codigoclienteerp = '');
 
 
 DECLARE SET VARCHAR (255) @SIGLA ='';
@@ -2746,4 +2745,5 @@ where
     )
 order by
     1;
+
 

@@ -500,6 +500,8 @@ WHERE
         condpg61."vdcadpag_cod" = @CODIGO_CONDICAO_PAGAMENTO
     OR @CODIGO_CONDICAO_PAGAMENTO = 0
     );
+				
+DECLARE SET INT @pasta = 0;
 
 CREATE or replace VIEW  VW_DIAS_VISITA_VENDEDOR AS
 

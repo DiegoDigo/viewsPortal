@@ -500,9 +500,9 @@ WHERE
         condpg61."vdcadpag_cod" = @CODIGO_CONDICAO_PAGAMENTO
     OR @CODIGO_CONDICAO_PAGAMENTO = 0
     );
-				
-DECLARE SET INT @pasta = 0;
 
+declare set int @pasta = 0;
+	
 CREATE or replace VIEW  VW_DIAS_VISITA_VENDEDOR AS
 
 select
@@ -2264,7 +2264,7 @@ SELECT
     tpcobr61."vdcadtco_perm06" AS PERM06,
     tpcobr61."vdcadtco_perm07" AS PERM07,
     tpcobr61."vdcadtco_perm08" AS PERM08,
-    tpcobr61."vdcadtco_perm09" AS PERM09 
+    tpcobr61."vdcadtco_perm09" AS PERM09
 	FROM TPCOBR61
 WHERE
     (
@@ -2749,7 +2749,7 @@ order by
     1;
 
 
-DECLARE SET float @numero_pedido = 0;
+DECLARE SET bigint @numero_pedido = 0;
 DECLARE SET int   @numero_empresa = 0;
 
 CREATE OR REPLACE view  vw_boleto_por_pedido
@@ -2760,7 +2760,7 @@ AS
          "vdfatbli_nped"          AS NUMERO_PEDIDO_BOLETO_POR_PEDIDO,
          "vdfatbli_nnf"           AS NUMERO_NOTA_FISCAL_BOLETO_POR_PEDIDO,
          "vdfatbli_serie_nf"      AS SERIE_NOTA_FISCAL_BOLETO_POR_PEDIDO,
-         "vdfatbli_codcli"        AS CODIGO_CLIENTE_BOLETO_POR_PEDIDO,
+         concat(repeat('0', 8 - length(cast(vdfatbli_codcli as varchar(8)))),cast(vdfatbli_codcli as varchar(8)))  AS CODIGO_CLIENTE_BOLETO_POR_PEDIDO,
          "vdfatbli_dt_emissao"    AS DATA_EMISSAO_BOLETO_POR_PEDIDO,
          "vdfatbli_dt_vencimento" AS DATA_VENCIMENTO_BOLETO_POR_PEDIDO
   FROM    VDFATBLI
@@ -2774,8 +2774,11 @@ DECLARE SET smallint  @numero_empresa = 0;
 
 CREATE OR REPLACE view  vw_boleto
 AS 
-  SELECT "vdfatblt_numero_banco"       AS BANCO_BOLETO,         
+  SELECT 
+         
+         "vdfatblt_numero_banco"       AS BANCO_BOLETO,         
          "vdfatblt_area_digitacao"     AS LINHA_DIGITAVEL_BOLETO,
+		 concat(repeat('0', 8 - length(cast(VDFATBLT_CODCLI as varchar(8)))),cast(VDFATBLT_CODCLI as varchar(8))) AS NUMERO_CLIENTE_BOLETO,
          "vdfatblt_cli_nome"           AS NOME_CLIENTE_BOLETO,
          "vdfatblt_dt_emissao_e"       AS DATA_EMISSAO_BOLETO,
          "vdfatblt_dt_vencimento_e"    AS DATA_VENCIMENTO_BOLETO,
@@ -2826,7 +2829,10 @@ AS
          "vdfatblt_val_acresc"         AS VALOR_ACRESCIMO_BOLETO,
          "vdfatblt_val_cobrado"        AS VALOR_COBRADO_BOLETO,
          "vdfatblt_descr_pag"          AS SACADOR_OU_PAGADOR_BOLETO,
-         "vdfatblt_param1"             AS TAMANHO_CODIGO_BARRAS
+         "vdfatblt_param1"             AS TAMANHO_CODIGO_BARRAS,
+		 "vdfatblt_ordem"              as SEQUENCIA_BOLETO_GERACAO,
+		 "vdfatblt_bcoe"               as NUMERO_BANCO_CNAB,
+		 "vdfatblt_NNUM"               as NOSSO_NUMERO
 
   FROM    VDFATBLT
   WHERE  ( "vdfatblt_nnum" = @nosso_numero OR @nosso_numero = 0 )

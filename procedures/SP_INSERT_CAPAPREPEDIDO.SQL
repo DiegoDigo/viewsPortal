@@ -55,6 +55,7 @@
 		BEGIN 
 
 		declare prepedido bigint;
+		declare prepedidosemnumero bigint;
 		DECLARE CGCNOVO VARCHAR(015);
 		declare seq int;
 		declare NUMEROPEDIDO BIGINT;
@@ -75,10 +76,19 @@
 					  
 			set prepedido = select VDPEDCPP_PRE_PED from VDPEDCPP where VDPEDCPP_PRE_PED = NUMEROPEDIDO;		
 			
+			
 			if prepedido <> null then 
-			   set NUMPREPEDIDO = prepedido;
-			   set STATUSMSG = 0;		
-			   set msg = 'Capa de pre pedido já existe';
+			   set prepedidosemnumero = select VDPEDCPP_PRE_PED from VDPEDCPP where VDPEDCPP_PRE_PED = NUMEROPEDIDO and VDPEDCPP_NPED is null;
+			   if prepedidosemnumero <> null then
+			      	update 	VDPEDCPP set VDPEDCPP_CANCSN = 1 where 	VDPEDCPP_PRE_PED = NUMEROPEDIDO;
+									set NUMPREPEDIDO = prepedido;
+				set STATUSMSG = 1;	
+				set msg = 'Incluido com sucesso';
+			   else
+					set NUMPREPEDIDO = prepedido;
+					set STATUSMSG = 0;		
+					set msg = 'Capa de pre pedido já existe';
+			   end if;
 			else
 			    if NEMP             = null or
 				   dataEmissao      = null or 				   	 
@@ -162,7 +172,7 @@
 								VDPEDCPP_PEDIDO_TRANSMITIDO  ,								
 								VDPEDCPP_DESBLOQUEIO_GPS     ,
                                 VDPEDCPP_DT1VC ,
-                                VDPEDCPP_CODERP_TERCEIRO ,             								
+                                VDPEDCPP_CODERP_TERCEIRO        								
 							 ) 
 							 VALUES (   NEMP,
 										NUMEROPEDIDO,
@@ -228,4 +238,5 @@
 		  
 				
 		END;
+
 

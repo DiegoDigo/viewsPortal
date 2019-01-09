@@ -103,3 +103,4 @@ BEGIN
      SET dataVisita = ADD_DAYS(dataAtual, intCountDays);
   END WHILE;
 END;
+

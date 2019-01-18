@@ -81,9 +81,9 @@
 			   set prepedidosemnumero = select VDPEDCPP_PRE_PED from VDPEDCPP where VDPEDCPP_PRE_PED = NUMEROPEDIDO and VDPEDCPP_NPED is null;
 			   if prepedidosemnumero <> null then
 			      	update 	VDPEDCPP set VDPEDCPP_CANCSN = 1 where 	VDPEDCPP_PRE_PED = NUMEROPEDIDO;
-									set NUMPREPEDIDO = prepedido;
+				set NUMPREPEDIDO = prepedidosemnumero;
 				set STATUSMSG = 1;	
-				set msg = 'Incluido com sucesso';
+				set msg = 'Cancelado com sucesso';
 			   else
 					set NUMPREPEDIDO = prepedido;
 					set STATUSMSG = 0;		

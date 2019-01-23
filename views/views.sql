@@ -499,8 +499,10 @@ WHERE
         OR @CODIGO_CONDICAO_PAGAMENTO = 0
     );
 
-CREATE
-or replace VIEW  VW_DIAS_VISITA_VENDEDOR AS
+
+declare set int @pasta = 0;
+
+CREATE or replace VIEW  VW_DIAS_VISITA_VENDEDOR AS
 select
     numero_pasta as numeroPasta,
     data_visita as diaVisita
@@ -2239,8 +2241,8 @@ SELECT
     tpcobr61."vdcadtco_perm06" AS PERM06,
     tpcobr61."vdcadtco_perm07" AS PERM07,
     tpcobr61."vdcadtco_perm08" AS PERM08,
-    tpcobr61."vdcadtco_perm09" AS PERM09FROM
-     TPCOBR61
+    tpcobr61."vdcadtco_perm09" AS PERM09 
+	FROM TPCOBR61
 WHERE
     (
         tpcobr61."vdcadtco_cod" = @CODIGO_TIPO_COBRANCA
@@ -2302,8 +2304,7 @@ WHERE
                 '0',
                 Cast(cadcli61."vdclicli_num" AS VARCHAR(4))
             ) WHEN Length(Cast(cadcli61."vdclicli_num" AS CHAR(4))) = 4 THEN Cast(cadcli61."vdclicli_num" AS VARCHAR (4)) END
-        ) = @codigoclienteerp
-        OR @codigoclienteerp = '';
+        ) = @codigoclienteerp OR @codigoclienteerp = ''
     );
 
 DECLARE SET VARCHAR(255) @SIGLA ='';
@@ -2723,4 +2724,95 @@ where
 order by
     1;
 
+DECLARE SET integer @nosso_numero = 0;
+DECLARE SET smallint @sequencia_geracao =0;
+DECLARE SET smallint @codigo_banco = 0;
+DECLARE SET smallint  @numero_empresa =0;
 
+CREATE OR replace VIEW vw_boleto                                                                      AS SELECT "vdfatblt_numero_banco"                                                                                         AS BANCO_BOLETO,
+       "vdfatblt_area_digitacao"                                                                                       AS LINHA_DIGITAVEL_BOLETO,
+              Concat(Repeat('0', 8 - Length(Cast(vdfatblt_codcli AS VARCHAR(8)))),Cast(vdfatblt_codcli AS VARCHAR(8))) AS NUMERO_CLIENTE_BOLETO,
+       "vdfatblt_cli_nome"                                                                                             AS NOME_CLIENTE_BOLETO,
+       "vdfatblt_dt_emissao_e"                                                                                         AS DATA_EMISSAO_BOLETO,
+       "vdfatblt_dt_vencimento_e"                                                                                      AS DATA_VENCIMENTO_BOLETO,
+       "vdfatblt_ban_conta_corr"                                                                                       AS AGENCIA_CODIGO_BENEFICIARIO_BOLETO,
+       "vdfatblt_nosso_numero"                                                                                         AS NOSSO_NUMERO_IMPRESSAO_BOLETO,
+       "vdfatblt_num_doc"                                                                                              AS NUMERO_DOCUMENTO_BOLETO,
+       "vdfatblt_valor_e"                                                                                              AS VALOR_DOCUMENTO_BOLETO,
+       "vdfatblt_instrucao_1"                                                                                          AS INSTRUCAO1_BOLETO,
+       "vdfatblt_instrucao_2"                                                                                          AS INSTRUCAO2_BOLETO,
+       "vdfatblt_instrucao_3"                                                                                          AS INSTRUCAO3_BOLETO,
+       "vdfatblt_instrucao_4"                                                                                          AS INSTRUCAO4_BOLETO,
+       "vdfatblt_instrucao_5"                                                                                          AS INSTRUCAO5_BOLETO,
+       "vdfatblt_instrucao_6"                                                                                          AS INSTRUCAO6_BOLETO,
+       "vdfatblt_instrucao_7"                                                                                          AS INSTRUCAO7_BOLETO,
+       "vdfatblt_instrucao_8"                                                                                          AS INSTRUCAO8_BOLETO,
+       "vdfatblt_instrucao_9"                                                                                          AS INSTRUCAO9_BOLETO,
+       "vdfatblt_local"                                                                                                AS LOCAL_DE_PAGAMENTO_BOLETO,
+       "vdfatblt_emp_nome"                                                                                             AS BENEFICIARIO_BOLETO,
+       "vdfatblt_emp_ender"                                                                                            AS ENDERECO_BENEFICIARIO_BOLETO,
+       "vdfatblt_emp_cgc"                                                                                              AS CNPJ_BENEFICIARIO_BOLETO,
+       "vdfatblt_par_data"                                                                                             AS DATA_BOLETO,
+       "vdfatblt_espec_doc"                                                                                            AS ESPECIE_DOCUMENTO_BOLETO,
+       "vdfatblt_aceite"                                                                                               AS ACEITE_BOLETO,
+       "vdfatblt_par2_data"                                                                                            AS DATA_PROCESSAMENTO_BOLETO,
+       "vdfatblt_usubco"                                                                                               AS USO_DO_BANCO_BOLETO,
+       "vdfatblt_ban_carteira"                                                                                         AS CARTEIRA_BOLETO,
+       "vdfatblt_especie"                                                                                              AS ESPECIE_MOEDA_BOLETO,
+       "vdfatblt_qtd"                                                                                                  AS QUANTIDADE_MOEDA_BOLETO,
+       "vdfatblt_valor_qtd"                                                                                            AS VALOR_MOEDA_BOLETO,
+       "vdfatblt_instru"                                                                                               AS INSTRUCOES_BOLETO,
+       "vdfatblt_descr_descto"                                                                                         AS DESCRICAO_DESCONTO_BOLETO,
+       "vdfatblt_descr_outr"                                                                                           AS DESCRICAO_OUTRAS_DEDUCOES_BOLETO,
+       "vdfatblt_descr_mora"                                                                                           AS DESCRICAO_MORA_MULTA_BOLETO,
+       "vdfatblt_descr_outr_acresc"                                                                                    AS DESCRICAO_OUTROS_ACRESCIMOS_BOLETO,
+       "vdfatblt_cli_docto"                                                                                            AS CNPJ_CLIENTE_BOLETO,
+       "vdfatblt_cli_endereco"                                                                                         AS ENDERECO_CLIENTE_BOLETO,
+       "vdfatblt_muni_cid_uf_pag"                                                                                      AS MUNICIPIO_UF_BOLETO,
+       "vdfatblt_cli_cep"                                                                                              AS CEP_CLIENTE_BOLETO,
+       "vdfatblt_pag_aval"                                                                                             AS PAGADOR_AVALISTA_BOLETO,
+       "vdfatblt_cnpj_pag_aval"                                                                                        AS CNPJ_PAGADOR_AVALISTA_BOLETO,
+       "vdfatblt_lin_sac1"                                                                                             AS LINHA_SAC1_BOLETO,
+       "vdfatblt_lin_sac2"                                                                                             AS LINHA_SAC2_BOLETO,
+       "vdfatblt_lin_sac3"                                                                                             AS LINHA_SAC3_BOLETO,
+       "vdfatblt_lin_sac4"                                                                                             AS LINHA_SAC4_BOLETO,
+       "vdfatblt_monta_barra"                                                                                          AS CODIGO_DE_BARRAS_BOLETO,
+       "vdfatblt_cnpj_pagador"                                                                                         AS CNPJ_PAGADOR_BOLETO,
+       "vdfatblt_val_descto"                                                                                           AS VALOR_DESCONTO_BOLETO,
+       "vdfatblt_val_acresc"                                                                                           AS VALOR_ACRESCIMO_BOLETO,
+       "vdfatblt_val_cobrado"                                                                                          AS VALOR_COBRADO_BOLETO,
+       "vdfatblt_descr_pag"                                                                                            AS SACADOR_OU_PAGADOR_BOLETO,
+       "vdfatblt_param1"                                                                                               AS TAMANHO_CODIGO_BARRAS,
+       "vdfatblt_ordem"                                                                                                AS SEQUENCIA_BOLETO_GERACAO,
+       "vdfatblt_bcoe"                                                                                                 AS NUMERO_BANCO_CNAB,
+       "vdfatblt_nnum"                                                                                                 AS NOSSO_NUMERO
+FROM   vdfatblt 
+WHERE  ( 
+              "vdfatblt_nnum" = @nosso_numero 
+       OR     @nosso_numero = 0 ) 
+AND    ( 
+              "vdfatblt_bcoe" = @codigo_banco 
+       OR     @codigo_banco = 0 ) 
+AND    ( 
+              "vdfatblt_ordem" = @sequencia_geracao 
+       OR     @sequencia_geracao = 0 ) 
+AND    vdfatblt_nremp = @numero_empresa;
+
+DECLARE SET bigint @numero_pedido = 0;
+DECLARE SET smallint  @numero_empresa = 0;
+
+CREATE OR replace VIEW vw_boleto_por_pedido                                                           AS SELECT "vdfatbli_bcoe"                                                                                                 AS CODIGO_BANCO_BOLETO_POR_PEDIDO,
+       "vdfatbli_nnum"                                                                                                 AS CODIGO_NOSSO_NUMERO_BOLETO_POR_PEDIDO,
+       "vdfatbli_ordem"                                                                                                AS SEQUENCIA_BOLETO_POR_PEDIDO,
+       "vdfatbli_nped"                                                                                                 AS NUMERO_PEDIDO_BOLETO_POR_PEDIDO,
+       "vdfatbli_nnf"                                                                                                  AS NUMERO_NOTA_FISCAL_BOLETO_POR_PEDIDO,
+       "vdfatbli_serie_nf"                                                                                             AS SERIE_NOTA_FISCAL_BOLETO_POR_PEDIDO,
+              Concat(Repeat('0', 8 - Length(Cast(vdfatbli_codcli AS VARCHAR(8)))),Cast(vdfatbli_codcli AS VARCHAR(8))) AS CODIGO_CLIENTE_BOLETO_POR_PEDIDO,
+       "vdfatbli_dt_emissao"                                                                                           AS DATA_EMISSAO_BOLETO_POR_PEDIDO,
+       "vdfatbli_dt_vencimento"                                                                                        AS DATA_VENCIMENTO_BOLETO_POR_PEDIDO
+FROM   vdfatbli 
+WHERE  ( 
+              "vdfatbli_nped" = @numero_pedido 
+       OR     @numero_pedido = 0 ) 
+AND    vdfatbli_nremp = @numero_empresa 
+AND    vdfatbli_cancsn = 0;

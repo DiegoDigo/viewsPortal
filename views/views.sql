@@ -348,7 +348,12 @@ CREATE OR replace VIEW  vw_cliente AS SELECT 0 AS abate_icms,
        END 
               || RIGHT(Cast(cadcli61.vdclicli_tbprd AS VARCHAR(8)),2) AS codigo_tabpreco, 
        cadcli61. "vdclicli_contato"                                   AS contato, 
-       REPEAT('0' ,14 -Length(CAST(vdclicli_cgc as varchar(14)))) || CAST(vdclicli_cgc as varchar(14))   AS cpf_cnpj, 
+       CASE 
+          WHEN Length(CAST(vdclicli_cgc as varchar(15))) <= 14 THEN 
+	         REPEAT('0' ,14 -Length(CAST(vdclicli_cgc as varchar(14)))) || CAST(vdclicli_cgc as varchar(14))
+          ELSE 
+            CAST(vdclicli_cgc as varchar(15))
+       END   AS cpf_cnpj, 
        cadcli61. "vdclicli_abona_tx_financ"                           AS despreza_taxa_financeira,
        0                                                              AS dia_semana, 
        cadcli61. "vdclicli_dias_entrega"                              AS dias_entrega , 

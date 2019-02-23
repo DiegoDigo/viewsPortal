@@ -388,6 +388,7 @@ CREATE OR replace VIEW  vw_cliente AS SELECT 0 AS abate_icms,
        cadcli61. "vdclicli_cpg"             AS codigo_condicao_pagamento_erp, 
        cadcli61. "vdclicli_tpcobra"         AS codigo_tipo_cobranca_erp , 
        cadcli61. "vdclicli_disp_portal_web" AS disponivel_portal 
+	   cadcli61."VDCLICLI_CEL1" as celular,
 FROM    cadcli61 , 
         paroco61 
 WHERE  
@@ -662,8 +663,7 @@ SELECT
     cadcli61."vdclicli_munent" AS MUNICIPIO,
     cadcli61."vdclicli_endent_nr" AS NUMERO,
     cadcli61.VDCLICLI_PTOREF AS PONTO_REFERENCIAENDFAT,
-    cadcli61."vdclicli_estent" AS UTF_ENDERECO,
-	cadcli."VDCLICLI_CEL1" as celular,
+    cadcli61."vdclicli_estent" AS UTF_ENDERECO,	
     3 AS ORIGEM_LOGRADOURO_REC_ID,
     Concat(
         CASE WHEN Length(Cast(cadcli61."vdclicli_regi" AS CHAR(4))) = 1 THEN Concat(

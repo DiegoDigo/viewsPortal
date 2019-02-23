@@ -661,8 +661,9 @@ SELECT
     cadcli61."vdclicli_endent" AS ENDERECO,
     cadcli61."vdclicli_munent" AS MUNICIPIO,
     cadcli61."vdclicli_endent_nr" AS NUMERO,
-    NULL AS PONTO_REFERENCIAENDFAT,
+    cadcli61.VDCLICLI_PTOREF AS PONTO_REFERENCIAENDFAT,
     cadcli61."vdclicli_estent" AS UTF_ENDERECO,
+	cadcli."VDCLICLI_CEL1" as celular,
     3 AS ORIGEM_LOGRADOURO_REC_ID,
     Concat(
         CASE WHEN Length(Cast(cadcli61."vdclicli_regi" AS CHAR(4))) = 1 THEN Concat(
@@ -741,6 +742,7 @@ or replace VIEW  VW_GRUPO_PRODUTO AS
 SELECT
     grpprd61."vdprdgrp_grupo" AS CODIGO_GRUPO_PRODUTO_ERP,
     grpprd61."vdprdgrp_descr" AS DESCRICAO
+	grpprd61."vdprdgrp_coderp_terceiro" as CODIGO_ERP_TERCEIRO
 FROM
      GRPPRD61
 WHERE
@@ -1174,8 +1176,7 @@ FROM
      CADOCO61
     INNER JOIN  VDNOOT61 ON vdnoot61."vdnopotp_oco" = Cast(cadoco61."vdnopoco_cod" AS SMALLINT)
 WHERE
-    cadoco61."vdnopoco_tipooco" = 1
-    AND cadoco61."vdnopoco_cod" = '001'
+    cadoco61."VDNOPOCO_DISP_PORTAL_WEB" = 1    
     AND vdnoot61."vdnopotp_tipo_prod" = 'P'
     AND (
         cadoco61."vdnopoco_cod" = @CODIGO_OCORRENCIA

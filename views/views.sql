@@ -534,7 +534,7 @@ SELECT
     cadcli01."vdclicli_endfat" AS ENDERECO,
     cadcli01."vdclicli_munfat" AS MUNICIPIO,
     cadcli01."vdclicli_endfat_nr" AS NUMERO,
-    NULL AS PONTO_REFERENCIA,
+    cadcli01.VDCLICLI_PTOREF AS PONTO_REFERENCIAENDFAT,
     cadcli01."vdclicli_estfat" AS UTF_ENDERECO,
     1 AS ORIGEM_LOGRADOURO_ERP,
     Concat(
@@ -662,7 +662,7 @@ SELECT
     cadcli01."vdclicli_endent" AS ENDERECO,
     cadcli01."vdclicli_munent" AS MUNICIPIO,
     cadcli01."vdclicli_endent_nr" AS NUMERO,
-    cadcli01.VDCLICLI_PTOREF AS PONTO_REFERENCIAENDFAT,
+	NULL AS PONTO_REFERENCIA,    
     cadcli01."vdclicli_estent" AS UTF_ENDERECO,	
     3 AS ORIGEM_LOGRADOURO_REC_ID,
     Concat(

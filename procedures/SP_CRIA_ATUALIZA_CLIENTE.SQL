@@ -6,7 +6,7 @@ CREATE OR REPLACE PROCEDURE SP_CRIA_ATUALIZA_CLIENTE(
 								  IN DDD_TEL            SMALLINT,
 								  IN TEL                INTEGER,
 								  IN DDD_CEL            SMALLINT,
-								  IN CELULAR            INTEGER,
+								  IN CELULAR            VARCHAR(12),
 								  IN RAZAO              CHAR(050),
 								  IN NOMEFANTASIA       CHAR(050),
 								  IN CNPJ_CPF           VARCHAR(015),
@@ -41,7 +41,7 @@ CREATE OR REPLACE PROCEDURE SP_CRIA_ATUALIZA_CLIENTE(
 								  IN TABELAPRECO        INTEGER,
 								  IN ORIGEM             CHAR(001),
 								  IN codigoCanal        CHAR(002),
-                                  IN MotivoBloqClasse61       CHAR(003),        
+                                  IN MotivoBloqClasse01       CHAR(003),        
                                   IN inscricaoEstadual        VARCHAR(015),
                                   IN condicaoPagamentoCliente SMALLINT,        
                                   IN tipoClienteCobranca      SMALLINT,        
@@ -81,7 +81,7 @@ BEGIN
      
   SET preClienteExiste = SELECT VDCLIPCL_CNPJ_CPF FROM VDCLIPCL WHERE VDCLIPCL_CNPJ_CPF = CAST(CGCNOVO AS BIGINT);
  
-  SET clienteExiste = SELECT VDCLICLI_CGC FROM CADCLI61 WHERE VDCLICLI_CGC = CAST(CGCNOVO AS BIGINT);
+  SET clienteExiste = SELECT VDCLICLI_CGC FROM CADCLI01 WHERE VDCLICLI_CGC = CAST(CGCNOVO AS BIGINT);
 
 
   IF clienteExiste = NULL THEN
@@ -194,7 +194,7 @@ IF preClienteExiste = NULL THEN
 					 DDD_TEL,
 					 TEL,
 					 DDD_CEL,
-					 CELULAR,
+					 CAST(CELULAR as DECIMAL(12,0)),
 					 UPPER(RAZAO),
 					 UPPER(NOMEFANTASIA),
 					 CAST(CGCNOVO AS BIGINT),
@@ -320,7 +320,7 @@ IF preClienteExiste = NULL THEN
 					  UPPER(ORIGEM),					  				  
                       CLASSE,
 					  codigoCanal,	
-                      MotivoBloqClasse61,
+                      MotivoBloqClasse01,
                       inscricaoEstadual,
                       condicaoPagamentoCliente   ,
                       tipoClienteCobranca,
@@ -762,6 +762,7 @@ ELSE
 END IF;
 
 END;
+
 
 
 

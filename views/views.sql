@@ -349,10 +349,14 @@ CREATE OR replace VIEW  vw_cliente AS SELECT 0 AS abate_icms,
               || RIGHT(Cast(cadcli01.vdclicli_tbprd AS VARCHAR(8)),2) AS codigo_tabpreco, 
        cadcli01. "vdclicli_contato"                                   AS contato, 
        CASE 
-          WHEN Length(CAST(vdclicli_cgc as varchar(15))) <= 14 THEN 
-	         REPEAT('0' ,14 -Length(CAST(vdclicli_cgc as varchar(14)))) || CAST(vdclicli_cgc as varchar(14))
-          ELSE 
-            CAST(vdclicli_cgc as varchar(15))
+	      WHEN length(CAST(vdclicli_cgc as varchar(15))) <= 5 THEN 
+	         REPEAT('0' ,15 -Length(CAST(vdclicli_cgc as varchar(15)))) || CAST(vdclicli_cgc as varchar(15))		  
+          WHEN SUBSTRING(CAST(vdclicli_cgc as varchar(15)) ,Length(CAST(vdclicli_cgc as varchar(15)))-5,4) = '0000' THEN 
+	         REPEAT('0' ,15 -Length(CAST(vdclicli_cgc as varchar(15)))) || CAST(vdclicli_cgc as varchar(15))		  
+		  WHEN SUBSTRING(CAST(vdclicli_cgc as varchar(15)) ,Length(CAST(vdclicli_cgc as varchar(15)))-5,4) <> '0000' THEN 
+			 REPEAT('0' ,14 -Length(CAST(vdclicli_cgc as varchar(14)))) || CAST(vdclicli_cgc as varchar(14))
+          ELSE 	  
+			CAST(vdclicli_cgc as varchar(15))		    
        END   AS cpf_cnpj, 
        cadcli01. "vdclicli_abona_tx_financ"                           AS despreza_taxa_financeira,
        0                                                              AS dia_semana, 
@@ -534,7 +538,7 @@ SELECT
     cadcli01."vdclicli_endfat" AS ENDERECO,
     cadcli01."vdclicli_munfat" AS MUNICIPIO,
     cadcli01."vdclicli_endfat_nr" AS NUMERO,
-    cadcli01.VDCLICLI_PTOREF AS PONTO_REFERENCIAENDFAT,
+    cadcli01.VDCLICLI_PTOREF AS PONTO_REFERENCIA,
     cadcli01."vdclicli_estfat" AS UTF_ENDERECO,
     1 AS ORIGEM_LOGRADOURO_ERP,
     Concat(
@@ -598,7 +602,7 @@ SELECT
     cadcli01."vdclicli_endcob" AS ENDERECO,
     cadcli01."vdclicli_muncob" AS MUNICIPIO,
     cadcli01."vdclicli_endcob_nr" AS NUMERO,
-    NULL AS PONTO_REFERENCIAENDFAT,
+    NULL AS PONTO_REFERENCIA,
     cadcli01."vdclicli_estcob" AS UTF_ENDERECO,
     2 AS ORIGEM_LOGRADOURO_REC_ID,
     Concat(
@@ -2247,8 +2251,7 @@ SELECT
     tpcobr01."vdcadtco_perm06" AS PERM06,
     tpcobr01."vdcadtco_perm07" AS PERM07,
     tpcobr01."vdcadtco_perm08" AS PERM08,
-    tpcobr01."vdcadtco_perm09" AS PERM09
-	FROM TPCOBR01
+    tpcobr01."vdcadtco_perm09" AS PERM09	FROM TPCOBR01
 WHERE
     (
         tpcobr01."vdcadtco_cod" = @CODIGO_TIPO_COBRANCA
@@ -2737,7 +2740,7 @@ DECLARE SET smallint  @numero_empresa =0;
 
 CREATE OR replace VIEW vw_boleto                                                                      AS SELECT "vdfatblt_numero_banco"                                                                                         AS BANCO_BOLETO,
        "vdfatblt_area_digitacao"                                                                                       AS LINHA_DIGITAVEL_BOLETO,
-              Concat(Repeat('0', 8 - Length(Cast(vdfatblt_codcli AS VARCHAR(8)))),Cast(vdfatblt_codcli AS VARCHAR(8))) AS NUMERO_CLIENTE_BOLETO,
+        Concat(Repeat('0', 8 - Length(Cast(vdfatblt_codcli AS VARCHAR(8)))),Cast(vdfatblt_codcli AS VARCHAR(8)))       AS NUMERO_CLIENTE_BOLETO,
        "vdfatblt_cli_nome"                                                                                             AS NOME_CLIENTE_BOLETO,
        "vdfatblt_dt_emissao_e"                                                                                         AS DATA_EMISSAO_BOLETO,
        "vdfatblt_dt_vencimento_e"                                                                                      AS DATA_VENCIMENTO_BOLETO,
@@ -2822,3 +2825,33 @@ WHERE  (
        OR     @numero_pedido = 0 ) 
 AND    vdfatbli_nremp = @numero_empresa 
 AND    vdfatbli_cancsn = 0;
+
+
+DECLARE SET varchar(27) @CODIGO_COMBO = '';
+CREATE or replace VIEW   "VW_COMBO_PRODUTO" 
+AS 
+  SELECT  vdprdcbo. "vdprdcbo_qtdcx"   AS QUANTIDADE_CAIXA, 
+          vdprdcbo. "vdprdcbo_qtdav"   AS QUANTIDADE_AVULSO, 
+          vdprdcbo. "vdprdcbo_codrprd" AS CODIGO_PRODUTO_ERP, 
+          vdprdcbo. "vdprdcbo_ocor"    AS CODIGO_OCOR_ERP, 
+concat(
+concat(concat(repeat('0',3 - length(cast(VDPRDCBO_CODEMP  as varchar(03)))),   cast(VDPRDCBO_CODEMP as varchar(03)))
+,
+concat(repeat('0',10 - length(cast(VDPRDCBO_CODCBO  as varchar(10)))),         cast(VDPRDCBO_CODCBO as varchar(10)))),
+concat(
+concat(repeat('0',10 - length(cast(VDPRDCBO_CODRPRD as varchar(10))) ), cast(VDPRDCBO_CODRPRD as varchar(10))),
+concat(repeat('0',3 - length(cast(VDPRDCBO_OCOR    as varchar(03))) ),         cast(VDPRDCBO_OCOR as varchar(03)))
+)
+)		  AS CODIGO_PRODUTO_COMBO_ERP 
+  FROM    vdprdcbo 
+  WHERE   vdprdcbo. "vdprdcbo_codrprd" <> 0 
+         AND 
+		 (concat(
+concat(concat(repeat('0',3 - length(cast(VDPRDCBO_CODEMP  as varchar(03)))),   cast(VDPRDCBO_CODEMP as varchar(03)))
+,
+concat(repeat('0',10 - length(cast(VDPRDCBO_CODCBO  as varchar(10)))),         cast(VDPRDCBO_CODCBO as varchar(10)))),
+concat(
+concat(repeat('0',10 - length(cast(VDPRDCBO_CODRPRD as varchar(10))) ), cast(VDPRDCBO_CODRPRD as varchar(10))),
+concat(repeat('0',3 - length(cast(VDPRDCBO_OCOR    as varchar(03))) ),         cast(VDPRDCBO_OCOR as varchar(03)))
+)
+)	= @CODIGO_COMBO	or  @CODIGO_COMBO = '' );

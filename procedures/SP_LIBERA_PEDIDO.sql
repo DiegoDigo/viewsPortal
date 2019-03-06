@@ -16,7 +16,7 @@ BEGIN
 	if pedido <> null then 
 	    update PEDCP61 set VDPEDCPE_FL = codigoStatus where VDPEDCPE_NPED =numeroPedido; 	    
         IF capaPedido = null then
-			INSERT INTO VDPEDFLC VALUES (nremp, numeroPedido, situacaoPedido, numeroPedido, situacaoPedido, numeroPedido,0 ,' ', 0, 0, 0, 'D', 0,0,0);		
+			INSERT INTO VDPEDFLC VALUES (nremp, numeroPedido, codigoStatus, numeroPedido, situacaoPedido, numeroPedido,0 ,' ', 0, 0, 0, 'D', 0,0,0);		
 		else 
 		    update VDPEDFLC set VDPEDFLC_SIT_NPED = codigoStatus 
 	        where VDPEDFLC_NPED = numeroPedido;

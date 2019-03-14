@@ -1179,8 +1179,7 @@ SELECT
 FROM
      CADOCO01
     INNER JOIN  VDNOOT01 ON vdnoot01."vdnopotp_oco" = Cast(cadoco01."vdnopoco_cod" AS SMALLINT)
-WHERE
-    cadoco01."VDNOPOCO_DISP_PORTAL_WEB" = 1    
+WHERE      
     AND vdnoot01."vdnopotp_tipo_prod" = 'P'
     AND (
         cadoco01."vdnopoco_cod" = @CODIGO_OCORRENCIA

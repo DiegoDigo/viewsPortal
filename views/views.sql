@@ -839,7 +839,7 @@ SELECT
     pedit01."vdpedipe_qtdret" AS QUANTIDADE_AVULSA,
     pedit01."vdpedipe_qtdprd" AS QUANTIDADE_CAIXA,
     pedit01."vdpedipe_nit" AS NUMERO_PEDIDO_REC_ID,
-    pedit01."vdpedipe_ocokd" AS CODIGO_OCORRENCIA_REC_ID,
+    REPEAT( '0', 3 - length(cast(pedit01."vdpedipe_ocokd" as char(3)))) || cast(pedit01."vdpedipe_ocokd" as char(3)) AS CODIGO_OCORRENCIA_REC_ID,
     pedit01."vdpedipe_tbprd" AS CODIGO_TABELA_PRECO_REC_ID,
     pedit01."vdpedipe_codr" AS CODIGO_PRODUTO_REC_ID,
     cadprd01."VDPRDPRD_DESCR" AS DESCRICAO_PRODUTO,
@@ -2251,7 +2251,6 @@ SELECT
     tpcobr01."vdcadtco_perm07" AS PERM07,
     tpcobr01."vdcadtco_perm08" AS PERM08,
     tpcobr01."vdcadtco_perm09" AS PERM09
-
 FROM TPCOBR01
 WHERE
     (

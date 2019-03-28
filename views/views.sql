@@ -540,6 +540,7 @@ SELECT
     cadcli01."vdclicli_endfat_nr" AS NUMERO,
     cadcli01.VDCLICLI_PTOREF AS PONTO_REFERENCIA,
     cadcli01."vdclicli_estfat" AS UTF_ENDERECO,
+	cadcli01."vdclicli_endfat_compl" AS COMPLEMENTO,
     1 AS ORIGEM_LOGRADOURO_ERP,
     Concat(
         CASE WHEN Length(Cast(cadcli01."vdclicli_regi" AS CHAR(4))) = 1 THEN Concat(
@@ -604,6 +605,7 @@ SELECT
     cadcli01."vdclicli_endcob_nr" AS NUMERO,
     NULL AS PONTO_REFERENCIA,
     cadcli01."vdclicli_estcob" AS UTF_ENDERECO,
+	cadcli01."vdclicli_endcob_compl" AS COMPLEMENTO,
     2 AS ORIGEM_LOGRADOURO_REC_ID,
     Concat(
         CASE WHEN Length(Cast(cadcli01."vdclicli_regi" AS CHAR(4))) = 1 THEN Concat(
@@ -666,8 +668,9 @@ SELECT
     cadcli01."vdclicli_endent" AS ENDERECO,
     cadcli01."vdclicli_munent" AS MUNICIPIO,
     cadcli01."vdclicli_endent_nr" AS NUMERO,
-	NULL AS PONTO_REFERENCIA,    
+	NULL AS PONTO_REFERENCIA,    	
     cadcli01."vdclicli_estent" AS UTF_ENDERECO,	
+	cadcli01."vdclicli_endent_compl" AS COMPLEMENTO,
     3 AS ORIGEM_LOGRADOURO_REC_ID,
     Concat(
         CASE WHEN Length(Cast(cadcli01."vdclicli_regi" AS CHAR(4))) = 1 THEN Concat(
@@ -2426,6 +2429,7 @@ SELECT
             Cast(cadcli01."vdclicli_num" AS VARCHAR(4))
         ) WHEN Length(Cast(cadcli01."vdclicli_num" AS CHAR(4))) = 4 THEN Cast(cadcli01."vdclicli_num" AS VARCHAR (4)) END
     ) AS CODIGO_CLIENTE_ERP,
+	1 as VENDEDOR,
     cadcli01."vdclicli_ven" AS CODIGO_VENDEDOR_ERP
 FROM
      CADCLI01
@@ -2488,6 +2492,7 @@ SELECT
             Cast(cadcli01."vdclicli_num" AS VARCHAR(4))
         ) WHEN Length(Cast(cadcli01."vdclicli_num" AS CHAR(4))) = 4 THEN Cast(cadcli01."vdclicli_num" AS VARCHAR (4)) END
     ) AS CODIGO_CLIENTE_ERP,
+	2 as VENDEDOR,
     cadcli01."vdclicli_ven2" AS CODIGO_VENDEDOR_ERP
 FROM
      CADCLI01
@@ -2551,6 +2556,7 @@ SELECT
             Cast(cadcli01."vdclicli_num" AS VARCHAR(4))
         ) WHEN Length(Cast(cadcli01."vdclicli_num" AS CHAR(4))) = 4 THEN Cast(cadcli01."vdclicli_num" AS VARCHAR (4)) END
     ) AS CODIGO_CLIENTE_ERP,
+	3 as VENDEDOR,
     cadcli01."vdclicli_ven3" AS CODIGO_VENDEDOR_ERP
 FROM
      CADCLI01
@@ -2614,6 +2620,7 @@ SELECT
             Cast(cadcli01."vdclicli_num" AS VARCHAR(4))
         ) WHEN Length(Cast(cadcli01."vdclicli_num" AS CHAR(4))) = 4 THEN Cast(cadcli01."vdclicli_num" AS VARCHAR (4)) END
     ) AS CODIGO_CLIENTE_ERP,
+	4 as VENDEDOR,
     cadcli01."vdclicli_ven4" AS CODIGO_VENDEDOR_ERP
 FROM
      CADCLI01
@@ -2677,6 +2684,7 @@ SELECT
             Cast(cadcli01."vdclicli_num" AS VARCHAR(4))
         ) WHEN Length(Cast(cadcli01."vdclicli_num" AS CHAR(4))) = 4 THEN Cast(cadcli01."vdclicli_num" AS VARCHAR (4)) END
     ) AS CODIGO_CLIENTE_ERP,
+	5 as VENDEDOR,
     cadcli01."vdclicli_ven5" AS CODIGO_VENDEDOR_ERP
 FROM
      CADCLI01

@@ -11,7 +11,8 @@ AS
          "vdpedflc_sit_crom"     AS SITUACAO_ROMANEIO, 
          "vdpedflc_serie"        AS SERIE_NFISCAL, 
          "vdpedflc_nf"           AS NUMERO_NFISCAL, 
-         "vdpedflc_cod_bloq_ped" AS CODIGO_BLOQ_PEDIDO 
+         "vdpedflc_cod_bloq_ped" AS CODIGO_BLOQ_PEDIDO,
+		 "VDPEDFLC_NPED_REPROGRA" AS numero_pedido_erp_reprogramado 
   FROM    vdpedflc 
   WHERE  ( "vdpedflc_nped" = @codigopedido 
             OR @codigopedido = 0 ) ;
@@ -770,8 +771,9 @@ SELECT
     pedcp01."vdpedcpe_descfi" AS DESCONTO_FINANCEIRO,
     pedcp01."vdpedcpe_nped" AS NUMERO_PEDIDO,
     pedcp01."vdpedcpe_desc" AS PERCENTUAL_DESCONTO,
-    CASE WHEN pedcp01."vdpedcpe_fl" = 9 THEN 'CA' ELSE CASE WHEN pedcp01."vdpedcpe_vlr_fcem_r" + pedcp01."vdpedcpe_vlr_fsem_r" + pedcp01."vdpedcpe_vlr_fctr_r" + pedcp01."vdpedcpe_vlr_fstr_r" = 0 THEN 'DV' ELSE '0' END END AS STATUS_PEDIDO,
+    pedcp01."vdpedcpe_fl" AS STATUS_PEDIDO,
     pedcp01."vdpedcpe_txfin" AS TAXA_FINANCEIRO,
+	vdpedflc.VDPEDFLC_NPED_REPROGRA as numero_pedido_erp_reprogramado,
     pedcp01."vdpedcpe_vlr_fcem_r" + pedcp01."vdpedcpe_vlr_fsem_r" + pedcp01."vdpedcpe_vlr_fctr_r" + pedcp01."vdpedcpe_vlr_fstr_r" AS VALOR_DEVOLUCAO,
     pedcp01."vdpedcpe_vlr_fcem" + pedcp01."vdpedcpe_vlr_fsem" + pedcp01."vdpedcpe_vlr_fctr" + pedcp01."vdpedcpe_vlr_fstr" AS VALOR_PEDIDO,
     CASE WHEN Length(Cast(pedcp01."vdpedcpe_codcli" AS CHAR(8))) = 5 THEN Concat(
@@ -823,6 +825,7 @@ FROM
     )
     inner join  CONDPG01 on condpg01."vdcadpag_cod" = vdpedcpe_cpg
     inner join  TPCOBR01 on VDPEDCPE_TPCOBR = tpcobr01.VDCADTCO_COD
+	inner join vdpedflc on vdpedflc.VDPEDFLC_NPED = PEDCP01.VDPEDCPE_NPED
 WHERE
     (
         Cast(pedcp01."vdpedcpe_nped" AS VARCHAR(12)) = @numero_pedido

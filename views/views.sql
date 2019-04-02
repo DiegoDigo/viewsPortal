@@ -842,7 +842,7 @@ or replace VIEW  VW_HISTORICO_PEDIDO_ITEM AS
 SELECT
     pedit01."vdpedipe_item" AS NUMERO_ITEM_PEDIDO,
     pedit01."vdpedipe_preprdt" AS PRECO_ITEM_TOTAL,
-    pedit01."vdpedipe_qtdret" AS QUANTIDADE_AVULSA,
+    pedit01."vdpedipe_qtds" AS QUANTIDADE_AVULSA,
     pedit01."vdpedipe_qtdprd" AS QUANTIDADE_CAIXA,
     pedit01."vdpedipe_nit" AS NUMERO_PEDIDO_REC_ID,
     REPEAT( '0', 3 - length(cast(pedit01."vdpedipe_ocokd" as char(3)))) || cast(pedit01."vdpedipe_ocokd" as char(3)) AS CODIGO_OCORRENCIA_REC_ID,

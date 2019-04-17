@@ -366,7 +366,12 @@ CREATE OR replace VIEW  vw_cliente AS SELECT 0 AS abate_icms,
        cadcli01. "vdclicli_ignora_banda_preco"                        AS ignora_banda_preco, 
        NULL                                                           AS inconformidade_cadastro,
        cadcli01. "vdclicli_credito"                                   AS limite_credito , 
-       cadcli01. "vdclicli_motblo"                                    AS motivo_bloq_classe_20, 
+	   CASE 
+	      WHEN cadcli01. "vdclicli_motblo" = '   ' THEN 
+			''
+		  ELSE
+		    REPEAT('0', 3 -Length(cadcli01. "vdclicli_motblo") ) ||   cadcli01. "vdclicli_motblo" 
+       END AS motivo_bloq_classe_20, 
        cadcli01. "vdclicli_motblo_jur"                                AS motivo_bloqueio_juridico,
        cadcli01. "vdclicli_num"                                       AS numero_cliente , 
        cadcli01. "vdclicli_codpasta1"                                 AS pasta, 
@@ -397,7 +402,7 @@ CREATE OR replace VIEW  vw_cliente AS SELECT 0 AS abate_icms,
 FROM    cadcli01 , 
         paroco01 
 WHERE  
-    cadcli01."VDCLICLI_VEN" <> '' and 
+    cadcli01."VDCLICLI_VEN" <> '   ' and 
     ( 
               Cast(Concat( 
               CASE 
@@ -941,11 +946,12 @@ FROM
 UNION ALL
 SELECT
     1 AS ativo,
-    tbblocli."vdcadblo_cod" AS codigo_motivo_geral,
+	REPEAT('0', 3 -Length(tbblocli."vdcadblo_cod") ) ||   tbblocli."vdcadblo_cod" 
+     AS codigo_motivo_geral,
     tbblocli."vdcadblo_descr" AS descricao,
     tbblocli."vdcadblo_descrred" AS descricao_reduzida,
     tbblocli."vdcadblo_venda" AS infui_venda,
-    0 AS permite_venda,
+    tbblocli."vdcadblo_venda" AS permite_venda,
     '06' AS tipo_motivo_geral_rec_id
 FROM
      TBBLOCLI
@@ -1540,7 +1546,8 @@ SELECT
     cadprd01."vdprdprd_cfam" AS CODIGO_FAMILIA_PRODUTO_ERP,
     cadprd01."vdprdprd_grpprd" AS CODIGO_GRUPO_PRODUTO_ERP,
     cadprd01."vdprdprd_marprd" AS CODIGO_MARCA_PRODUTO_ERP,
-    cadprd01."vdprdprd_disp_portal_web" AS DISP_PORTAL_WEB
+    cadprd01."vdprdprd_disp_portal_web" AS DISP_PORTAL_WEB,
+	cadprd01."vdprdprd_cev" AS PERMITE_CEV
 FROM
      CADPRD01
 WHERE

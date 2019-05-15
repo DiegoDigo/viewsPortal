@@ -81,7 +81,6 @@ INNER JOIN       cadprd01
 ON              bdapre01. "vdprdbda_fam" = cadprd01. "vdprdprd_cfam" 
 AND             bdapre01. "vdprdbda_prd" = cadprd01. "vdprdprd_nro" 
 WHERE           cadprd01. "vdprdprd_flag" = 'A' 
-AND             cadprd01. "vdprdprd_disp_portal_web" <> 0 
 AND             bdapre01. "vdprdbda_bandprec_1" <> 0 
 AND             bdapre01. "vdprdbda_cancsn" = 0 
 AND             ( 
@@ -101,7 +100,6 @@ INNER JOIN       cadprd01
 ON              bdapre01. "vdprdbda_fam" = cadprd01. "vdprdprd_cfam" 
 AND             bdapre01. "vdprdbda_prd" = cadprd01. "vdprdprd_nro" 
 WHERE           cadprd01. "vdprdprd_flag" = 'A' 
-AND             cadprd01. "vdprdprd_disp_portal_web" <> 0 
 AND             bdapre01. "vdprdbda_bandprec_2" <> 0 
 AND             bdapre01. "vdprdbda_cancsn" = 0 
 AND             ( 
@@ -121,7 +119,6 @@ INNER JOIN       cadprd01
 ON              bdapre01. "vdprdbda_fam" = cadprd01. "vdprdprd_cfam" 
 AND             bdapre01. "vdprdbda_prd" = cadprd01. "vdprdprd_nro" 
 WHERE           cadprd01. "vdprdprd_flag" = 'A' 
-AND             cadprd01. "vdprdprd_disp_portal_web" <> 0 
 AND             bdapre01. "vdprdbda_bandprec_3" <> 0 
 AND             bdapre01. "vdprdbda_cancsn" = 0 
 AND             ( 
@@ -141,7 +138,6 @@ INNER JOIN       cadprd01
 ON              bdapre01. "vdprdbda_fam" = cadprd01. "vdprdprd_cfam" 
 AND             bdapre01. "vdprdbda_prd" = cadprd01. "vdprdprd_nro" 
 WHERE           cadprd01. "vdprdprd_flag" = 'A' 
-AND             cadprd01. "vdprdprd_disp_portal_web" <> 0 
 AND             bdapre01. "vdprdbda_bandprec_4" <> 0 
 AND             bdapre01. "vdprdbda_cancsn" = 0 
 AND             ( 
@@ -161,7 +157,6 @@ INNER JOIN  cadprd01
 ON         bdapre01. "vdprdbda_fam" = cadprd01. "vdprdprd_cfam" 
 AND        bdapre01. "vdprdbda_prd" = cadprd01. "vdprdprd_nro" 
 WHERE      cadprd01. "vdprdprd_flag" = 'A' 
-AND        cadprd01. "vdprdprd_disp_portal_web" <> 0 
 AND        bdapre01. "vdprdbda_bandprec_5" <> 0 
 AND        bdapre01. "vdprdbda_cancsn" = 0 
 AND        ( 
@@ -181,7 +176,6 @@ INNER JOIN       cadprd01
 ON              bdapre01. "vdprdbda_fam" = cadprd01. "vdprdprd_cfam" 
 AND             bdapre01. "vdprdbda_prd" = cadprd01. "vdprdprd_nro" 
 WHERE           cadprd01. "vdprdprd_flag" = 'A' 
-AND             cadprd01. "vdprdprd_disp_portal_web" <> 0 
 AND             bdapre01. "vdprdbda_bandprec_6" <> 0 
 AND             bdapre01. "vdprdbda_cancsn" = 0 
 AND             ( 
@@ -201,7 +195,6 @@ INNER JOIN       cadprd01
 ON              bdapre01. "vdprdbda_fam" = cadprd01. "vdprdprd_cfam" 
 AND             bdapre01. "vdprdbda_prd" = cadprd01. "vdprdprd_nro" 
 WHERE           cadprd01. "vdprdprd_flag" = 'A' 
-AND             cadprd01. "vdprdprd_disp_portal_web" <> 0 
 AND             bdapre01. "vdprdbda_bandprec_7" <> 0 
 AND             bdapre01. "vdprdbda_cancsn" = 0 
 AND             ( 
@@ -221,7 +214,6 @@ INNER JOIN       cadprd01
 ON              bdapre01. "vdprdbda_fam" = cadprd01. "vdprdprd_cfam" 
 AND             bdapre01. "vdprdbda_prd" = cadprd01. "vdprdprd_nro" 
 WHERE           cadprd01. "vdprdprd_flag" = 'A' 
-AND             cadprd01. "vdprdprd_disp_portal_web" <> 0 
 AND             bdapre01. "vdprdbda_bandprec_8" <> 0 
 AND             bdapre01. "vdprdbda_cancsn" = 0 
 AND             ( 
@@ -241,7 +233,6 @@ INNER JOIN       cadprd01
 ON              bdapre01. "vdprdbda_fam" = cadprd01. "vdprdprd_cfam" 
 AND             bdapre01. "vdprdbda_prd" = cadprd01. "vdprdprd_nro" 
 WHERE           cadprd01. "vdprdprd_flag" = 'A' 
-AND             cadprd01. "vdprdprd_disp_portal_web" <> 0 
 AND             bdapre01. "vdprdbda_bandprec_9" <> 0 
 AND             bdapre01. "vdprdbda_cancsn" = 0 
 AND             ( 
@@ -325,19 +316,8 @@ CREATE OR replace VIEW  vw_cliente AS SELECT 0 AS abate_icms,
               WHEN cadcli01. "vdclicli_classe" = 20 THEN 0 
               ELSE 1 
        END AS ativo, 
-              Concat( 
-       CASE 
-              WHEN Length(Cast( cadcli01. "vdclicli_regi" AS CHAR(4))) = 1 THEN Concat('000', Cast( cadcli01. "vdclicli_regi" AS VARCHAR(4)) )
-              WHEN Length(Cast( cadcli01. "vdclicli_regi" AS CHAR(4))) = 2 THEN Concat('00', Cast( cadcli01. "vdclicli_regi" AS VARCHAR(4)))
-              WHEN Length(Cast( cadcli01. "vdclicli_regi" AS CHAR(4))) = 3 THEN Concat('0', Cast( cadcli01. "vdclicli_regi" AS VARCHAR(4)))
-              WHEN Length(Cast( cadcli01. "vdclicli_regi" AS CHAR(4))) = 4 THEN Cast( cadcli01. "vdclicli_regi" AS VARCHAR(4 ))
-       END, 
-       CASE 
-              WHEN Length(Cast( cadcli01. "vdclicli_num" AS CHAR( 4))) = 1 THEN Concat('000', Cast( cadcli01. "vdclicli_num" AS VARCHAR(4)))
-              WHEN Length(Cast( cadcli01. "vdclicli_num" AS CHAR( 4))) = 2 THEN Concat('00', Cast( cadcli01. "vdclicli_num" AS VARCHAR(4)))
-              WHEN Length(Cast( cadcli01. "vdclicli_num" AS CHAR( 4))) = 3 THEN Concat('0', Cast( cadcli01. "vdclicli_num" AS VARCHAR(4)))
-              WHEN Length(Cast( cadcli01. "vdclicli_num" AS CHAR( 4))) = 4 THEN Cast( cadcli01. "vdclicli_num" AS VARCHAR (4))
-       END)                        AS codigo_cliente_erp, 
+       trim(REPEAT('0', 4 - Length(Cast( cadcli01. "vdclicli_regi" AS CHAR( 4)))) || Cast( cadcli01. "vdclicli_regi" AS CHAR( 4))) ||
+	   trim(repeat('0', 4-length(Cast( cadcli01. "vdclicli_num" AS CHAR( 4)))) || Cast( cadcli01. "vdclicli_num" AS CHAR( 4)))   AS codigo_cliente_erp, 
        NULL                        AS bonus_disponivel, 
        cadcli01. "vdclicli_classe" AS classe, 
        Cast(vdparoco_anotab_carga AS VARCHAR(4)) 
@@ -404,20 +384,10 @@ FROM    cadcli01 ,
 WHERE  
     cadcli01."VDCLICLI_VEN" <> '   ' and 
     ( 
-              Cast(Concat( 
-              CASE 
-                     WHEN Length(Cast( cadcli01. "vdclicli_regi" AS CHAR (4)) ) = 1 THEN Concat('000', Cast( cadcli01. "vdclicli_regi" AS VARCHAR(4)) )
-                     WHEN Length(Cast( cadcli01. "vdclicli_regi" AS CHAR (4)) ) = 2 THEN Concat('00', Cast( cadcli01. "vdclicli_regi" AS VARCHAR(4)))
-                     WHEN Length(Cast( cadcli01. "vdclicli_regi" AS CHAR (4)) ) = 3 THEN Concat('0', Cast( cadcli01. "vdclicli_regi" AS VARCHAR(4)))
-                     WHEN Length(Cast( cadcli01. "vdclicli_regi" AS CHAR (4)) ) = 4 THEN Cast( cadcli01. "vdclicli_regi" AS VARCHAR (4) )
-              END, 
-              CASE 
-                     WHEN Length(Cast( cadcli01. "vdclicli_num" AS CHAR( 4))) = 1 THEN Concat('000', Cast( cadcli01. "vdclicli_num" AS VARCHAR(4)))
-                     WHEN Length(Cast( cadcli01. "vdclicli_num" AS CHAR( 4))) = 2 THEN Concat('00', Cast( cadcli01. "vdclicli_num" AS VARCHAR(4)))
-                     WHEN Length(Cast( cadcli01. "vdclicli_num" AS CHAR( 4))) = 3 THEN Concat('0', Cast( cadcli01. "vdclicli_num" AS VARCHAR(4)))
-                     WHEN Length(Cast( cadcli01. "vdclicli_num" AS CHAR( 4))) = 4 THEN Cast( cadcli01. "vdclicli_num" AS VARCHAR ( 4))
-              END) AS INTEGER) = @CODIGO_CLIENTE 
-       OR     @CODIGO_CLIENTE = 0 );
+              Cast(
+			  trim(REPEAT('0', 4 - Length(Cast( cadcli01. "vdclicli_regi" AS CHAR( 4)))) || Cast( cadcli01. "vdclicli_regi" AS CHAR( 4))) ||
+			  trim(repeat('0', 4-length(Cast( cadcli01. "vdclicli_num" AS CHAR( 4)))) || Cast( cadcli01. "vdclicli_num" AS CHAR( 4))) 
+			  AS INTEGER) = @CODIGO_CLIENTE OR @CODIGO_CLIENTE = 0 );
 
 DECLARE
 SET
@@ -1482,12 +1452,11 @@ SELECT
 FROM
      CADPRD01
     INNER JOIN  TABPRC01 ON cadprd01."vdprdprd_cfam" = tabprc01."vdtabprd_cfam"
-    AND cadprd01."vdprdprd_nro" = tabprc01."vdtabprd_nro"
-    AND cadprd01."vdprdprd_disp_portal_web" <> 0
+    AND cadprd01."vdprdprd_nro" = tabprc01."vdtabprd_nro"    
     AND LEFT(Cast(tabprc01.vdtabprd_dtvgf AS VARCHAR(8)), 4) >= LEFT(Cast(Curdate() - 365 AS CHAR(4)), 4)
     INNER JOIN  PAROCO01 ON tabprc01."vdtabprd_ano" = PAROCO01."VDPAROCO_ANOTAB_CARGA"
     AND tabprc01."vdtabprd_mes" = PAROCO01."VDPAROCO_MESTAB_CARGA"
-WHERE
+WHERE	 
     (
         cadprd01."VDPRDPRD_CODR" = @COD_PRODUTO
         OR @COD_PRODUTO = 0
@@ -1552,17 +1521,9 @@ FROM
      CADPRD01
 WHERE
     cadprd01."vdprdprd_cfam" > @CODIGO_FAMILIA
-    AND cadprd01."vdprdprd_nro" > @CODIGO_SEQUENCIA
-    AND cadprd01."vdprdprd_flag" = 'A'
-    AND (
-        cadprd01."vdprdprd_disp_portal_web" = @DISP_PORTAL_WEB
-        or @DISP_PORTAL_WEB = 2
-    )
-    AND (
-        cadprd01."vdprdprd_codr" = @CODIGO_PROD
-        OR @CODIGO_PROD = 0
-    );
-
+    AND cadprd01."vdprdprd_nro" > @CODIGO_SEQUENCIA;
+	
+	
 declare set integer @id =0;
 
 CREATE
@@ -2393,22 +2354,15 @@ SELECT
     cadven01."vdvenven_nome" AS NOME,
     cadven01."vdvenven_ddd" AS TELEFONE_DD,
     cadven01."vdvenven_tel" AS TELEFONE_TRONCO,
-    '01' AS TIPO
+    cast(cadven01."vdvenven_nivel" as varchar(1)) AS TIPO
 FROM
      CADVEN01
 WHERE
     (
         cadven01."vdvenven_sigla" = @CODIGO_VENDEDOR
         OR @CODIGO_VENDEDOR = ''
-    )
-    AND (
-        cadven01."vdvenven_nivel" = 4
-        OR cadven01."vdvenven_nivel" = 5
-    )
-    AND (
-        cadven01."vdvenven_tpven" = 'V'
-        OR cadven01."vdvenven_tpven" = 'R'
     );
+    
 
 declare set varchar(255) @CODIGO_CLIENTE = '';
 
@@ -2469,262 +2423,6 @@ WHERE
         ) = @CODIGO_CLIENTE
         OR @CODIGO_CLIENTE = ''
     )
-    OR (
-        SELECT
-            tbblocli."vdcadblo_impclipalm"
-        FROM
-             TBBLOCLI
-        WHERE
-            tbblocli."vdcadblo_cod" = cadcli01."vdclicli_motblo"
-    ) = 1
-UNION
-SELECT
-    1 AS ATIVO,
-    Concat(
-        CASE WHEN Length(Cast(cadcli01."vdclicli_regi" AS CHAR(4))) = 1 THEN Concat(
-            '000',
-            Cast(cadcli01."vdclicli_regi" AS VARCHAR(4))
-        ) WHEN Length(Cast(cadcli01."vdclicli_regi" AS CHAR(4))) = 2 THEN Concat(
-            '00',
-            Cast(cadcli01."vdclicli_regi" AS VARCHAR(4))
-        ) WHEN Length(Cast(cadcli01."vdclicli_regi" AS CHAR(4))) = 3 THEN Concat(
-            '0',
-            Cast(cadcli01."vdclicli_regi" AS VARCHAR(4))
-        ) WHEN Length(Cast(cadcli01."vdclicli_regi" AS CHAR(4))) = 4 THEN Cast(cadcli01."vdclicli_regi" AS VARCHAR(4)) END,
-        CASE WHEN Length(Cast(cadcli01."vdclicli_num" AS CHAR(4))) = 1 THEN Concat(
-            '000',
-            Cast(cadcli01."vdclicli_num" AS VARCHAR(4))
-        ) WHEN Length(Cast(cadcli01."vdclicli_num" AS CHAR(4))) = 2 THEN Concat(
-            '00',
-            Cast(cadcli01."vdclicli_num" AS VARCHAR(4))
-        ) WHEN Length(Cast(cadcli01."vdclicli_num" AS CHAR(4))) = 3 THEN Concat(
-            '0',
-            Cast(cadcli01."vdclicli_num" AS VARCHAR(4))
-        ) WHEN Length(Cast(cadcli01."vdclicli_num" AS CHAR(4))) = 4 THEN Cast(cadcli01."vdclicli_num" AS VARCHAR (4)) END
-    ) AS CODIGO_CLIENTE_ERP,
-	2 as VENDEDOR,
-    cadcli01."vdclicli_ven2" AS CODIGO_VENDEDOR_ERP
-FROM
-     CADCLI01
-WHERE
-    (
-        Concat(
-            CASE WHEN Length(Cast(cadcli01."vdclicli_regi" AS CHAR(4))) = 1 THEN Concat(
-                '000',
-                Cast(cadcli01."vdclicli_regi" AS VARCHAR(4))
-            ) WHEN Length(Cast(cadcli01."vdclicli_regi" AS CHAR(4))) = 2 THEN Concat(
-                '00',
-                Cast(cadcli01."vdclicli_regi" AS VARCHAR(4))
-            ) WHEN Length(Cast(cadcli01."vdclicli_regi" AS CHAR(4))) = 3 THEN Concat(
-                '0',
-                Cast(cadcli01."vdclicli_regi" AS VARCHAR(4))
-            ) WHEN Length(Cast(cadcli01."vdclicli_regi" AS CHAR(4))) = 4 THEN Cast(cadcli01."vdclicli_regi" AS VARCHAR(4)) END,
-            CASE WHEN Length(Cast(cadcli01."vdclicli_num" AS CHAR(4))) = 1 THEN Concat(
-                '000',
-                Cast(cadcli01."vdclicli_num" AS VARCHAR(4))
-            ) WHEN Length(Cast(cadcli01."vdclicli_num" AS CHAR(4))) = 2 THEN Concat(
-                '00',
-                Cast(cadcli01."vdclicli_num" AS VARCHAR(4))
-            ) WHEN Length(Cast(cadcli01."vdclicli_num" AS CHAR(4))) = 3 THEN Concat(
-                '0',
-                Cast(cadcli01."vdclicli_num" AS VARCHAR(4))
-            ) WHEN Length(Cast(cadcli01."vdclicli_num" AS CHAR(4))) = 4 THEN Cast(cadcli01."vdclicli_num" AS VARCHAR (4)) END
-        ) = @CODIGO_CLIENTE
-        OR @CODIGO_CLIENTE = ''
-    )
-    AND cadcli01."vdclicli_ven2" <> '   '
-    OR (
-        SELECT
-            tbblocli."vdcadblo_impclipalm"
-        FROM
-             TBBLOCLI
-        WHERE
-            tbblocli."vdcadblo_cod" = cadcli01."vdclicli_motblo"
-    ) = 1
-UNION
-SELECT
-    1 AS ATIVO,
-    Concat(
-        CASE WHEN Length(Cast(cadcli01."vdclicli_regi" AS CHAR(4))) = 1 THEN Concat(
-            '000',
-            Cast(cadcli01."vdclicli_regi" AS VARCHAR(4))
-        ) WHEN Length(Cast(cadcli01."vdclicli_regi" AS CHAR(4))) = 2 THEN Concat(
-            '00',
-            Cast(cadcli01."vdclicli_regi" AS VARCHAR(4))
-        ) WHEN Length(Cast(cadcli01."vdclicli_regi" AS CHAR(4))) = 3 THEN Concat(
-            '0',
-            Cast(cadcli01."vdclicli_regi" AS VARCHAR(4))
-        ) WHEN Length(Cast(cadcli01."vdclicli_regi" AS CHAR(4))) = 4 THEN Cast(cadcli01."vdclicli_regi" AS VARCHAR(4)) END,
-        CASE WHEN Length(Cast(cadcli01."vdclicli_num" AS CHAR(4))) = 1 THEN Concat(
-            '000',
-            Cast(cadcli01."vdclicli_num" AS VARCHAR(4))
-        ) WHEN Length(Cast(cadcli01."vdclicli_num" AS CHAR(4))) = 2 THEN Concat(
-            '00',
-            Cast(cadcli01."vdclicli_num" AS VARCHAR(4))
-        ) WHEN Length(Cast(cadcli01."vdclicli_num" AS CHAR(4))) = 3 THEN Concat(
-            '0',
-            Cast(cadcli01."vdclicli_num" AS VARCHAR(4))
-        ) WHEN Length(Cast(cadcli01."vdclicli_num" AS CHAR(4))) = 4 THEN Cast(cadcli01."vdclicli_num" AS VARCHAR (4)) END
-    ) AS CODIGO_CLIENTE_ERP,
-	3 as VENDEDOR,
-    cadcli01."vdclicli_ven3" AS CODIGO_VENDEDOR_ERP
-FROM
-     CADCLI01
-WHERE
-    (
-        Concat(
-            CASE WHEN Length(Cast(cadcli01."vdclicli_regi" AS CHAR(4))) = 1 THEN Concat(
-                '000',
-                Cast(cadcli01."vdclicli_regi" AS VARCHAR(4))
-            ) WHEN Length(Cast(cadcli01."vdclicli_regi" AS CHAR(4))) = 2 THEN Concat(
-                '00',
-                Cast(cadcli01."vdclicli_regi" AS VARCHAR(4))
-            ) WHEN Length(Cast(cadcli01."vdclicli_regi" AS CHAR(4))) = 3 THEN Concat(
-                '0',
-                Cast(cadcli01."vdclicli_regi" AS VARCHAR(4))
-            ) WHEN Length(Cast(cadcli01."vdclicli_regi" AS CHAR(4))) = 4 THEN Cast(cadcli01."vdclicli_regi" AS VARCHAR(4)) END,
-            CASE WHEN Length(Cast(cadcli01."vdclicli_num" AS CHAR(4))) = 1 THEN Concat(
-                '000',
-                Cast(cadcli01."vdclicli_num" AS VARCHAR(4))
-            ) WHEN Length(Cast(cadcli01."vdclicli_num" AS CHAR(4))) = 2 THEN Concat(
-                '00',
-                Cast(cadcli01."vdclicli_num" AS VARCHAR(4))
-            ) WHEN Length(Cast(cadcli01."vdclicli_num" AS CHAR(4))) = 3 THEN Concat(
-                '0',
-                Cast(cadcli01."vdclicli_num" AS VARCHAR(4))
-            ) WHEN Length(Cast(cadcli01."vdclicli_num" AS CHAR(4))) = 4 THEN Cast(cadcli01."vdclicli_num" AS VARCHAR (4)) END
-        ) = @CODIGO_CLIENTE
-        OR @CODIGO_CLIENTE = ''
-    )
-    AND cadcli01."vdclicli_ven3" <> '   '
-    OR (
-        SELECT
-            tbblocli."vdcadblo_impclipalm"
-        FROM
-             TBBLOCLI
-        WHERE
-            tbblocli."vdcadblo_cod" = cadcli01."vdclicli_motblo"
-    ) = 1
-UNION
-SELECT
-    1 AS ATIVO,
-    Concat(
-        CASE WHEN Length(Cast(cadcli01."vdclicli_regi" AS CHAR(4))) = 1 THEN Concat(
-            '000',
-            Cast(cadcli01."vdclicli_regi" AS VARCHAR(4))
-        ) WHEN Length(Cast(cadcli01."vdclicli_regi" AS CHAR(4))) = 2 THEN Concat(
-            '00',
-            Cast(cadcli01."vdclicli_regi" AS VARCHAR(4))
-        ) WHEN Length(Cast(cadcli01."vdclicli_regi" AS CHAR(4))) = 3 THEN Concat(
-            '0',
-            Cast(cadcli01."vdclicli_regi" AS VARCHAR(4))
-        ) WHEN Length(Cast(cadcli01."vdclicli_regi" AS CHAR(4))) = 4 THEN Cast(cadcli01."vdclicli_regi" AS VARCHAR(4)) END,
-        CASE WHEN Length(Cast(cadcli01."vdclicli_num" AS CHAR(4))) = 1 THEN Concat(
-            '000',
-            Cast(cadcli01."vdclicli_num" AS VARCHAR(4))
-        ) WHEN Length(Cast(cadcli01."vdclicli_num" AS CHAR(4))) = 2 THEN Concat(
-            '00',
-            Cast(cadcli01."vdclicli_num" AS VARCHAR(4))
-        ) WHEN Length(Cast(cadcli01."vdclicli_num" AS CHAR(4))) = 3 THEN Concat(
-            '0',
-            Cast(cadcli01."vdclicli_num" AS VARCHAR(4))
-        ) WHEN Length(Cast(cadcli01."vdclicli_num" AS CHAR(4))) = 4 THEN Cast(cadcli01."vdclicli_num" AS VARCHAR (4)) END
-    ) AS CODIGO_CLIENTE_ERP,
-	4 as VENDEDOR,
-    cadcli01."vdclicli_ven4" AS CODIGO_VENDEDOR_ERP
-FROM
-     CADCLI01
-WHERE
-    (
-        Concat(
-            CASE WHEN Length(Cast(cadcli01."vdclicli_regi" AS CHAR(4))) = 1 THEN Concat(
-                '000',
-                Cast(cadcli01."vdclicli_regi" AS VARCHAR(4))
-            ) WHEN Length(Cast(cadcli01."vdclicli_regi" AS CHAR(4))) = 2 THEN Concat(
-                '00',
-                Cast(cadcli01."vdclicli_regi" AS VARCHAR(4))
-            ) WHEN Length(Cast(cadcli01."vdclicli_regi" AS CHAR(4))) = 3 THEN Concat(
-                '0',
-                Cast(cadcli01."vdclicli_regi" AS VARCHAR(4))
-            ) WHEN Length(Cast(cadcli01."vdclicli_regi" AS CHAR(4))) = 4 THEN Cast(cadcli01."vdclicli_regi" AS VARCHAR(4)) END,
-            CASE WHEN Length(Cast(cadcli01."vdclicli_num" AS CHAR(4))) = 1 THEN Concat(
-                '000',
-                Cast(cadcli01."vdclicli_num" AS VARCHAR(4))
-            ) WHEN Length(Cast(cadcli01."vdclicli_num" AS CHAR(4))) = 2 THEN Concat(
-                '00',
-                Cast(cadcli01."vdclicli_num" AS VARCHAR(4))
-            ) WHEN Length(Cast(cadcli01."vdclicli_num" AS CHAR(4))) = 3 THEN Concat(
-                '0',
-                Cast(cadcli01."vdclicli_num" AS VARCHAR(4))
-            ) WHEN Length(Cast(cadcli01."vdclicli_num" AS CHAR(4))) = 4 THEN Cast(cadcli01."vdclicli_num" AS VARCHAR (4)) END
-        ) = @CODIGO_CLIENTE
-        OR @CODIGO_CLIENTE = ''
-    )
-    and cadcli01."vdclicli_ven4" <> '   '
-    OR (
-        SELECT
-            tbblocli."vdcadblo_impclipalm"
-        FROM
-             TBBLOCLI
-        WHERE
-            tbblocli."vdcadblo_cod" = cadcli01."vdclicli_motblo"
-    ) = 1
-UNION
-SELECT
-    1 AS ATIVO,
-    Concat(
-        CASE WHEN Length(Cast(cadcli01."vdclicli_regi" AS CHAR(4))) = 1 THEN Concat(
-            '000',
-            Cast(cadcli01."vdclicli_regi" AS VARCHAR(4))
-        ) WHEN Length(Cast(cadcli01."vdclicli_regi" AS CHAR(4))) = 2 THEN Concat(
-            '00',
-            Cast(cadcli01."vdclicli_regi" AS VARCHAR(4))
-        ) WHEN Length(Cast(cadcli01."vdclicli_regi" AS CHAR(4))) = 3 THEN Concat(
-            '0',
-            Cast(cadcli01."vdclicli_regi" AS VARCHAR(4))
-        ) WHEN Length(Cast(cadcli01."vdclicli_regi" AS CHAR(4))) = 4 THEN Cast(cadcli01."vdclicli_regi" AS VARCHAR(4)) END,
-        CASE WHEN Length(Cast(cadcli01."vdclicli_num" AS CHAR(4))) = 1 THEN Concat(
-            '000',
-            Cast(cadcli01."vdclicli_num" AS VARCHAR(4))
-        ) WHEN Length(Cast(cadcli01."vdclicli_num" AS CHAR(4))) = 2 THEN Concat(
-            '00',
-            Cast(cadcli01."vdclicli_num" AS VARCHAR(4))
-        ) WHEN Length(Cast(cadcli01."vdclicli_num" AS CHAR(4))) = 3 THEN Concat(
-            '0',
-            Cast(cadcli01."vdclicli_num" AS VARCHAR(4))
-        ) WHEN Length(Cast(cadcli01."vdclicli_num" AS CHAR(4))) = 4 THEN Cast(cadcli01."vdclicli_num" AS VARCHAR (4)) END
-    ) AS CODIGO_CLIENTE_ERP,
-	5 as VENDEDOR,
-    cadcli01."vdclicli_ven5" AS CODIGO_VENDEDOR_ERP
-FROM
-     CADCLI01
-WHERE
-    (
-        Concat(
-            CASE WHEN Length(Cast(cadcli01."vdclicli_regi" AS CHAR(4))) = 1 THEN Concat(
-                '000',
-                Cast(cadcli01."vdclicli_regi" AS VARCHAR(4))
-            ) WHEN Length(Cast(cadcli01."vdclicli_regi" AS CHAR(4))) = 2 THEN Concat(
-                '00',
-                Cast(cadcli01."vdclicli_regi" AS VARCHAR(4))
-            ) WHEN Length(Cast(cadcli01."vdclicli_regi" AS CHAR(4))) = 3 THEN Concat(
-                '0',
-                Cast(cadcli01."vdclicli_regi" AS VARCHAR(4))
-            ) WHEN Length(Cast(cadcli01."vdclicli_regi" AS CHAR(4))) = 4 THEN Cast(cadcli01."vdclicli_regi" AS VARCHAR(4)) END,
-            CASE WHEN Length(Cast(cadcli01."vdclicli_num" AS CHAR(4))) = 1 THEN Concat(
-                '000',
-                Cast(cadcli01."vdclicli_num" AS VARCHAR(4))
-            ) WHEN Length(Cast(cadcli01."vdclicli_num" AS CHAR(4))) = 2 THEN Concat(
-                '00',
-                Cast(cadcli01."vdclicli_num" AS VARCHAR(4))
-            ) WHEN Length(Cast(cadcli01."vdclicli_num" AS CHAR(4))) = 3 THEN Concat(
-                '0',
-                Cast(cadcli01."vdclicli_num" AS VARCHAR(4))
-            ) WHEN Length(Cast(cadcli01."vdclicli_num" AS CHAR(4))) = 4 THEN Cast(cadcli01."vdclicli_num" AS VARCHAR (4)) END
-        ) = @CODIGO_CLIENTE
-        OR @CODIGO_CLIENTE = ''
-    )
-    AND cadcli01."vdclicli_ven5" <> '   '
     OR (
         SELECT
             tbblocli."vdcadblo_impclipalm"
@@ -2852,24 +2550,8 @@ AS
           vdprdcbo. "vdprdcbo_qtdav"   AS QUANTIDADE_AVULSO, 
           vdprdcbo. "vdprdcbo_codrprd" AS CODIGO_PRODUTO_ERP, 
           vdprdcbo. "vdprdcbo_ocor"    AS CODIGO_OCOR_ERP, 
-concat(
-concat(concat(repeat('0',3 - length(cast(VDPRDCBO_CODEMP  as varchar(03)))),   cast(VDPRDCBO_CODEMP as varchar(03)))
-,
-concat(repeat('0',10 - length(cast(VDPRDCBO_CODCBO  as varchar(10)))),         cast(VDPRDCBO_CODCBO as varchar(10)))),
-concat(
-concat(repeat('0',10 - length(cast(VDPRDCBO_CODRPRD as varchar(10))) ), cast(VDPRDCBO_CODRPRD as varchar(10))),
-concat(repeat('0',3 - length(cast(VDPRDCBO_OCOR    as varchar(03))) ),         cast(VDPRDCBO_OCOR as varchar(03)))
-)
-)		  AS CODIGO_PRODUTO_COMBO_ERP 
+		cast(VDPRDCBO_CODCBO  as varchar(10))  AS CODIGO_PRODUTO_COMBO_ERP 
   FROM    vdprdcbo 
   WHERE   vdprdcbo. "vdprdcbo_codrprd" <> 0 
          AND 
-		 (concat(
-concat(concat(repeat('0',3 - length(cast(VDPRDCBO_CODEMP  as varchar(03)))),   cast(VDPRDCBO_CODEMP as varchar(03)))
-,
-concat(repeat('0',10 - length(cast(VDPRDCBO_CODCBO  as varchar(10)))),         cast(VDPRDCBO_CODCBO as varchar(10)))),
-concat(
-concat(repeat('0',10 - length(cast(VDPRDCBO_CODRPRD as varchar(10))) ), cast(VDPRDCBO_CODRPRD as varchar(10))),
-concat(repeat('0',3 - length(cast(VDPRDCBO_OCOR    as varchar(03))) ),         cast(VDPRDCBO_OCOR as varchar(03)))
-)
-)	= @CODIGO_COMBO	or  @CODIGO_COMBO = '' );
+		 (cast(VDPRDCBO_CODCBO  as varchar(10)) 	= @CODIGO_COMBO	or  @CODIGO_COMBO = '' );

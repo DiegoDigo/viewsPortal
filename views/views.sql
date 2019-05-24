@@ -17,7 +17,7 @@ AS
   WHERE  ( "vdpedflc_nped" = @codigopedido 
             OR @codigopedido = 0 ) ;
 
-declare set bigint @CODIGO_BANDA = 0;
+/*declare set bigint @CODIGO_BANDA = 0;
 
 CREATE OR REPLACE view  vw_banda_preco_capa 
 AS 
@@ -64,7 +64,7 @@ AS
   FROM    bdapre01 
   WHERE  bdapre01. "vdprdbda_cancsn" = 0 
          AND ( bdapre01. "vdprdbda_id" = @codigo_banda 
-                OR @codigo_banda = 0 ) ;
+                OR @codigo_banda = 0 ) ;*/
 
 DECLARE SET INTEGER @CODIGO_BANDA = 0;
 
@@ -2555,3 +2555,957 @@ AS
   WHERE   vdprdcbo. "vdprdcbo_codrprd" <> 0 
          AND 
 		 (cast(VDPRDCBO_CODCBO  as varchar(10)) 	= @CODIGO_COMBO	or  @CODIGO_COMBO = '' );
+
+
+CREATE OR replace VIEW  vw_seq_banda_preco 
+AS 
+  SELECT 1   SEQUENCIA, 
+         CASE 
+           WHEN vdprdsbd_seq_1_1 = 1 THEN 1 
+           ELSE 0 
+         END FAMILIA, 
+         CASE 
+           WHEN vdprdsbd_seq_2_1 = 1 THEN 1 
+           ELSE 0 
+         END PRODUTO, 
+         CASE 
+           WHEN vdprdsbd_seq_3_1 = 1 THEN 1 
+           ELSE 0 
+         END GRUPO, 
+         CASE 
+           WHEN vdprdsbd_seq_4_1 = 1 THEN 1 
+           ELSE 0 
+         END CATEGORIA, 
+         CASE 
+           WHEN vdprdsbd_seq_5_1 = 1 THEN 1 
+           ELSE 0 
+         END MARCA, 
+         CASE 
+           WHEN vdprdsbd_seq_6_1 = 1 THEN 1 
+           ELSE 0 
+         END GRUPO_CLIENTE, 
+         CASE 
+           WHEN vdprdsbd_seq_7_1 = 1 THEN 1 
+           ELSE 0 
+         END VENDEDOR, 
+         CASE 
+           WHEN vdprdsbd_seq_8_1 = 1 THEN 1 
+           ELSE 0 
+         END GRUPO_CANAL, 
+         CASE 
+           WHEN vdprdsbd_seq_9_1 = 1 THEN 1 
+           ELSE 0 
+         END COND_PAGTO, 
+         CASE 
+           WHEN vdprdsbd_seq_10_1 = 1 THEN 1 
+           ELSE 0 
+         END GRP_ESCALONADO 
+  FROM    bdaseq01 
+  UNION ALL 
+  SELECT 2   SEQUENCIA, 
+         CASE 
+           WHEN vdprdsbd_seq_1_2 = 1 THEN 1 
+           ELSE 0 
+         END FAMILIA, 
+         CASE 
+           WHEN vdprdsbd_seq_2_2 = 1 THEN 1 
+           ELSE 0 
+         END PRODUTO, 
+         CASE 
+           WHEN vdprdsbd_seq_3_2 = 1 THEN 1 
+           ELSE 0 
+         END GRUPO, 
+         CASE 
+           WHEN vdprdsbd_seq_4_2 = 1 THEN 1 
+           ELSE 0 
+         END CATEGORIA, 
+         CASE 
+           WHEN vdprdsbd_seq_5_2 = 1 THEN 1 
+           ELSE 0 
+         END MARCA, 
+         CASE 
+           WHEN vdprdsbd_seq_6_2 = 1 THEN 1 
+           ELSE 0 
+         END GRUPO_CLIENTE, 
+         CASE 
+           WHEN vdprdsbd_seq_7_2 = 1 THEN 1 
+           ELSE 0 
+         END VENDEDOR, 
+         CASE 
+           WHEN vdprdsbd_seq_8_2 = 1 THEN 1 
+           ELSE 0 
+         END GRUPO_CANAL, 
+         CASE 
+           WHEN vdprdsbd_seq_9_2 = 1 THEN 1 
+           ELSE 0 
+         END COND_PAGTO, 
+         CASE 
+           WHEN vdprdsbd_seq_10_2 = 1 THEN 1 
+           ELSE 0 
+         END GRP_ESCALONADO 
+  FROM    bdaseq01 
+  UNION ALL 
+  SELECT 3   SEQUENCIA, 
+         CASE 
+           WHEN vdprdsbd_seq_1_3 = 1 THEN 1 
+           ELSE 0 
+         END FAMILIA, 
+         CASE 
+           WHEN vdprdsbd_seq_2_3 = 1 THEN 1 
+           ELSE 0 
+         END PRODUTO, 
+         CASE 
+           WHEN vdprdsbd_seq_3_3 = 1 THEN 1 
+           ELSE 0 
+         END GRUPO, 
+         CASE 
+           WHEN vdprdsbd_seq_4_3 = 1 THEN 1 
+           ELSE 0 
+         END CATEGORIA, 
+         CASE 
+           WHEN vdprdsbd_seq_5_3 = 1 THEN 1 
+           ELSE 0 
+         END MARCA, 
+         CASE 
+           WHEN vdprdsbd_seq_6_3 = 1 THEN 1 
+           ELSE 0 
+         END GRUPO_CLIENTE, 
+         CASE 
+           WHEN vdprdsbd_seq_7_3 = 1 THEN 1 
+           ELSE 0 
+         END VENDEDOR, 
+         CASE 
+           WHEN vdprdsbd_seq_8_3 = 1 THEN 1 
+           ELSE 0 
+         END GRUPO_CANAL, 
+         CASE 
+           WHEN vdprdsbd_seq_9_3 = 1 THEN 1 
+           ELSE 0 
+         END COND_PAGTO, 
+         CASE 
+           WHEN vdprdsbd_seq_10_3 = 1 THEN 1 
+           ELSE 0 
+         END GRP_ESCALONADO 
+  FROM    bdaseq01 
+  UNION ALL 
+  SELECT 4   SEQUENCIA, 
+         CASE 
+           WHEN vdprdsbd_seq_1_4 = 1 THEN 1 
+           ELSE 0 
+         END FAMILIA, 
+         CASE 
+           WHEN vdprdsbd_seq_2_4 = 1 THEN 1 
+           ELSE 0 
+         END PRODUTO, 
+         CASE 
+           WHEN vdprdsbd_seq_3_4 = 1 THEN 1 
+           ELSE 0 
+         END GRUPO, 
+         CASE 
+           WHEN vdprdsbd_seq_4_4 = 1 THEN 1 
+           ELSE 0 
+         END CATEGORIA, 
+         CASE 
+           WHEN vdprdsbd_seq_5_4 = 1 THEN 1 
+           ELSE 0 
+         END MARCA, 
+         CASE 
+           WHEN vdprdsbd_seq_6_4 = 1 THEN 1 
+           ELSE 0 
+         END GRUPO_CLIENTE, 
+         CASE 
+           WHEN vdprdsbd_seq_7_4 = 1 THEN 1 
+           ELSE 0 
+         END VENDEDOR, 
+         CASE 
+           WHEN vdprdsbd_seq_8_4 = 1 THEN 1 
+           ELSE 0 
+         END GRUPO_CANAL, 
+         CASE 
+           WHEN vdprdsbd_seq_9_4 = 1 THEN 1 
+           ELSE 0 
+         END COND_PAGTO, 
+         CASE 
+           WHEN vdprdsbd_seq_10_4 = 1 THEN 1 
+           ELSE 0 
+         END GRP_ESCALONADO 
+  FROM    bdaseq01 
+  UNION ALL 
+  SELECT 5   SEQUENCIA, 
+         CASE 
+           WHEN vdprdsbd_seq_1_5 = 1 THEN 1 
+           ELSE 0 
+         END FAMILIA, 
+         CASE 
+           WHEN vdprdsbd_seq_2_5 = 1 THEN 1 
+           ELSE 0 
+         END PRODUTO, 
+         CASE 
+           WHEN vdprdsbd_seq_3_5 = 1 THEN 1 
+           ELSE 0 
+         END GRUPO, 
+         CASE 
+           WHEN vdprdsbd_seq_4_5 = 1 THEN 1 
+           ELSE 0 
+         END CATEGORIA, 
+         CASE 
+           WHEN vdprdsbd_seq_5_5 = 1 THEN 1 
+           ELSE 0 
+         END MARCA, 
+         CASE 
+           WHEN vdprdsbd_seq_6_5 = 1 THEN 1 
+           ELSE 0 
+         END GRUPO_CLIENTE, 
+         CASE 
+           WHEN vdprdsbd_seq_7_5 = 1 THEN 1 
+           ELSE 0 
+         END VENDEDOR, 
+         CASE 
+           WHEN vdprdsbd_seq_8_5 = 1 THEN 1 
+           ELSE 0 
+         END GRUPO_CANAL, 
+         CASE 
+           WHEN vdprdsbd_seq_9_5 = 1 THEN 1 
+           ELSE 0 
+         END COND_PAGTO, 
+         CASE 
+           WHEN vdprdsbd_seq_10_5 = 1 THEN 1 
+           ELSE 0 
+         END GRP_ESCALONADO 
+  FROM    bdaseq01 
+  UNION ALL 
+  SELECT 6   SEQUENCIA, 
+         CASE 
+           WHEN vdprdsbd_seq_1_6 = 1 THEN 1 
+           ELSE 0 
+         END FAMILIA, 
+         CASE 
+           WHEN vdprdsbd_seq_2_6 = 1 THEN 1 
+           ELSE 0 
+         END PRODUTO, 
+         CASE 
+           WHEN vdprdsbd_seq_3_6 = 1 THEN 1 
+           ELSE 0 
+         END GRUPO, 
+         CASE 
+           WHEN vdprdsbd_seq_4_6 = 1 THEN 1 
+           ELSE 0 
+         END CATEGORIA, 
+         CASE 
+           WHEN vdprdsbd_seq_5_6 = 1 THEN 1 
+           ELSE 0 
+         END MARCA, 
+         CASE 
+           WHEN vdprdsbd_seq_6_6 = 1 THEN 1 
+           ELSE 0 
+         END GRUPO_CLIENTE, 
+         CASE 
+           WHEN vdprdsbd_seq_7_6 = 1 THEN 1 
+           ELSE 0 
+         END VENDEDOR, 
+         CASE 
+           WHEN vdprdsbd_seq_8_6 = 1 THEN 1 
+           ELSE 0 
+         END GRUPO_CANAL, 
+         CASE 
+           WHEN vdprdsbd_seq_9_6 = 1 THEN 1 
+           ELSE 0 
+         END COND_PAGTO, 
+         CASE 
+           WHEN vdprdsbd_seq_10_6 = 1 THEN 1 
+           ELSE 0 
+         END GRP_ESCALONADO 
+  FROM    bdaseq01 
+  UNION ALL 
+  SELECT 7   SEQUENCIA, 
+         CASE 
+           WHEN vdprdsbd_seq_1_7 = 1 THEN 1 
+           ELSE 0 
+         END FAMILIA, 
+         CASE 
+           WHEN vdprdsbd_seq_2_7 = 1 THEN 1 
+           ELSE 0 
+         END PRODUTO, 
+         CASE 
+           WHEN vdprdsbd_seq_3_7 = 1 THEN 1 
+           ELSE 0 
+         END GRUPO, 
+         CASE 
+           WHEN vdprdsbd_seq_4_7 = 1 THEN 1 
+           ELSE 0 
+         END CATEGORIA, 
+         CASE 
+           WHEN vdprdsbd_seq_5_7 = 1 THEN 1 
+           ELSE 0 
+         END MARCA, 
+         CASE 
+           WHEN vdprdsbd_seq_6_7 = 1 THEN 1 
+           ELSE 0 
+         END GRUPO_CLIENTE, 
+         CASE 
+           WHEN vdprdsbd_seq_7_7 = 1 THEN 1 
+           ELSE 0 
+         END VENDEDOR, 
+         CASE 
+           WHEN vdprdsbd_seq_8_7 = 1 THEN 1 
+           ELSE 0 
+         END GRUPO_CANAL, 
+         CASE 
+           WHEN vdprdsbd_seq_9_7 = 1 THEN 1 
+           ELSE 0 
+         END COND_PAGTO, 
+         CASE 
+           WHEN vdprdsbd_seq_10_7 = 1 THEN 1 
+           ELSE 0 
+         END GRP_ESCALONADO 
+  FROM    bdaseq01 
+  UNION ALL 
+  SELECT 8   SEQUENCIA, 
+         CASE 
+           WHEN vdprdsbd_seq_1_8 = 1 THEN 1 
+           ELSE 0 
+         END FAMILIA, 
+         CASE 
+           WHEN vdprdsbd_seq_2_8 = 1 THEN 1 
+           ELSE 0 
+         END PRODUTO, 
+         CASE 
+           WHEN vdprdsbd_seq_3_8 = 1 THEN 1 
+           ELSE 0 
+         END GRUPO, 
+         CASE 
+           WHEN vdprdsbd_seq_4_8 = 1 THEN 1 
+           ELSE 0 
+         END CATEGORIA, 
+         CASE 
+           WHEN vdprdsbd_seq_5_8 = 1 THEN 1 
+           ELSE 0 
+         END MARCA, 
+         CASE 
+           WHEN vdprdsbd_seq_6_8 = 1 THEN 1 
+           ELSE 0 
+         END GRUPO_CLIENTE, 
+         CASE 
+           WHEN vdprdsbd_seq_7_8 = 1 THEN 1 
+           ELSE 0 
+         END VENDEDOR, 
+         CASE 
+           WHEN vdprdsbd_seq_8_8 = 1 THEN 1 
+           ELSE 0 
+         END GRUPO_CANAL, 
+         CASE 
+           WHEN vdprdsbd_seq_9_8 = 1 THEN 1 
+           ELSE 0 
+         END COND_PAGTO, 
+         CASE 
+           WHEN vdprdsbd_seq_10_8 = 1 THEN 1 
+           ELSE 0 
+         END GRP_ESCALONADO 
+  FROM    bdaseq01 
+  UNION ALL 
+  SELECT 9   SEQUENCIA, 
+         CASE 
+           WHEN vdprdsbd_seq_1_9 = 1 THEN 1 
+           ELSE 0 
+         END FAMILIA, 
+         CASE 
+           WHEN vdprdsbd_seq_2_9 = 1 THEN 1 
+           ELSE 0 
+         END PRODUTO, 
+         CASE 
+           WHEN vdprdsbd_seq_3_9 = 1 THEN 1 
+           ELSE 0 
+         END GRUPO, 
+         CASE 
+           WHEN vdprdsbd_seq_4_9 = 1 THEN 1 
+           ELSE 0 
+         END CATEGORIA, 
+         CASE 
+           WHEN vdprdsbd_seq_5_9 = 1 THEN 1 
+           ELSE 0 
+         END MARCA, 
+         CASE 
+           WHEN vdprdsbd_seq_6_9 = 1 THEN 1 
+           ELSE 0 
+         END GRUPO_CLIENTE, 
+         CASE 
+           WHEN vdprdsbd_seq_7_9 = 1 THEN 1 
+           ELSE 0 
+         END VENDEDOR, 
+         CASE 
+           WHEN vdprdsbd_seq_8_9 = 1 THEN 1 
+           ELSE 0 
+         END GRUPO_CANAL, 
+         CASE 
+           WHEN vdprdsbd_seq_9_9 = 1 THEN 1 
+           ELSE 0 
+         END COND_PAGTO, 
+         CASE 
+           WHEN vdprdsbd_seq_10_9 = 1 THEN 1 
+           ELSE 0 
+         END GRP_ESCALONADO 
+  FROM    bdaseq01 
+  UNION ALL 
+  SELECT 10  SEQUENCIA, 
+         CASE 
+           WHEN vdprdsbd_seq_1_10 = 1 THEN 1 
+           ELSE 0 
+         END FAMILIA, 
+         CASE 
+           WHEN vdprdsbd_seq_2_10 = 1 THEN 1 
+           ELSE 0 
+         END PRODUTO, 
+         CASE 
+           WHEN vdprdsbd_seq_3_10 = 1 THEN 1 
+           ELSE 0 
+         END GRUPO, 
+         CASE 
+           WHEN vdprdsbd_seq_4_10 = 1 THEN 1 
+           ELSE 0 
+         END CATEGORIA, 
+         CASE 
+           WHEN vdprdsbd_seq_5_10 = 1 THEN 1 
+           ELSE 0 
+         END MARCA, 
+         CASE 
+           WHEN vdprdsbd_seq_6_10 = 1 THEN 1 
+           ELSE 0 
+         END GRUPO_CLIENTE, 
+         CASE 
+           WHEN vdprdsbd_seq_7_10 = 1 THEN 1 
+           ELSE 0 
+         END VENDEDOR, 
+         CASE 
+           WHEN vdprdsbd_seq_8_10 = 1 THEN 1 
+           ELSE 0 
+         END GRUPO_CANAL, 
+         CASE 
+           WHEN vdprdsbd_seq_9_10 = 1 THEN 1 
+           ELSE 0 
+         END COND_PAGTO, 
+         CASE 
+           WHEN vdprdsbd_seq_10_10 = 1 THEN 1 
+           ELSE 0 
+         END GRP_ESCALONADO 
+  FROM    bdaseq01 
+  UNION ALL 
+  SELECT 11  SEQUENCIA, 
+         CASE 
+           WHEN vdprdsbd_seq_1_11 = 1 THEN 1 
+           ELSE 0 
+         END FAMILIA, 
+         CASE 
+           WHEN vdprdsbd_seq_2_11 = 1 THEN 1 
+           ELSE 0 
+         END PRODUTO, 
+         CASE 
+           WHEN vdprdsbd_seq_3_11 = 1 THEN 1 
+           ELSE 0 
+         END GRUPO, 
+         CASE 
+           WHEN vdprdsbd_seq_4_11 = 1 THEN 1 
+           ELSE 0 
+         END CATEGORIA, 
+         CASE 
+           WHEN vdprdsbd_seq_5_11 = 1 THEN 1 
+           ELSE 0 
+         END MARCA, 
+         CASE 
+           WHEN vdprdsbd_seq_6_11 = 1 THEN 1 
+           ELSE 0 
+         END GRUPO_CLIENTE, 
+         CASE 
+           WHEN vdprdsbd_seq_7_11 = 1 THEN 1 
+           ELSE 0 
+         END VENDEDOR, 
+         CASE 
+           WHEN vdprdsbd_seq_8_11 = 1 THEN 1 
+           ELSE 0 
+         END GRUPO_CANAL, 
+         CASE 
+           WHEN vdprdsbd_seq_9_11 = 1 THEN 1 
+           ELSE 0 
+         END COND_PAGTO, 
+         CASE 
+           WHEN vdprdsbd_seq_10_11 = 1 THEN 1 
+           ELSE 0 
+         END GRP_ESCALONADO 
+  FROM    bdaseq01 
+  UNION ALL 
+  SELECT 12  SEQUENCIA, 
+         CASE 
+           WHEN vdprdsbd_seq_1_12 = 1 THEN 1 
+           ELSE 0 
+         END FAMILIA, 
+         CASE 
+           WHEN vdprdsbd_seq_2_12 = 1 THEN 1 
+           ELSE 0 
+         END PRODUTO, 
+         CASE 
+           WHEN vdprdsbd_seq_3_12 = 1 THEN 1 
+           ELSE 0 
+         END GRUPO, 
+         CASE 
+           WHEN vdprdsbd_seq_4_12 = 1 THEN 1 
+           ELSE 0 
+         END CATEGORIA, 
+         CASE 
+           WHEN vdprdsbd_seq_5_12 = 1 THEN 1 
+           ELSE 0 
+         END MARCA, 
+         CASE 
+           WHEN vdprdsbd_seq_6_12 = 1 THEN 1 
+           ELSE 0 
+         END GRUPO_CLIENTE, 
+         CASE 
+           WHEN vdprdsbd_seq_7_12 = 1 THEN 1 
+           ELSE 0 
+         END VENDEDOR, 
+         CASE 
+           WHEN vdprdsbd_seq_8_12 = 1 THEN 1 
+           ELSE 0 
+         END GRUPO_CANAL, 
+         CASE 
+           WHEN vdprdsbd_seq_9_12 = 1 THEN 1 
+           ELSE 0 
+         END COND_PAGTO, 
+         CASE 
+           WHEN vdprdsbd_seq_10_12 = 1 THEN 1 
+           ELSE 0 
+         END GRP_ESCALONADO 
+  FROM    bdaseq01 
+  UNION ALL 
+  SELECT 13  SEQUENCIA, 
+         CASE 
+           WHEN vdprdsbd_seq_1_13 = 1 THEN 1 
+           ELSE 0 
+         END FAMILIA, 
+         CASE 
+           WHEN vdprdsbd_seq_2_13 = 1 THEN 1 
+           ELSE 0 
+         END PRODUTO, 
+         CASE 
+           WHEN vdprdsbd_seq_3_13 = 1 THEN 1 
+           ELSE 0 
+         END GRUPO, 
+         CASE 
+           WHEN vdprdsbd_seq_4_13 = 1 THEN 1 
+           ELSE 0 
+         END CATEGORIA, 
+         CASE 
+           WHEN vdprdsbd_seq_5_13 = 1 THEN 1 
+           ELSE 0 
+         END MARCA, 
+         CASE 
+           WHEN vdprdsbd_seq_6_13 = 1 THEN 1 
+           ELSE 0 
+         END GRUPO_CLIENTE, 
+         CASE 
+           WHEN vdprdsbd_seq_7_13 = 1 THEN 1 
+           ELSE 0 
+         END VENDEDOR, 
+         CASE 
+           WHEN vdprdsbd_seq_8_13 = 1 THEN 1 
+           ELSE 0 
+         END GRUPO_CANAL, 
+         CASE 
+           WHEN vdprdsbd_seq_9_13 = 1 THEN 1 
+           ELSE 0 
+         END COND_PAGTO, 
+         CASE 
+           WHEN vdprdsbd_seq_10_13 = 1 THEN 1 
+           ELSE 0 
+         END GRP_ESCALONADO 
+  FROM    bdaseq01 
+  UNION ALL 
+  SELECT 14  SEQUENCIA, 
+         CASE 
+           WHEN vdprdsbd_seq_1_14 = 1 THEN 1 
+           ELSE 0 
+         END FAMILIA, 
+         CASE 
+           WHEN vdprdsbd_seq_2_14 = 1 THEN 1 
+           ELSE 0 
+         END PRODUTO, 
+         CASE 
+           WHEN vdprdsbd_seq_3_14 = 1 THEN 1 
+           ELSE 0 
+         END GRUPO, 
+         CASE 
+           WHEN vdprdsbd_seq_4_14 = 1 THEN 1 
+           ELSE 0 
+         END CATEGORIA, 
+         CASE 
+           WHEN vdprdsbd_seq_5_14 = 1 THEN 1 
+           ELSE 0 
+         END MARCA, 
+         CASE 
+           WHEN vdprdsbd_seq_6_14 = 1 THEN 1 
+           ELSE 0 
+         END GRUPO_CLIENTE, 
+         CASE 
+           WHEN vdprdsbd_seq_7_14 = 1 THEN 1 
+           ELSE 0 
+         END VENDEDOR, 
+         CASE 
+           WHEN vdprdsbd_seq_8_14 = 1 THEN 1 
+           ELSE 0 
+         END GRUPO_CANAL, 
+         CASE 
+           WHEN vdprdsbd_seq_9_14 = 1 THEN 1 
+           ELSE 0 
+         END COND_PAGTO, 
+         CASE 
+           WHEN vdprdsbd_seq_10_14 = 1 THEN 1 
+           ELSE 0 
+         END GRP_ESCALONADO 
+  FROM    bdaseq01 
+  UNION ALL 
+  SELECT 15  SEQUENCIA, 
+         CASE 
+           WHEN vdprdsbd_seq_1_15 = 1 THEN 1 
+           ELSE 0 
+         END FAMILIA, 
+         CASE 
+           WHEN vdprdsbd_seq_2_15 = 1 THEN 1 
+           ELSE 0 
+         END PRODUTO, 
+         CASE 
+           WHEN vdprdsbd_seq_3_15 = 1 THEN 1 
+           ELSE 0 
+         END GRUPO, 
+         CASE 
+           WHEN vdprdsbd_seq_4_15 = 1 THEN 1 
+           ELSE 0 
+         END CATEGORIA, 
+         CASE 
+           WHEN vdprdsbd_seq_5_15 = 1 THEN 1 
+           ELSE 0 
+         END MARCA, 
+         CASE 
+           WHEN vdprdsbd_seq_6_15 = 1 THEN 1 
+           ELSE 0 
+         END GRUPO_CLIENTE, 
+         CASE 
+           WHEN vdprdsbd_seq_7_15 = 1 THEN 1 
+           ELSE 0 
+         END VENDEDOR, 
+         CASE 
+           WHEN vdprdsbd_seq_8_15 = 1 THEN 1 
+           ELSE 0 
+         END GRUPO_CANAL, 
+         CASE 
+           WHEN vdprdsbd_seq_9_15 = 1 THEN 1 
+           ELSE 0 
+         END COND_PAGTO, 
+         CASE 
+           WHEN vdprdsbd_seq_10_15 = 1 THEN 1 
+           ELSE 0 
+         END GRP_ESCALONADO 
+  FROM    bdaseq01 
+  UNION ALL 
+  SELECT 16  SEQUENCIA, 
+         CASE 
+           WHEN vdprdsbd_seq_1_16 = 1 THEN 1 
+           ELSE 0 
+         END FAMILIA, 
+         CASE 
+           WHEN vdprdsbd_seq_2_16 = 1 THEN 1 
+           ELSE 0 
+         END PRODUTO, 
+         CASE 
+           WHEN vdprdsbd_seq_3_16 = 1 THEN 1 
+           ELSE 0 
+         END GRUPO, 
+         CASE 
+           WHEN vdprdsbd_seq_4_16 = 1 THEN 1 
+           ELSE 0 
+         END CATEGORIA, 
+         CASE 
+           WHEN vdprdsbd_seq_5_16 = 1 THEN 1 
+           ELSE 0 
+         END MARCA, 
+         CASE 
+           WHEN vdprdsbd_seq_6_16 = 1 THEN 1 
+           ELSE 0 
+         END GRUPO_CLIENTE, 
+         CASE 
+           WHEN vdprdsbd_seq_7_16 = 1 THEN 1 
+           ELSE 0 
+         END VENDEDOR, 
+         CASE 
+           WHEN vdprdsbd_seq_8_16 = 1 THEN 1 
+           ELSE 0 
+         END GRUPO_CANAL, 
+         CASE 
+           WHEN vdprdsbd_seq_9_16 = 1 THEN 1 
+           ELSE 0 
+         END COND_PAGTO, 
+         CASE 
+           WHEN vdprdsbd_seq_10_16 = 1 THEN 1 
+           ELSE 0 
+         END GRP_ESCALONADO 
+  FROM    bdaseq01 
+  UNION ALL 
+  SELECT 17  SEQUENCIA, 
+         CASE 
+           WHEN vdprdsbd_seq_1_17 = 1 THEN 1 
+           ELSE 0 
+         END FAMILIA, 
+         CASE 
+           WHEN vdprdsbd_seq_2_17 = 1 THEN 1 
+           ELSE 0 
+         END PRODUTO, 
+         CASE 
+           WHEN vdprdsbd_seq_3_17 = 1 THEN 1 
+           ELSE 0 
+         END GRUPO, 
+         CASE 
+           WHEN vdprdsbd_seq_4_17 = 1 THEN 1 
+           ELSE 0 
+         END CATEGORIA, 
+         CASE 
+           WHEN vdprdsbd_seq_5_17 = 1 THEN 1 
+           ELSE 0 
+         END MARCA, 
+         CASE 
+           WHEN vdprdsbd_seq_6_17 = 1 THEN 1 
+           ELSE 0 
+         END GRUPO_CLIENTE, 
+         CASE 
+           WHEN vdprdsbd_seq_7_17 = 1 THEN 1 
+           ELSE 0 
+         END VENDEDOR, 
+         CASE 
+           WHEN vdprdsbd_seq_8_17 = 1 THEN 1 
+           ELSE 0 
+         END GRUPO_CANAL, 
+         CASE 
+           WHEN vdprdsbd_seq_9_17 = 1 THEN 1 
+           ELSE 0 
+         END COND_PAGTO, 
+         CASE 
+           WHEN vdprdsbd_seq_10_17 = 1 THEN 1 
+           ELSE 0 
+         END GRP_ESCALONADO 
+  FROM    bdaseq01 
+  UNION ALL 
+  SELECT 18  SEQUENCIA, 
+         CASE 
+           WHEN vdprdsbd_seq_1_18 = 1 THEN 1 
+           ELSE 0 
+         END FAMILIA, 
+         CASE 
+           WHEN vdprdsbd_seq_2_18 = 1 THEN 1 
+           ELSE 0 
+         END PRODUTO, 
+         CASE 
+           WHEN vdprdsbd_seq_3_18 = 1 THEN 1 
+           ELSE 0 
+         END GRUPO, 
+         CASE 
+           WHEN vdprdsbd_seq_4_18 = 1 THEN 1 
+           ELSE 0 
+         END CATEGORIA, 
+         CASE 
+           WHEN vdprdsbd_seq_5_18 = 1 THEN 1 
+           ELSE 0 
+         END MARCA, 
+         CASE 
+           WHEN vdprdsbd_seq_6_18 = 1 THEN 1 
+           ELSE 0 
+         END GRUPO_CLIENTE, 
+         CASE 
+           WHEN vdprdsbd_seq_7_18 = 1 THEN 1 
+           ELSE 0 
+         END VENDEDOR, 
+         CASE 
+           WHEN vdprdsbd_seq_8_18 = 1 THEN 1 
+           ELSE 0 
+         END GRUPO_CANAL, 
+         CASE 
+           WHEN vdprdsbd_seq_9_18 = 1 THEN 1 
+           ELSE 0 
+         END COND_PAGTO, 
+         CASE 
+           WHEN vdprdsbd_seq_10_18 = 1 THEN 1 
+           ELSE 0 
+         END GRP_ESCALONADO 
+  FROM    bdaseq01 
+  UNION ALL 
+  SELECT 19  SEQUENCIA, 
+         CASE 
+           WHEN vdprdsbd_seq_1_19 = 1 THEN 1 
+           ELSE 0 
+         END FAMILIA, 
+         CASE 
+           WHEN vdprdsbd_seq_2_19 = 1 THEN 1 
+           ELSE 0 
+         END PRODUTO, 
+         CASE 
+           WHEN vdprdsbd_seq_3_19 = 1 THEN 1 
+           ELSE 0 
+         END GRUPO, 
+         CASE 
+           WHEN vdprdsbd_seq_4_19 = 1 THEN 1 
+           ELSE 0 
+         END CATEGORIA, 
+         CASE 
+           WHEN vdprdsbd_seq_5_19 = 1 THEN 1 
+           ELSE 0 
+         END MARCA, 
+         CASE 
+           WHEN vdprdsbd_seq_6_19 = 1 THEN 1 
+           ELSE 0 
+         END GRUPO_CLIENTE, 
+         CASE 
+           WHEN vdprdsbd_seq_7_19 = 1 THEN 1 
+           ELSE 0 
+         END VENDEDOR, 
+         CASE 
+           WHEN vdprdsbd_seq_8_19 = 1 THEN 1 
+           ELSE 0 
+         END GRUPO_CANAL, 
+         CASE 
+           WHEN vdprdsbd_seq_9_19 = 1 THEN 1 
+           ELSE 0 
+         END COND_PAGTO, 
+         CASE 
+           WHEN vdprdsbd_seq_10_19 = 1 THEN 1 
+           ELSE 0 
+         END GRP_ESCALONADO 
+  FROM    bdaseq01 
+  UNION ALL 
+  SELECT 20  SEQUENCIA, 
+         CASE 
+           WHEN vdprdsbd_seq_1_20 = 1 THEN 1 
+           ELSE 0 
+         END FAMILIA, 
+         CASE 
+           WHEN vdprdsbd_seq_2_20 = 1 THEN 1 
+           ELSE 0 
+         END PRODUTO, 
+         CASE 
+           WHEN vdprdsbd_seq_3_20 = 1 THEN 1 
+           ELSE 0 
+         END GRUPO, 
+         CASE 
+           WHEN vdprdsbd_seq_4_20 = 1 THEN 1 
+           ELSE 0 
+         END CATEGORIA, 
+         CASE 
+           WHEN vdprdsbd_seq_5_20 = 1 THEN 1 
+           ELSE 0 
+         END MARCA, 
+         CASE 
+           WHEN vdprdsbd_seq_6_20 = 1 THEN 1 
+           ELSE 0 
+         END GRUPO_CLIENTE, 
+         CASE 
+           WHEN vdprdsbd_seq_7_20 = 1 THEN 1 
+           ELSE 0 
+         END VENDEDOR, 
+         CASE 
+           WHEN vdprdsbd_seq_8_20 = 1 THEN 1 
+           ELSE 0 
+         END GRUPO_CANAL, 
+         CASE 
+           WHEN vdprdsbd_seq_9_20 = 1 THEN 1 
+           ELSE 0 
+         END COND_PAGTO, 
+         CASE 
+           WHEN vdprdsbd_seq_10_20 = 1 THEN 1 
+           ELSE 0 
+         END GRP_ESCALONADO 
+  FROM    bdaseq01 ;
+  
+  
+  declare set bigint @CODIGO_BANDA = 0;
+
+CREATE OR REPLACE view  vw_banda_preco_capa 
+AS 
+SELECT 1                                                                AS 
+         ATIVO, 
+         bdapre01. "vdprdbda_id"                                          AS 
+            CODIGO_BANDA_PRECO_ERP, 
+         bdapre01. "vdprdbda_fam"                                         AS 
+            CODIGO_FAMEB, 
+         bdapre01. "vdprdbda_grpcli"                                      AS 
+            CODIGO_GRUPO_ANALISE_CLI, 
+         bdapre01. "vdprdbda_grpcan"                                      AS 
+            CODIGO_GRUPO_CANAL_CLI, 
+         bdapre01. "vdprdbda_pst"                                         AS 
+            CODIGO_PASTA_CLI, 
+         NULL                                                             AS 
+            DESCRICAO, 
+         CASE 
+           WHEN bdapre01. "vdprdbda_importado" = 'S' THEN 'IMPORTADO' 
+           ELSE 'MANUAL' 
+         end                                                              AS 
+            ORIGEM_BANDA, 
+         bdapre01. "vdprdbda_reg"                                         AS 
+            REGIAO_CLIENTE, 
+         bdapre01. "vdprdbda_caixa_unid"                                  AS 
+            UNIDADE, 
+         bdapre01. "vdprdbda_can"                                         AS 
+            CODIGO_CANAL_ERP, 
+         bdapre01. "vdprdbda_cat"                                         AS 
+            CODIGO_CATEGORIA_PRODUTO_ERP, 
+         bdapre01. "vdprdbda_fam"                                         AS 
+            CODIGO_FAMILIA_PRODUTO_ERP, 
+         bdapre01. "vdprdbda_grp"                                         AS 
+            CODIGO_GRUPO_PRODUTO_ERP, 
+         bdapre01. "vdprdbda_mar"                                         AS 
+            CODIGO_MARCA_PRODUTO_ERP, 
+         (SELECT cadprd01. "vdprdprd_codr" 
+          FROM    cadprd01 
+          WHERE  cadprd01. "vdprdprd_cfam" = bdapre01. "vdprdbda_fam" 
+                 AND cadprd01. "vdprdprd_nro" = bdapre01. "vdprdbda_prd") AS 
+         CODIGO_PRODUTO_ERP, 
+         bdapre01. "vdprdbda_cpg"                                         AS 
+            CODIGO_CONDICAO_PAGAMENTO_ERP,
+         (SELECT 
+               SEQUENCIA 
+           FROM VW_SEQ_BANDA_PRECO 
+           WHERE FAMILIA = CASE WHEN (bdapre01.VDPRDBDA_FAM = NULL  OR bdapre01.VDPRDBDA_FAM = 0) THEN 0 ELSE 1 END AND 
+                        PRODUTO = CASE WHEN (bdapre01.VDPRDBDA_PRD = NULL OR bdapre01.VDPRDBDA_PRD = 0) THEN 0 ELSE 1 END AND
+                        GRUPO = CASE WHEN (bdapre01.VDPRDBDA_GRP = NULL  OR bdapre01.VDPRDBDA_GRP = 0) THEN 0 ELSE 1 END AND
+                        CATEGORIA = CASE WHEN (bdapre01.VDPRDBDA_CAT = NULL  OR bdapre01.VDPRDBDA_CAT = 0) THEN 0 ELSE 1 END AND
+                        MARCA = CASE WHEN (bdapre01.VDPRDBDA_MAR = NULL  OR bdapre01.VDPRDBDA_MAR = 0) THEN 0 ELSE 1 END AND
+                        GRUPO_CLIENTE = CASE WHEN (bdapre01.VDPRDBDA_GRPCLI = NULL  OR bdapre01.VDPRDBDA_GRPCLI = 0) THEN 0 ELSE 1 END AND
+                        VENDEDOR = CASE WHEN (bdapre01.VDPRDBDA_VEN = NULL  OR bdapre01.VDPRDBDA_VEN = '') THEN 0 ELSE 1 END AND
+                        GRUPO_CANAL = CASE WHEN (bdapre01.VDPRDBDA_CAN = NULL  OR bdapre01.VDPRDBDA_CAN = '') THEN 0 ELSE 1 END AND
+                        COND_PAGTO = CASE WHEN (bdapre01.VDPRDBDA_CPG = NULL  OR bdapre01.VDPRDBDA_CPG = 0) THEN 0 ELSE 1 END AND 
+                        GRP_ESCALONADO = CASE WHEN (bdapre01.VDPRDBDA_GRPESC = NULL  OR bdapre01.VDPRDBDA_GRPESC = 0) THEN 0 ELSE 1 END) SEQUENCIA
+  FROM    bdapre01 
+  WHERE  bdapre01. "vdprdbda_cancsn" = 0 
+         AND ( bdapre01. "vdprdbda_id" = @codigo_banda 
+                OR @codigo_banda = 0 )  AND
+         (SELECT 
+               SEQUENCIA 
+           FROM VW_SEQ_BANDA_PRECO 
+           WHERE FAMILIA = CASE WHEN (bdapre01.VDPRDBDA_FAM = NULL  OR bdapre01.VDPRDBDA_FAM = 0) THEN 0 ELSE 1 END AND 
+                        PRODUTO = CASE WHEN (bdapre01.VDPRDBDA_PRD = NULL OR bdapre01.VDPRDBDA_PRD = 0) THEN 0 ELSE 1 END AND
+                        GRUPO = CASE WHEN (bdapre01.VDPRDBDA_GRP = NULL  OR bdapre01.VDPRDBDA_GRP = 0) THEN 0 ELSE 1 END AND
+                        CATEGORIA = CASE WHEN (bdapre01.VDPRDBDA_CAT = NULL  OR bdapre01.VDPRDBDA_CAT = 0) THEN 0 ELSE 1 END AND
+                        MARCA = CASE WHEN (bdapre01.VDPRDBDA_MAR = NULL  OR bdapre01.VDPRDBDA_MAR = 0) THEN 0 ELSE 1 END AND
+                        GRUPO_CLIENTE = CASE WHEN (bdapre01.VDPRDBDA_GRPCLI = NULL  OR bdapre01.VDPRDBDA_GRPCLI = 0) THEN 0 ELSE 1 END AND
+                        VENDEDOR = CASE WHEN (bdapre01.VDPRDBDA_VEN = NULL  OR bdapre01.VDPRDBDA_VEN = '') THEN 0 ELSE 1 END AND
+                        GRUPO_CANAL = CASE WHEN (bdapre01.VDPRDBDA_CAN = NULL  OR bdapre01.VDPRDBDA_CAN = '') THEN 0 ELSE 1 END AND
+                        COND_PAGTO = CASE WHEN (bdapre01.VDPRDBDA_CPG = NULL  OR bdapre01.VDPRDBDA_CPG = 0) THEN 0 ELSE 1 END AND 
+                        GRP_ESCALONADO = CASE WHEN (bdapre01.VDPRDBDA_GRPESC = NULL  OR bdapre01.VDPRDBDA_GRPESC = 0) THEN 0 ELSE 1 END) <> 0 AND
+         (SELECT 
+               COUNT(*) 
+           FROM VW_SEQ_BANDA_PRECO 
+           WHERE FAMILIA = CASE WHEN (bdapre01.VDPRDBDA_FAM = NULL  OR bdapre01.VDPRDBDA_FAM = 0) THEN 0 ELSE 1 END AND 
+                        PRODUTO = CASE WHEN (bdapre01.VDPRDBDA_PRD = NULL OR bdapre01.VDPRDBDA_PRD = 0) THEN 0 ELSE 1 END AND
+                        GRUPO = CASE WHEN (bdapre01.VDPRDBDA_GRP = NULL  OR bdapre01.VDPRDBDA_GRP = 0) THEN 0 ELSE 1 END AND
+                        CATEGORIA = CASE WHEN (bdapre01.VDPRDBDA_CAT = NULL  OR bdapre01.VDPRDBDA_CAT = 0) THEN 0 ELSE 1 END AND
+                        MARCA = CASE WHEN (bdapre01.VDPRDBDA_MAR = NULL  OR bdapre01.VDPRDBDA_MAR = 0) THEN 0 ELSE 1 END AND
+                        GRUPO_CLIENTE = CASE WHEN (bdapre01.VDPRDBDA_GRPCLI = NULL  OR bdapre01.VDPRDBDA_GRPCLI = 0) THEN 0 ELSE 1 END AND
+                        VENDEDOR = CASE WHEN (bdapre01.VDPRDBDA_VEN = NULL  OR bdapre01.VDPRDBDA_VEN = '') THEN 0 ELSE 1 END AND
+                        GRUPO_CANAL = CASE WHEN (bdapre01.VDPRDBDA_CAN = NULL  OR bdapre01.VDPRDBDA_CAN = '') THEN 0 ELSE 1 END AND
+                        COND_PAGTO = CASE WHEN (bdapre01.VDPRDBDA_CPG = NULL  OR bdapre01.VDPRDBDA_CPG = 0) THEN 0 ELSE 1 END AND 
+                        GRP_ESCALONADO = CASE WHEN (bdapre01.VDPRDBDA_GRPESC = NULL  OR bdapre01.VDPRDBDA_GRPESC = 0) THEN 0 ELSE 1 END) =1;
+  
+  

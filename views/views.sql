@@ -1476,10 +1476,12 @@ WHERE
         OR @COD_TABELA = 0
     );
 
-declare set int @DISP_PORTAL_WEB = 1;
+
 DECLARE SET INT @CODIGO_PROD = 0;
 DECLARE SET INT @CODIGO_FAMILIA = 0;
 DECLARE SET INT @CODIGO_SEQUENCIA = 0;
+-- VARIÁVEL FANTASMA QUE NÃO FAZ PARTE DO WHERE 
+DECLARE SET INT @DISP_PORTAL_WEB = 1;
 
 
 CREATE
@@ -1522,8 +1524,8 @@ FROM
 WHERE
     cadprd01."vdprdprd_cfam" > @CODIGO_FAMILIA
     AND cadprd01."vdprdprd_nro" > @CODIGO_SEQUENCIA
-    AND (  cadprd01. "vdprdprd_codr" = @CODIGO_PROD 
-                OR @CODIGO_PROD = 0 ) ;
+    AND (  cadprd01."vdprdprd_codr" = @CODIGO_PROD 
+                OR @CODIGO_PROD = 0) ;
 	
 	
 declare set integer @id =0;

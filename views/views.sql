@@ -1521,7 +1521,9 @@ FROM
      CADPRD01
 WHERE
     cadprd01."vdprdprd_cfam" > @CODIGO_FAMILIA
-    AND cadprd01."vdprdprd_nro" > @CODIGO_SEQUENCIA;
+    AND cadprd01."vdprdprd_nro" > @CODIGO_SEQUENCIA
+    AND (  cadprd01. "vdprdprd_codr" = @CODIGO_PROD 
+                OR @CODIGO_PROD = 0 ) ;
 	
 	
 declare set integer @id =0;

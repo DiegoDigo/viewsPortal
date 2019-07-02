@@ -280,7 +280,7 @@ AS
          ccat01. "vdclicat_grpcan"      AS CODIGO_GRUPO_CANAL, 
          ccat01. "vdclicat_nome"        AS DESCRICAO, 
          ccat01. "vdclicat_descr_compl" AS DESCRICAO_COMPLEMENTAR, 
-         ccat01. "vdclicat_descr_compl" AS DIVISAO_CANAL 
+         ccat01. "vdclicat_divcan" AS DIVISAO_CANAL 
   FROM    ccat01 
   WHERE  ( ccat01. "vdclicat_cod" = @codigo_canal 
             OR @codigo_canal = '' ) ;

@@ -2546,20 +2546,26 @@ WHERE  (
 AND    vdfatbli_nremp = @numero_empresa 
 AND    vdfatbli_cancsn = 0;
 
-
+--ESTÁ RETORNANDFO MAIS ITENS DO QUE EU (IMAGINO) QUE SEJA NECESSÁRIO
 DECLARE SET varchar(27) @CODIGO_COMBO = '';
-CREATE or replace VIEW   "VW_COMBO_PRODUTO" 
-AS 
-  SELECT  vdprdcbo. "vdprdcbo_qtdcx"   AS QUANTIDADE_CAIXA, 
-          vdprdcbo. "vdprdcbo_qtdav"   AS QUANTIDADE_AVULSO, 
-          vdprdcbo. "vdprdcbo_codrprd" AS CODIGO_PRODUTO_ERP, 
-          vdprdcbo. "vdprdcbo_ocor"    AS CODIGO_OCOR_ERP, 
-		cast(VDPRDCBO_CODCBO  as varchar(10))  AS CODIGO_PRODUTO_COMBO_ERP 
-  FROM    vdprdcbo 
-  WHERE   vdprdcbo. "vdprdcbo_codrprd" <> 0 
-         AND 
-		 (cast(VDPRDCBO_CODCBO  as varchar(10)) 	= @CODIGO_COMBO	or  @CODIGO_COMBO = '' );
+DECLARE SET varchar(10) @CODIGO_PRODUTO_ERP = '';
+DECLARE SET varchar(3) @CODIGO_OCORRENCIA_ERP = '';
 
+CREATE OR replace VIEW dbcontrol2016001.vw_combo_produto         AS SELECT vdprdcbo."vdprdcbo_qtdcx"                                AS QUANTIDADE_CAIXA,
+       vdprdcbo."vdprdcbo_qtdav"                                AS QUANTIDADE_AVULSO, 
+       vdprdcbo."vdprdcbo_codrprd"                              AS CODIGO_PRODUTO_ERP, 
+       vdprdcbo."vdprdcbo_ocor"                                 AS CODIGO_OCOR_ERP, 
+              Concat('000',Cast(vdprdcbo_codcbo AS VARCHAR(10))) AS CODIGO_PRODUTO_COMBO_ERP 
+FROM   dbcontrol2016001.vdprdcbo 
+WHERE  vdprdcbo."vdprdcbo_codrprd" <> 0 
+AND    (Concat('000',Cast(vdprdcbo.vdprdcbo_codcbo AS VARCHAR(10))) = @CODIGO_COMBO
+       OR     @CODIGO_COMBO = '') 
+AND    ( 
+              Cast(vdprdcbo."vdprdcbo_codrprd" AS VARCHAR(10)) = @CODIGO_PRODUTO_ERP 
+       OR     @CODIGO_PRODUTO_ERP = '') 
+AND    ( 
+              Cast(vdprdcbo."vdprdcbo_ocor" AS VARCHAR(3)) = @CODIGO_OCORRENCIA_ERP 
+       OR     @CODIGO_OCORRENCIA_ERP = '');
 
 CREATE OR replace VIEW  vw_seq_banda_preco 
 AS 

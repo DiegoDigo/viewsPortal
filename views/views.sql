@@ -1019,9 +1019,7 @@ SELECT
     chdepo01."crchqdep_dtv" AS DATA_VENCIMENTO,
     CASE WHEN chdepo01."crchqdep_dte" = chdepo01."crchqdep_dtv" THEN 1 ELSE 2 END AS MOD,
     Cast(chdepo01."crchqdep_ndoc" AS VARCHAR(255)) AS NUMERO_DOCUMENTO,
-    CASE WHEN chdepo01."crchqdep_dtv" >= Cast(
-        Replace(Cast(Curdate() AS VARCHAR(10)), '-', '') AS INT
-    ) THEN '1' ELSE '2' END AS TIPO_REGISTRO,
+    CASE WHEN chdepo01."crchqdep_dtv" >= Cast(Replace(Cast(Curdate() AS VARCHAR(10)), '-', '') AS INT) THEN '1' ELSE '2' END AS TIPO_REGISTRO,
     chdepo01."crchqdep_nped" AS NUMERO_PEDIDO,
     chdepo01."crchqdep_vldoc" AS VALOR
 FROM
@@ -1417,7 +1415,9 @@ CREATE
 or replace VIEW  VW_PRECO_PRODUTO AS
 SELECT
     tabprc01."vdtabprd_aliqpvv" AS aliq_pvv,
-    cadprd01."vdprdprd_disp_portal_web" AS ativo,
+	true as ativo,
+--- ver como defir a tabela de preço como ativa.
+---    cadprd01."vdprdprd_disp_portal_web" AS ativo,
     Cast(
         Cast(
             Cast(tabprc01."vdtabprd_ano" AS CHAR(04)) || CASE WHEN tabprc01."vdtabprd_mes" <= 9 THEN Concat(

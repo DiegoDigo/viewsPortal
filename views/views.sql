@@ -1415,9 +1415,7 @@ CREATE
 or replace VIEW  VW_PRECO_PRODUTO AS
 SELECT
     tabprc01."vdtabprd_aliqpvv" AS aliq_pvv,
-	true as ativo,
---- ver como defir a tabela de preço como ativa.
----    cadprd01."vdprdprd_disp_portal_web" AS ativo,
+	1 AS ATIVO,
     Cast(
         Cast(
             Cast(tabprc01."vdtabprd_ano" AS CHAR(04)) || CASE WHEN tabprc01."vdtabprd_mes" <= 9 THEN Concat(
@@ -2547,13 +2545,13 @@ DECLARE SET varchar(27) @CODIGO_COMBO = '';
 DECLARE SET varchar(10) @CODIGO_PRODUTO_ERP = '';
 DECLARE SET varchar(3) @CODIGO_OCORRENCIA_ERP = '';
 
-CREATE OR replace VIEW dbcontrol3485001.vw_combo_produto       
+CREATE OR replace VIEW vw_combo_produto       
   AS SELECT vdprdcbo."vdprdcbo_qtdcx"                                AS QUANTIDADE_CAIXA,
             vdprdcbo."vdprdcbo_qtdav"                                AS QUANTIDADE_AVULSO, 
             vdprdcbo."vdprdcbo_codrprd"                              AS CODIGO_PRODUTO_ERP, 
             vdprdcbo."vdprdcbo_ocor"                                 AS CODIGO_OCOR_ERP, 
             Cast(vdprdcbo_codcbo AS VARCHAR(10))               AS CODIGO_PRODUTO_COMBO_ERP 
-FROM   dbcontrol3485001.vdprdcbo 
+FROM  vdprdcbo 
 WHERE  vdprdcbo."vdprdcbo_codrprd" <> 0 
 AND    (Cast(vdprdcbo.vdprdcbo_codcbo AS VARCHAR(10)) = @CODIGO_COMBO
        OR     @CODIGO_COMBO = '') 

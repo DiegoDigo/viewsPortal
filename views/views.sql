@@ -2223,7 +2223,7 @@ SELECT
     tpcobr01."vdcadtco_perm06" AS PERM06,
     tpcobr01."vdcadtco_perm07" AS PERM07,
     tpcobr01."vdcadtco_perm08" AS PERM08,
-    tpcobr01."vdcadtco_perm09" AS PERM09
+    tpcobr01."vdcadtco_perm09" AS PERM09              
 FROM TPCOBR01
 WHERE
     (

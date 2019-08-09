@@ -2421,15 +2421,7 @@ WHERE
             ) WHEN Length(Cast(cadcli01."vdclicli_num" AS CHAR(4))) = 4 THEN Cast(cadcli01."vdclicli_num" AS VARCHAR (4)) END
         ) = @CODIGO_CLIENTE
         OR @CODIGO_CLIENTE = ''
-    )
-    OR (
-        SELECT
-            tbblocli."vdcadblo_impclipalm"
-        FROM
-             TBBLOCLI
-        WHERE
-            tbblocli."vdcadblo_cod" = cadcli01."vdclicli_motblo"
-    ) = 1;
+    );    
 
 declare set  int @pasta = 0;
 

@@ -1,3 +1,4 @@
+
 create function datetostr.DATETOSTR(DATE, varchar(20)) RETURNS varchar(20);
 
 DECLARE SET INT @CODIGOPEDIDO = 0;
@@ -1150,7 +1151,7 @@ SELECT
     1 AS OCORR_DISP_PORTAL,
     cadoco01."vdnopoco_sinal" AS SINAL,
     cadoco01."vdnopoco_tipo" AS TIPO,
-    cadoco01."vdnopoco_tpprd" AS TIPO_PRODUTO,
+	VDNOOT01.VDNOPOTP_TIPO_PROD AS TIPO_PRODUTO,
     Concat(
         '0',
         Cast(cadoco01."vdnopoco_tipooco" AS VARCHAR(2))

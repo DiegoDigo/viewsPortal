@@ -1,4 +1,3 @@
-
 create function datetostr.DATETOSTR(DATE, varchar(20)) RETURNS varchar(20);
 
 DECLARE SET INT @CODIGOPEDIDO = 0;
@@ -18,54 +17,6 @@ AS
   WHERE  ( "vdpedflc_nped" = @codigopedido 
             OR @codigopedido = 0 ) ;
 
-/*declare set bigint @CODIGO_BANDA = 0;
-
-CREATE OR REPLACE view  vw_banda_preco_capa 
-AS 
-  SELECT 1                                                                AS 
-         ATIVO, 
-         bdapre01. "vdprdbda_id"                                          AS 
-            CODIGO_BANDA_PRECO_ERP, 
-         bdapre01. "vdprdbda_fam"                                         AS 
-            CODIGO_FAMEB, 
-         bdapre01. "vdprdbda_grpcli"                                      AS 
-            CODIGO_GRUPO_ANALISE_CLI, 
-         bdapre01. "vdprdbda_grpcan"                                      AS 
-            CODIGO_GRUPO_CANAL_CLI, 
-         bdapre01. "vdprdbda_pst"                                         AS 
-            CODIGO_PASTA_CLI, 
-         NULL                                                             AS 
-            DESCRICAO, 
-         CASE 
-           WHEN bdapre01. "vdprdbda_importado" = 'S' THEN 'IMPORTADO' 
-           ELSE 'MANUAL' 
-         end                                                              AS 
-            ORIGEM_BANDA, 
-         bdapre01. "vdprdbda_reg"                                         AS 
-            REGIAO_CLIENTE, 
-         bdapre01. "vdprdbda_caixa_unid"                                  AS 
-            UNIDADE, 
-         bdapre01. "vdprdbda_can"                                         AS 
-            CODIGO_CANAL_ERP, 
-         bdapre01. "vdprdbda_cat"                                         AS 
-            CODIGO_CATEGORIA_PRODUTO_ERP, 
-         bdapre01. "vdprdbda_fam"                                         AS 
-            CODIGO_FAMILIA_PRODUTO_ERP, 
-         bdapre01. "vdprdbda_grp"                                         AS 
-            CODIGO_GRUPO_PRODUTO_ERP, 
-         bdapre01. "vdprdbda_mar"                                         AS 
-            CODIGO_MARCA_PRODUTO_ERP, 
-         (SELECT cadprd01. "vdprdprd_codr" 
-          FROM    cadprd01 
-          WHERE  cadprd01. "vdprdprd_cfam" = bdapre01. "vdprdbda_fam" 
-                 AND cadprd01. "vdprdprd_nro" = bdapre01. "vdprdbda_prd") AS 
-         CODIGO_PRODUTO_ERP, 
-         bdapre01. "vdprdbda_cpg"                                         AS 
-            CODIGO_CONDICAO_PAGAMENTO_ERP 
-  FROM    bdapre01 
-  WHERE  bdapre01. "vdprdbda_cancsn" = 0 
-         AND ( bdapre01. "vdprdbda_id" = @codigo_banda 
-                OR @codigo_banda = 0 ) ;*/
 
 DECLARE SET INTEGER @CODIGO_BANDA = 0;
 
@@ -81,8 +32,7 @@ AND             bdapre01. "vdprdbda_prd" = tabprc01. "vdtabprd_nro"
 INNER JOIN       cadprd01 
 ON              bdapre01. "vdprdbda_fam" = cadprd01. "vdprdprd_cfam" 
 AND             bdapre01. "vdprdbda_prd" = cadprd01. "vdprdprd_nro" 
-WHERE           cadprd01. "vdprdprd_flag" = 'A' 
-AND             bdapre01. "vdprdbda_bandprec_1" <> 0 
+WHERE            bdapre01. "vdprdbda_bandprec_1" <> 0 
 AND             bdapre01. "vdprdbda_cancsn" = 0 
 AND             ( 
                                 bdapre01. "vdprdbda_id" = @CODIGO_BANDA 
@@ -100,8 +50,7 @@ AND             bdapre01. "vdprdbda_prd" = tabprc01. "vdtabprd_nro"
 INNER JOIN       cadprd01 
 ON              bdapre01. "vdprdbda_fam" = cadprd01. "vdprdprd_cfam" 
 AND             bdapre01. "vdprdbda_prd" = cadprd01. "vdprdprd_nro" 
-WHERE           cadprd01. "vdprdprd_flag" = 'A' 
-AND             bdapre01. "vdprdbda_bandprec_2" <> 0 
+WHERE            bdapre01. "vdprdbda_bandprec_2" <> 0 
 AND             bdapre01. "vdprdbda_cancsn" = 0 
 AND             ( 
                                 bdapre01. "vdprdbda_id" = @CODIGO_BANDA 
@@ -119,8 +68,7 @@ AND             bdapre01. "vdprdbda_prd" = tabprc01. "vdtabprd_nro"
 INNER JOIN       cadprd01 
 ON              bdapre01. "vdprdbda_fam" = cadprd01. "vdprdprd_cfam" 
 AND             bdapre01. "vdprdbda_prd" = cadprd01. "vdprdprd_nro" 
-WHERE           cadprd01. "vdprdprd_flag" = 'A' 
-AND             bdapre01. "vdprdbda_bandprec_3" <> 0 
+WHERE            bdapre01. "vdprdbda_bandprec_3" <> 0 
 AND             bdapre01. "vdprdbda_cancsn" = 0 
 AND             ( 
                                 bdapre01. "vdprdbda_id" = @CODIGO_BANDA 
@@ -138,8 +86,7 @@ AND             bdapre01. "vdprdbda_prd" = tabprc01. "vdtabprd_nro"
 INNER JOIN       cadprd01 
 ON              bdapre01. "vdprdbda_fam" = cadprd01. "vdprdprd_cfam" 
 AND             bdapre01. "vdprdbda_prd" = cadprd01. "vdprdprd_nro" 
-WHERE           cadprd01. "vdprdprd_flag" = 'A' 
-AND             bdapre01. "vdprdbda_bandprec_4" <> 0 
+WHERE            bdapre01. "vdprdbda_bandprec_4" <> 0 
 AND             bdapre01. "vdprdbda_cancsn" = 0 
 AND             ( 
                                 bdapre01. "vdprdbda_id" = @CODIGO_BANDA 
@@ -176,8 +123,7 @@ AND             bdapre01. "vdprdbda_prd" = tabprc01. "vdtabprd_nro"
 INNER JOIN       cadprd01 
 ON              bdapre01. "vdprdbda_fam" = cadprd01. "vdprdprd_cfam" 
 AND             bdapre01. "vdprdbda_prd" = cadprd01. "vdprdprd_nro" 
-WHERE           cadprd01. "vdprdprd_flag" = 'A' 
-AND             bdapre01. "vdprdbda_bandprec_6" <> 0 
+WHERE            bdapre01. "vdprdbda_bandprec_6" <> 0 
 AND             bdapre01. "vdprdbda_cancsn" = 0 
 AND             ( 
                                 bdapre01. "vdprdbda_id" = @CODIGO_BANDA 
@@ -195,8 +141,7 @@ AND             bdapre01. "vdprdbda_prd" = tabprc01. "vdtabprd_nro"
 INNER JOIN       cadprd01 
 ON              bdapre01. "vdprdbda_fam" = cadprd01. "vdprdprd_cfam" 
 AND             bdapre01. "vdprdbda_prd" = cadprd01. "vdprdprd_nro" 
-WHERE           cadprd01. "vdprdprd_flag" = 'A' 
-AND             bdapre01. "vdprdbda_bandprec_7" <> 0 
+WHERE            bdapre01. "vdprdbda_bandprec_7" <> 0 
 AND             bdapre01. "vdprdbda_cancsn" = 0 
 AND             ( 
                                 bdapre01. "vdprdbda_id" = @CODIGO_BANDA 
@@ -214,8 +159,7 @@ AND             bdapre01. "vdprdbda_prd" = tabprc01. "vdtabprd_nro"
 INNER JOIN       cadprd01 
 ON              bdapre01. "vdprdbda_fam" = cadprd01. "vdprdprd_cfam" 
 AND             bdapre01. "vdprdbda_prd" = cadprd01. "vdprdprd_nro" 
-WHERE           cadprd01. "vdprdprd_flag" = 'A' 
-AND             bdapre01. "vdprdbda_bandprec_8" <> 0 
+WHERE            bdapre01. "vdprdbda_bandprec_8" <> 0 
 AND             bdapre01. "vdprdbda_cancsn" = 0 
 AND             ( 
                                 bdapre01. "vdprdbda_id" = @CODIGO_BANDA 
@@ -233,8 +177,7 @@ AND             bdapre01. "vdprdbda_prd" = tabprc01. "vdtabprd_nro"
 INNER JOIN       cadprd01 
 ON              bdapre01. "vdprdbda_fam" = cadprd01. "vdprdprd_cfam" 
 AND             bdapre01. "vdprdbda_prd" = cadprd01. "vdprdprd_nro" 
-WHERE           cadprd01. "vdprdprd_flag" = 'A' 
-AND             bdapre01. "vdprdbda_bandprec_9" <> 0 
+WHERE            bdapre01. "vdprdbda_bandprec_9" <> 0 
 AND             bdapre01. "vdprdbda_cancsn" = 0 
 AND             ( 
                                 bdapre01. "vdprdbda_id" = @CODIGO_BANDA 
@@ -477,7 +420,8 @@ SELECT
     condpg01."vdcadpag_descr" AS DESCRICAO,
     CASE WHEN condpg01."vdcadpag_cod" = 1 THEN 1 ELSE 0 END AS INFORMA_PRIMEIRA_PARCELA,
     condpg01."vdcadpag_nrdias" AS NUMERO_DIAS,
-    condpg01."vdcadpag_prazo" AS PRAZO
+    condpg01."vdcadpag_prazo" AS PRAZO,
+	VDCADPAG_SFA_DISP as disponivel_portal
 FROM
      CONDPG01
 WHERE
@@ -735,108 +679,6 @@ WHERE
         OR @CODIGO_GRUPO_PRODUTO = 0
     );
 
-DECLARE SET VARCHAR(255) @numero_pedido ='';
-
-CREATE
-or replace VIEW  VW_HISTORICO_PEDIDO_CAPA AS
-SELECT
-    CASE WHEN pedcp01."vdpedcpe_fl" = 9 THEN 0 ELSE 1 END AS ATIVO,
-    pedcp01."vdpedcpe_motdev" AS CODIGO_MOTIVO_DEVOLUCAO,
-    pedcp01."vdpedcpe_dtemiped" AS DATA_HORA_EMISSAO_PEDIDO,
-    pedcp01."vdpedcpe_dt1vc" AS DATA_VENCIMENTO,
-    pedcp01."vdpedcpe_descfi" AS DESCONTO_FINANCEIRO,
-    pedcp01."vdpedcpe_nped" AS NUMERO_PEDIDO,
-    pedcp01."vdpedcpe_desc" AS PERCENTUAL_DESCONTO,
-    pedcp01."vdpedcpe_fl" AS STATUS_PEDIDO,
-    pedcp01."vdpedcpe_txfin" AS TAXA_FINANCEIRO,
-	vdpedflc.VDPEDFLC_NPED_REPROGRA as numero_pedido_erp_reprogramado,
-    pedcp01."vdpedcpe_vlr_fcem_r" + pedcp01."vdpedcpe_vlr_fsem_r" + pedcp01."vdpedcpe_vlr_fctr_r" + pedcp01."vdpedcpe_vlr_fstr_r" AS VALOR_DEVOLUCAO,
-    pedcp01."vdpedcpe_vlr_fcem" + pedcp01."vdpedcpe_vlr_fsem" + pedcp01."vdpedcpe_vlr_fctr" + pedcp01."vdpedcpe_vlr_fstr" AS VALOR_PEDIDO,
-    CASE WHEN Length(Cast(pedcp01."vdpedcpe_codcli" AS CHAR(8))) = 5 THEN Concat(
-        '000',
-        Cast(pedcp01."vdpedcpe_codcli" AS VARCHAR(8))
-    ) WHEN Length(Cast(pedcp01."vdpedcpe_codcli" AS CHAR(8))) = 6 THEN Concat(
-        '00',
-        Cast(pedcp01."vdpedcpe_codcli" AS VARCHAR(8))
-    ) WHEN Length(Cast(pedcp01."vdpedcpe_codcli" AS CHAR(8))) = 7 THEN Concat(
-        '0',
-        Cast(pedcp01."vdpedcpe_codcli" AS VARCHAR(4))
-    ) WHEN Length(Cast(pedcp01."vdpedcpe_codcli" AS CHAR(8))) = 8 THEN Cast(pedcp01."vdpedcpe_codcli" AS VARCHAR(8)) END AS CODIGO_CLIENTE_REC_ID,
-    pedcp01."vdpedcpe_cpg" AS CODIGO_CONDICAO_PAGAMENTO_REC_ID,
-    pedcp01."vdpedcpe_tpcobr" AS CODIGO_TIPO_COBRANCA_REC_ID,
-    CADCLI01.VDCLICLI_CGC as CNPJ_CPF,
-    CADCLI01.VDCLICLI_RAZAO50 AS RAZAO_CLIENTE,
-    condpg01.VDCADPAG_DESCR AS DESCRICAO_CONDICAO_PAGAMENTO,
-    tpcobr01."vdcadtco_descricao" AS DESCRICAO_TIPO_COBRANCA,
-    VDPEDCPE_SERIE AS SFISCAL,
-    VDPEDCPE_NFIS AS NFISCAL_INI,
-    VDPEDCPE_NFISULT AS NFISCAL_ULT
-FROM
-     PEDCP01
-    inner join  CADCLI01 on CADCLI01.VDCLICLI_REGI = cast(
-        substring(
-            concat(
-                repeat(
-                    '0',
-                    8 - length(cast(vdpedcpe_codcli as varchar(08)))
-                ),
-                cast(vdpedcpe_codcli as varchar(08))
-            ),
-            1,
-            4
-        ) as int
-    )
-    and CADCLI01.VDCLICLI_NUM = cast(
-        substring(
-            concat(
-                repeat(
-                    '0',
-                    8 - length(cast(vdpedcpe_codcli as varchar(08)))
-                ),
-                cast(vdpedcpe_codcli as varchar(08))
-            ),
-            5,
-            4
-        ) as int
-    )
-    inner join  CONDPG01 on condpg01."vdcadpag_cod" = vdpedcpe_cpg
-    inner join  TPCOBR01 on VDPEDCPE_TPCOBR = tpcobr01.VDCADTCO_COD
-	inner join vdpedflc on vdpedflc.VDPEDFLC_NPED = PEDCP01.VDPEDCPE_NPED
-WHERE
-    (
-        Cast(pedcp01."vdpedcpe_nped" AS VARCHAR(12)) = @numero_pedido
-        OR @numero_pedido = ''
-    )
-    AND pedcp01."vdpedcpe_nped" >= cast(
-        trim (DATETOSTR(Curdate() - 45, 'yyyymmdd')) || '0000' as bigint
-    );
-
-DECLARE SET VARCHAR(255) @NUMERO_PEDIDO = '';
-
-CREATE
-or replace VIEW  VW_HISTORICO_PEDIDO_ITEM AS
-SELECT
-    pedit01."vdpedipe_item" AS NUMERO_ITEM_PEDIDO,
-    pedit01."vdpedipe_preprdt" AS PRECO_ITEM_TOTAL,
-    pedit01."vdpedipe_qtds" AS QUANTIDADE_AVULSA,
-    pedit01."vdpedipe_qtdprd" AS QUANTIDADE_CAIXA,
-    pedit01."vdpedipe_nit" AS NUMERO_PEDIDO_REC_ID,
-    REPEAT( '0', 3 - length(cast(pedit01."vdpedipe_ocokd" as char(3)))) || cast(pedit01."vdpedipe_ocokd" as char(3)) AS CODIGO_OCORRENCIA_REC_ID,
-    pedit01."vdpedipe_tbprd" AS CODIGO_TABELA_PRECO_REC_ID,
-    pedit01."vdpedipe_codr" AS CODIGO_PRODUTO_REC_ID,
-    cadprd01."VDPRDPRD_DESCR" AS DESCRICAO_PRODUTO,
-    CADOCO01."VDNOPOCO_NOME " AS DESCRICAO_OCORRENCIA
-FROM
-     VW_HISTORICO_PEDIDO_CAPA
-    INNER JOIN  PEDIT01 ON numero_pedido = pedit01."vdpedipe_nit"
-    INNER JOIN  CADPRD01 ON cadprd01."VDPRDPRD_CODR" = pedit01."VDPEDIPE_CODR"
-    INNER JOIN  CADOCO01 ON CAST(CADOCO01.VDNOPOCO_COD AS INT) = pedit01."VDPEDIPE_OCOKD"
-WHERE
-    (
-        Cast(pedit01."vdpedipe_nit" AS VARCHAR(12)) = @numero_pedido
-        OR @numero_pedido = ''
-    );
-
 declare set bigint @cod_pre_pedido = 0;
 DECLARE SET INT @codemp = 0;
 CREATE
@@ -917,8 +759,7 @@ FROM
 UNION ALL
 SELECT
     1 AS ativo,
-	REPEAT('0', 3 -Length(tbblocli."vdcadblo_cod") ) ||   tbblocli."vdcadblo_cod" 
-     AS codigo_motivo_geral,
+	tbblocli."vdcadblo_cod" AS codigo_motivo_geral,
     tbblocli."vdcadblo_descr" AS descricao,
     tbblocli."vdcadblo_descrred" AS descricao_reduzida,
     tbblocli."vdcadblo_venda" AS infui_venda,
@@ -1151,7 +992,7 @@ SELECT
     1 AS OCORR_DISP_PORTAL,
     cadoco01."vdnopoco_sinal" AS SINAL,
     cadoco01."vdnopoco_tipo" AS TIPO,
-    cadoco01."vdnopoco_tpprd" AS TIPO_PRODUTO,							
+    cadoco01."vdnopoco_tpprd" AS TIPO_PRODUTO,
     Concat(
         '0',
         Cast(cadoco01."vdnopoco_tipooco" AS VARCHAR(2))
@@ -1473,7 +1314,7 @@ WHERE
             ) AS BIGINT
         ) = @COD_TABELA
         OR @COD_TABELA = 0
-    );
+    ) ;
 
 
 DECLARE SET INT @CODIGO_PROD = 0;
@@ -2177,7 +2018,8 @@ WHERE
     txpalm01."vdcnftxp_tabela3_7" <> 0
     and (
         concat(
-            case when length(Cast(txpalm01."vdcnftxp_tpcobr" AS VARCHAR(2))) = 1 then '0' || Cast(txpalm01."vdcnftxp_tpcobr" AS VARCHAR(2)) else Cast(txpalm01."vdcnftxp_tpcobr" AS VARCHAR(2)) end,
+            case when length(Cast(txpalm01."vdcnftxp_tpcobr
+" AS VARCHAR(2))) = 1 then '0' || Cast(txpalm01."vdcnftxp_tpcobr" AS VARCHAR(2)) else Cast(txpalm01."vdcnftxp_tpcobr" AS VARCHAR(2)) end,
             case when length(Cast(txpalm01."vdcnftxp_cpg" AS VARCHAR(2))) = 1 then '0' || Cast(txpalm01."vdcnftxp_cpg" AS VARCHAR(2)) else Cast(txpalm01."vdcnftxp_cpg" AS VARCHAR(2)) end
         ) = @codigo_restricao
         or @codigo_restricao = ''
@@ -2210,25 +2052,25 @@ DECLARE SET INT @CODIGO_TIPO_COBRANCA = 0;
 CREATE
 or replace VIEW  VW_TIPO_COBRANCA AS
 SELECT
-    tpcobr01."vdcadtco_ativo" AS ATIVO,
-    tpcobr01."vdcadtco_cod" AS CODIGO_TIPO_COBRANCA_ERP,
-    tpcobr01."vdcadtco_descricao" AS DESCRICAO,
-    tpcobr01."vdcadtco_prazo" AS PRAZO,
-    tpcobr01."vdcadtco_redcnt" AS RED,
-    tpcobr01."vdcadtco_redcnt" AS RED_F,
-    tpcobr01."vdcadtco_perm01" AS PERM01,
-    tpcobr01."vdcadtco_perm02" AS PERM02,
-    tpcobr01."vdcadtco_perm03" AS PERM03,
-    tpcobr01."vdcadtco_perm04" AS PERM04,
-    tpcobr01."vdcadtco_perm05" AS PERM05,
-    tpcobr01."vdcadtco_perm06" AS PERM06,
-    tpcobr01."vdcadtco_perm07" AS PERM07,
-    tpcobr01."vdcadtco_perm08" AS PERM08,
-    tpcobr01."vdcadtco_perm09" AS PERM09              
-FROM TPCOBR01
+    tpcobr60."vdcadtco_ativo" AS ATIVO,
+    tpcobr60."vdcadtco_cod" AS CODIGO_TIPO_COBRANCA_ERP,
+    tpcobr60."vdcadtco_descricao" AS DESCRICAO,
+    tpcobr60."vdcadtco_prazo" AS PRAZO,
+    tpcobr60."vdcadtco_redcnt" AS RED,
+    tpcobr60."vdcadtco_redcnt" AS RED_F,
+    tpcobr60."vdcadtco_perm01" AS PERM01,
+    tpcobr60."vdcadtco_perm02" AS PERM02,
+    tpcobr60."vdcadtco_perm03" AS PERM03,
+    tpcobr60."vdcadtco_perm04" AS PERM04,
+    tpcobr60."vdcadtco_perm05" AS PERM05,
+    tpcobr60."vdcadtco_perm06" AS PERM06,
+    tpcobr60."vdcadtco_perm07" AS PERM07,
+    tpcobr60."vdcadtco_perm08" AS PERM08,
+    tpcobr60."vdcadtco_perm09" AS PERM09              
+FROM tpcobr60
 WHERE
     (
-        tpcobr01."vdcadtco_cod" = @CODIGO_TIPO_COBRANCA
+        tpcobr60."vdcadtco_cod" = @CODIGO_TIPO_COBRANCA
         OR @CODIGO_TIPO_COBRANCA = 0
     );
 
@@ -2237,7 +2079,6 @@ DECLARE SET VARCHAR(255) @codigoclienteerp = '';
 
 CREATE
 or replace VIEW  VW_TIPO_COBRANCA_CLIENTE AS
-																  
 SELECT
     1 AS ATIVO,
     Concat(
@@ -2541,6 +2382,7 @@ DECLARE SET varchar(3) @CODIGO_OCORRENCIA_ERP = '';
 
 CREATE OR replace VIEW vw_combo_produto       
   AS SELECT vdprdcbo."vdprdcbo_qtdcx"                                AS QUANTIDADE_CAIXA,
+            vdprdcbo."vdprdcbo_qtdav"                                AS QUANTIDADE_AVULSO, 
             vdprdcbo."vdprdcbo_qtdav"                                AS QUANTIDADE_AVULSO, 
             vdprdcbo."vdprdcbo_codrprd"                              AS CODIGO_PRODUTO_ERP, 
             vdprdcbo."vdprdcbo_ocor"                                 AS CODIGO_OCOR_ERP, 
@@ -3456,6 +3298,7 @@ SELECT 1                                                                AS
             CODIGO_GRUPO_PRODUTO_ERP, 
          bdapre01. "vdprdbda_mar"                                         AS 
             CODIGO_MARCA_PRODUTO_ERP, 
+			bdapre01.VDPRDBDA_GRPESC                                      as grupo_escalonado,
          (SELECT cadprd01. "vdprdprd_codr" 
           FROM    cadprd01 
           WHERE  cadprd01. "vdprdprd_cfam" = bdapre01. "vdprdbda_fam" 
@@ -3506,5 +3349,95 @@ SELECT 1                                                                AS
                         GRUPO_CANAL = CASE WHEN (bdapre01.VDPRDBDA_CAN = NULL  OR bdapre01.VDPRDBDA_CAN = '') THEN 0 ELSE 1 END AND
                         COND_PAGTO = CASE WHEN (bdapre01.VDPRDBDA_CPG = NULL  OR bdapre01.VDPRDBDA_CPG = 0) THEN 0 ELSE 1 END AND 
                         GRP_ESCALONADO = CASE WHEN (bdapre01.VDPRDBDA_GRPESC = NULL  OR bdapre01.VDPRDBDA_GRPESC = 0) THEN 0 ELSE 1 END) =1;
+						
+						
+CREATE OR REPLACE VIEW VW_DADOS_VDPEDFLC AS
+SELECT 
+  VDPEDFLC_NPED NUMERO_PEDIDO_VDPEDFLC,
+  VDPEDFLC_NPED_REPROGRA numero_pedido_erp_reprogramado
+FROM 
+  VDPEDFLC 
+WHERE 
+  VDPEDFLC_NPED >= cast(trim(DATETOSTR(Curdate()-45,'yyyymmdd')) || '0000' as bigint);
+
+CREATE OR REPLACE VIEW VW_DADOS_CLIENTE AS 
+SELECT 
+  VDCLICLI_REGI REGIAO_CLIENTE,
+  VDCLICLI_NUM NUMERO_CLIENTE,
+  cast(concat(concat(repeat('0',4-length(cast(vdclicli_regi as varchar(4)))),cast(vdclicli_regi as varchar(4))),concat(repeat('0',4-length(cast(vdclicli_num as varchar(4)))),cast(vdclicli_num as varchar(4)))) as VARCHAR(8)) CODIGO_CLIENTE,
+  VDCLICLI_CGC as CNPJ_CPF,
+  VDCLICLI_RAZAO50 AS RAZAO_CLIENTE
+FROM 
+  CADCLI01;
+
+CREATE OR REPLACE VIEW VW_DADOS_OCORRENCIA AS 
+SELECT 
+  CAST(VDNOPOCO_COD AS INT) CODIGO_OCORRENCIA,
+  VDNOPOCO_NOME DESCRICAO_OCORRENCIA
+FROM
+  CADOCO01;
+
+DECLARE SET BIGINT @numero_pedido = 0;
+
+CREATE
+or replace VIEW  VW_HISTORICO_PEDIDO_CAPA AS
+SELECT
+    CASE WHEN vdpedcpe_fl = 9 THEN 0 ELSE 1 END AS ATIVO,
+    vdpedcpe_motdev CODIGO_MOTIVO_DEVOLUCAO,
+    vdpedcpe_dtemiped DATA_HORA_EMISSAO_PEDIDO,
+    vdpedcpe_dt1vc DATA_VENCIMENTO,
+    vdpedcpe_descfi DESCONTO_FINANCEIRO,
+    vdpedcpe_nped NUMERO_PEDIDO,
+    vdpedcpe_desc PERCENTUAL_DESCONTO,
+    vdpedcpe_fl STATUS_PEDIDO,
+    vdpedcpe_txfin TAXA_FINANCEIRO,
+    numero_pedido_erp_reprogramado,
+    vdpedcpe_vlr_fcem_r + vdpedcpe_vlr_fsem_r + vdpedcpe_vlr_fctr_r + vdpedcpe_vlr_fstr_r VALOR_DEVOLUCAO,
+    vdpedcpe_vlr_fcem + vdpedcpe_vlr_fsem + vdpedcpe_vlr_fctr + vdpedcpe_vlr_fstr VALOR_PEDIDO,
+    (SELECT CODIGO_CLIENTE FROM VW_DADOS_CLIENTE WHERE REGIAO_CLIENTE = CAST(SUBSTRING(REPEAT('0',8-LENGTH(CAST(VDPEDCPE_CODCLI AS VARCHAR(8)))) || CAST(VDPEDCPE_CODCLI AS VARCHAR(8)) ,1,4) AS INT) AND NUMERO_CLIENTE = CAST(SUBSTRING(REPEAT('0',8-LENGTH(CAST(VDPEDCPE_CODCLI AS VARCHAR(8)))) || CAST(VDPEDCPE_CODCLI AS VARCHAR(8)),5,4) AS INT)) CODIGO_CLIENTE_REC_ID,
+    vdpedcpe_cpg CODIGO_CONDICAO_PAGAMENTO_REC_ID,
+    vdpedcpe_tpcobr CODIGO_TIPO_COBRANCA_REC_ID,
+    (SELECT CNPJ_CPF FROM VW_DADOS_CLIENTE WHERE REGIAO_CLIENTE = CAST(SUBSTRING(REPEAT('0',8-LENGTH(CAST(VDPEDCPE_CODCLI AS VARCHAR(8)))) || CAST(VDPEDCPE_CODCLI AS VARCHAR(8)) ,1,4) AS INT) AND NUMERO_CLIENTE = CAST(SUBSTRING(REPEAT('0',8-LENGTH(CAST(VDPEDCPE_CODCLI AS VARCHAR(8)))) || CAST(VDPEDCPE_CODCLI AS VARCHAR(8)),5,4) AS INT)) CNPJ_CPF,
+    (SELECT RAZAO_CLIENTE FROM VW_DADOS_CLIENTE WHERE REGIAO_CLIENTE = CAST(SUBSTRING(REPEAT('0',8-LENGTH(CAST(VDPEDCPE_CODCLI AS VARCHAR(8)))) || CAST(VDPEDCPE_CODCLI AS VARCHAR(8)) ,1,4) AS INT) AND NUMERO_CLIENTE = CAST(SUBSTRING(REPEAT('0',8-LENGTH(CAST(VDPEDCPE_CODCLI AS VARCHAR(8)))) || CAST(VDPEDCPE_CODCLI AS VARCHAR(8)),5,4) AS INT)) RAZAO_CLIENTE,
+    VDCADPAG_DESCR DESCRICAO_CONDICAO_PAGAMENTO,
+    vdcadtco_descricao DESCRICAO_TIPO_COBRANCA,
+    VDPEDCPE_SERIE SFISCAL,
+    VDPEDCPE_NFIS NFISCAL_INI,
+    VDPEDCPE_NFISULT NFISCAL_ULT
+FROM
+  PEDCP01
+LEFT JOIN
+  VW_DADOS_VDPEDFLC ON NUMERO_PEDIDO_VDPEDFLC = VDPEDCPE_NPED
+LEFT JOIN
+  CONDPG01 ON vdcadpag_cod = vdpedcpe_cpg
+LEFT JOIN  
+  TPCOBR01 ON VDCADTCO_COD = VDPEDCPE_TPCOBR
+WHERE
+    (vdpedcpe_nped = @numero_pedido OR @numero_pedido = 0) AND
+     vdpedcpe_nped >= cast(trim(DATETOSTR(Curdate()-45,'yyyymmdd')) || '0000' as bigint);
+
+DECLARE SET BIGINT @NUMERO_PEDIDO = 0;
+
+CREATE
+or replace VIEW  VW_HISTORICO_PEDIDO_ITEM AS
+SELECT
+    vdpedipe_item NUMERO_ITEM_PEDIDO,
+    vdpedipe_preprdt PRECO_ITEM_TOTAL,
+    vdpedipe_qtds QUANTIDADE_AVULSA,
+    vdpedipe_qtdprd QUANTIDADE_CAIXA,
+    vdpedipe_nit NUMERO_PEDIDO_REC_ID,
+    REPEAT('0',3-length(cast(vdpedipe_ocokd as char(3)))) || cast(vdpedipe_ocokd as char(3)) CODIGO_OCORRENCIA_REC_ID,
+    vdpedipe_tbprd CODIGO_TABELA_PRECO_REC_ID,
+    vdpedipe_codr CODIGO_PRODUTO_REC_ID,
+    VDPRDPRD_DESCR DESCRICAO_PRODUTO,
+    DESCRICAO_OCORRENCIA
+FROM
+    VW_HISTORICO_PEDIDO_CAPA
+    INNER JOIN  PEDIT01 ON vdpedipe_nit = NUMERO_PEDIDO
+    LEFT JOIN CADPRD01 ON VDPRDPRD_CODR = VDPEDIPE_CODR
+    LEFT JOIN VW_DADOS_OCORRENCIA ON CODIGO_OCORRENCIA = VDPEDIPE_OCOKD
+WHERE
+   vdpedipe_nit = @numero_pedido OR @numero_pedido = 0;
+
   
   

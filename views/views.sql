@@ -1151,7 +1151,7 @@ SELECT
     1 AS OCORR_DISP_PORTAL,
     cadoco01."vdnopoco_sinal" AS SINAL,
     cadoco01."vdnopoco_tipo" AS TIPO,
-	VDNOOT01.VDNOPOTP_TIPO_PROD AS TIPO_PRODUTO,
+    cadoco01."vdnopoco_tpprd" AS TIPO_PRODUTO,							
     Concat(
         '0',
         Cast(cadoco01."vdnopoco_tipooco" AS VARCHAR(2))
@@ -2237,6 +2237,7 @@ DECLARE SET VARCHAR(255) @codigoclienteerp = '';
 
 CREATE
 or replace VIEW  VW_TIPO_COBRANCA_CLIENTE AS
+																  
 SELECT
     1 AS ATIVO,
     Concat(

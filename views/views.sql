@@ -421,7 +421,7 @@ SELECT
     CASE WHEN condpg01."vdcadpag_cod" = 1 THEN 1 ELSE 0 END AS INFORMA_PRIMEIRA_PARCELA,
     condpg01."vdcadpag_nrdias" AS NUMERO_DIAS,
     condpg01."vdcadpag_prazo" AS PRAZO,
-	VDCADPAG_SFA_DISP as disponivel_portal
+	VDCADPAG_SFA_DISP as disponivel
 FROM
      CONDPG01
 WHERE
@@ -2052,25 +2052,25 @@ DECLARE SET INT @CODIGO_TIPO_COBRANCA = 0;
 CREATE
 or replace VIEW  VW_TIPO_COBRANCA AS
 SELECT
-    tpcobr60."vdcadtco_ativo" AS ATIVO,
-    tpcobr60."vdcadtco_cod" AS CODIGO_TIPO_COBRANCA_ERP,
-    tpcobr60."vdcadtco_descricao" AS DESCRICAO,
-    tpcobr60."vdcadtco_prazo" AS PRAZO,
-    tpcobr60."vdcadtco_redcnt" AS RED,
-    tpcobr60."vdcadtco_redcnt" AS RED_F,
-    tpcobr60."vdcadtco_perm01" AS PERM01,
-    tpcobr60."vdcadtco_perm02" AS PERM02,
-    tpcobr60."vdcadtco_perm03" AS PERM03,
-    tpcobr60."vdcadtco_perm04" AS PERM04,
-    tpcobr60."vdcadtco_perm05" AS PERM05,
-    tpcobr60."vdcadtco_perm06" AS PERM06,
-    tpcobr60."vdcadtco_perm07" AS PERM07,
-    tpcobr60."vdcadtco_perm08" AS PERM08,
-    tpcobr60."vdcadtco_perm09" AS PERM09              
-FROM tpcobr60
+    tpcobr01."vdcadtco_ativo" AS ATIVO,
+    tpcobr01."vdcadtco_cod" AS CODIGO_TIPO_COBRANCA_ERP,
+    tpcobr01."vdcadtco_descricao" AS DESCRICAO,
+    tpcobr01."vdcadtco_prazo" AS PRAZO,
+    tpcobr01."vdcadtco_redcnt" AS RED,
+    tpcobr01."vdcadtco_redcnt" AS RED_F,
+    tpcobr01."vdcadtco_perm01" AS PERM01,
+    tpcobr01."vdcadtco_perm02" AS PERM02,
+    tpcobr01."vdcadtco_perm03" AS PERM03,
+    tpcobr01."vdcadtco_perm04" AS PERM04,
+    tpcobr01."vdcadtco_perm05" AS PERM05,
+    tpcobr01."vdcadtco_perm06" AS PERM06,
+    tpcobr01."vdcadtco_perm07" AS PERM07,
+    tpcobr01."vdcadtco_perm08" AS PERM08,
+    tpcobr01."vdcadtco_perm09" AS PERM09              
+FROM tpcobr01
 WHERE
     (
-        tpcobr60."vdcadtco_cod" = @CODIGO_TIPO_COBRANCA
+        tpcobr01."vdcadtco_cod" = @CODIGO_TIPO_COBRANCA
         OR @CODIGO_TIPO_COBRANCA = 0
     );
 

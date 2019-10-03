@@ -27,134 +27,143 @@ SELECT DISTINCT(bdapre01. "vdprdbda_id" )                   AS CODIGO_BANDA_PREC
                 bdapre01.vdprdbda_descto_1                  AS DESCONTO_MAXIMO 
 FROM             bdapre01 
 INNER JOIN       tabprc01 
-ON              bdapre01. "vdprdbda_fam" = tabprc01. "vdtabprd_cfam" 
-AND             bdapre01. "vdprdbda_prd" = tabprc01. "vdtabprd_nro" 
-WHERE            bdapre01. "vdprdbda_bandprec_1" <> 0 
-AND             bdapre01. "vdprdbda_cancsn" = 0 
+on tabprc01.vdtabprd_ano = cast(substring(cast(bdapre01.vdprdbda_tab_x_1 as varchar(8)), 1,4 ) as int) and 
+     tabprc01.vdtabprd_mes = cast(substring(cast(bdapre01.vdprdbda_tab_x_1 as varchar(8)), 5,2 ) as int) and 
+     tabprc01.vdtabprd_nmes = cast(substring(cast(bdapre01.vdprdbda_tab_x_1 as varchar(8)), 7,2 ) as int) 
+WHERE   bdapre01. "vdprdbda_bandprec_1" <> 0 
+AND         bdapre01. "vdprdbda_cancsn" = 0 
 AND             ( 
                                 bdapre01. "vdprdbda_id" = @CODIGO_BANDA 
-                OR              @CODIGO_BANDA = 0 ) 
-AND             LEFT(Cast( tabprc01.vdtabprd_dtvgf AS VARCHAR(8)),4 )>= LEFT(Cast(Curdate() - 365 AS CHAR(4)),4)
+                OR              @CODIGO_BANDA = 0 )
+and LEFT(Cast( tabprc01.vdtabprd_dtvgf AS VARCHAR(8)),4 )>= LEFT(Cast(Curdate() - 365 AS CHAR(4)),4)
 UNION ALL 
-SELECT DISTINCT(bdapre01. "vdprdbda_id" )    AS CODIGO_BANDA_PRECO_ERP, 
-                bdapre01.vdprdbda_bandprec_2 AS QUANTIDADE , 
-                bdapre01.vdprdbda_tab_x_2    AS CODIGO_TABPRECO_ERP, 
-                bdapre01.vdprdbda_descto_2   AS DESCONTO_MAXIMO 
+SELECT DISTINCT(bdapre01. "vdprdbda_id" )                   AS CODIGO_BANDA_PRECO_ERP,
+                bdapre01.vdprdbda_bandprec_2                AS QUANTIDADE , 
+                bdapre01.vdprdbda_tab_x_2                  AS CODIGO_TABPRECO_ERP, 
+                bdapre01.vdprdbda_descto_2                  AS DESCONTO_MAXIMO 
 FROM             bdapre01 
 INNER JOIN       tabprc01 
-ON              bdapre01. "vdprdbda_fam" = tabprc01. "vdtabprd_cfam" 
-AND             bdapre01. "vdprdbda_prd" = tabprc01. "vdtabprd_nro" 
-WHERE            bdapre01. "vdprdbda_bandprec_2" <> 0 
-AND             bdapre01. "vdprdbda_cancsn" = 0 
+on tabprc01.vdtabprd_ano = cast(substring(cast(bdapre01.vdprdbda_tab_x_2 as varchar(8)), 1,4 ) as int) and 
+     tabprc01.vdtabprd_mes = cast(substring(cast(bdapre01.vdprdbda_tab_x_2 as varchar(8)), 5,2 ) as int) and 
+     tabprc01.vdtabprd_nmes = cast(substring(cast(bdapre01.vdprdbda_tab_x_2 as varchar(8)), 7,2 ) as int) 
+WHERE   bdapre01. "vdprdbda_bandprec_2" <> 0 
+AND         bdapre01. "vdprdbda_cancsn" = 0 
 AND             ( 
                                 bdapre01. "vdprdbda_id" = @CODIGO_BANDA 
-                OR              @CODIGO_BANDA = 0 ) 
-AND             LEFT(Cast( tabprc01.vdtabprd_dtvgf AS VARCHAR(8)),4 )>= LEFT(Cast(Curdate() - 365 AS CHAR(4)),4)
+                OR              @CODIGO_BANDA = 0 )
+and LEFT(Cast( tabprc01.vdtabprd_dtvgf AS VARCHAR(8)),4 )>= LEFT(Cast(Curdate() - 365 AS CHAR(4)),4)
 UNION ALL 
-SELECT DISTINCT(bdapre01. "vdprdbda_id" )    AS CODIGO_BANDA_PRECO_ERP, 
-                bdapre01.vdprdbda_bandprec_3 AS QUANTIDADE , 
-                bdapre01.vdprdbda_tab_x_3    AS CODIGO_TABPRECO_ERP, 
-                bdapre01.vdprdbda_descto_3   AS DESCONTO_MAXIMO 
+SELECT DISTINCT(bdapre01. "vdprdbda_id" )                   AS CODIGO_BANDA_PRECO_ERP,
+                bdapre01.vdprdbda_bandprec_3                AS QUANTIDADE , 
+                bdapre01.vdprdbda_tab_x_3                  AS CODIGO_TABPRECO_ERP, 
+                bdapre01.vdprdbda_descto_3                  AS DESCONTO_MAXIMO 
 FROM             bdapre01 
 INNER JOIN       tabprc01 
-ON              bdapre01. "vdprdbda_fam" = tabprc01. "vdtabprd_cfam" 
-AND             bdapre01. "vdprdbda_prd" = tabprc01. "vdtabprd_nro" 
-WHERE            bdapre01. "vdprdbda_bandprec_3" <> 0 
-AND             bdapre01. "vdprdbda_cancsn" = 0 
+on tabprc01.vdtabprd_ano = cast(substring(cast(bdapre01.vdprdbda_tab_x_3 as varchar(8)), 1,4 ) as int) and 
+     tabprc01.vdtabprd_mes = cast(substring(cast(bdapre01.vdprdbda_tab_x_3 as varchar(8)), 5,2 ) as int) and 
+     tabprc01.vdtabprd_nmes = cast(substring(cast(bdapre01.vdprdbda_tab_x_3 as varchar(8)), 7,2 ) as int) 
+WHERE   bdapre01. "vdprdbda_bandprec_3" <> 0 
+AND         bdapre01. "vdprdbda_cancsn" = 0 
 AND             ( 
                                 bdapre01. "vdprdbda_id" = @CODIGO_BANDA 
-                OR              @CODIGO_BANDA = 0 ) 
-AND             LEFT(Cast( tabprc01.vdtabprd_dtvgf AS VARCHAR(8)),4 )>= LEFT(Cast(Curdate() - 365 AS CHAR(4)),4)
+                OR              @CODIGO_BANDA = 0 )
+and LEFT(Cast( tabprc01.vdtabprd_dtvgf AS VARCHAR(8)),4 )>= LEFT(Cast(Curdate() - 365 AS CHAR(4)),4)
 UNION ALL 
-SELECT DISTINCT(bdapre01. "vdprdbda_id" )    AS CODIGO_BANDA_PRECO_ERP, 
-                bdapre01.vdprdbda_bandprec_4 AS QUANTIDADE , 
-                bdapre01.vdprdbda_tab_x_4    AS CODIGO_TABPRECO_ERP, 
-                bdapre01.vdprdbda_descto_4   AS DESCONTO_MAXIMO 
+SELECT DISTINCT(bdapre01. "vdprdbda_id" )                   AS CODIGO_BANDA_PRECO_ERP,
+                bdapre01.vdprdbda_bandprec_4                AS QUANTIDADE , 
+                bdapre01.vdprdbda_tab_x_4                  AS CODIGO_TABPRECO_ERP, 
+                bdapre01.vdprdbda_descto_4                  AS DESCONTO_MAXIMO 
 FROM             bdapre01 
 INNER JOIN       tabprc01 
-ON              bdapre01. "vdprdbda_fam" = tabprc01. "vdtabprd_cfam" 
-AND             bdapre01. "vdprdbda_prd" = tabprc01. "vdtabprd_nro" 
-AND             bdapre01. "vdprdbda_cancsn" = 0 
+on tabprc01.vdtabprd_ano = cast(substring(cast(bdapre01.vdprdbda_tab_x_4 as varchar(8)), 1,4 ) as int) and 
+     tabprc01.vdtabprd_mes = cast(substring(cast(bdapre01.vdprdbda_tab_x_4 as varchar(8)), 5,2 ) as int) and 
+     tabprc01.vdtabprd_nmes = cast(substring(cast(bdapre01.vdprdbda_tab_x_4 as varchar(8)), 7,2 ) as int) 
+WHERE   bdapre01. "vdprdbda_bandprec_4" <> 0 
+AND         bdapre01. "vdprdbda_cancsn" = 0 
 AND             ( 
                                 bdapre01. "vdprdbda_id" = @CODIGO_BANDA 
-                OR              @CODIGO_BANDA = 0 ) 
-AND             LEFT(Cast( tabprc01.vdtabprd_dtvgf AS VARCHAR(8)),4 )>= LEFT(Cast(Curdate() - 365 AS CHAR(4)),4)
+                OR              @CODIGO_BANDA = 0 )
+and LEFT(Cast( tabprc01.vdtabprd_dtvgf AS VARCHAR(8)),4 )>= LEFT(Cast(Curdate() - 365 AS CHAR(4)),4)
 UNION ALL 
-SELECT     bdapre01. "vdprdbda_id"      AS CODIGO_BANDA_PRECO_ERP, 
-           bdapre01.vdprdbda_bandprec_5 AS QUANTIDADE , 
-           bdapre01.vdprdbda_tab_x_5    AS CODIGO_TABPRECO_ERP, 
-           bdapre01.vdprdbda_descto_5   AS DESCONTO_MAXIMO 
-FROM        bdapre01 
-INNER JOIN  tabprc01 
-ON         bdapre01. "vdprdbda_fam" = tabprc01. "vdtabprd_cfam" 
-AND        bdapre01. "vdprdbda_prd" = tabprc01. "vdtabprd_nro" 
-AND        bdapre01. "vdprdbda_bandprec_5" <> 0 
-AND        bdapre01. "vdprdbda_cancsn" = 0 
-AND        ( 
-                      bdapre01. "vdprdbda_id" = @CODIGO_BANDA 
-           OR         @CODIGO_BANDA = 0 ) 
-AND        LEFT(Cast( tabprc01.vdtabprd_dtvgf AS VARCHAR(8)),4 )>= LEFT(Cast(Curdate() - 365 AS CHAR(4)),4)
-UNION ALL 
-SELECT DISTINCT(bdapre01. "vdprdbda_id" )    AS CODIGO_BANDA_PRECO_ERP, 
-                bdapre01.vdprdbda_bandprec_6 AS QUANTIDADE , 
-                bdapre01.vdprdbda_tab_x_6    AS CODIGO_TABPRECO_ERP, 
-                bdapre01.vdprdbda_descto_6   AS DESCONTO_MAXIMO 
+SELECT DISTINCT(bdapre01. "vdprdbda_id" )                   AS CODIGO_BANDA_PRECO_ERP,
+                bdapre01.vdprdbda_bandprec_5                AS QUANTIDADE , 
+                bdapre01.vdprdbda_tab_x_5                  AS CODIGO_TABPRECO_ERP, 
+                bdapre01.vdprdbda_descto_5                  AS DESCONTO_MAXIMO 
 FROM             bdapre01 
 INNER JOIN       tabprc01 
-ON              bdapre01. "vdprdbda_fam" = tabprc01. "vdtabprd_cfam" 
-AND             bdapre01. "vdprdbda_prd" = tabprc01. "vdtabprd_nro" 
-WHERE            bdapre01. "vdprdbda_bandprec_6" <> 0 
-AND             bdapre01. "vdprdbda_cancsn" = 0 
+on tabprc01.vdtabprd_ano = cast(substring(cast(bdapre01.vdprdbda_tab_x_5 as varchar(8)), 1,4 ) as int) and 
+     tabprc01.vdtabprd_mes = cast(substring(cast(bdapre01.vdprdbda_tab_x_5 as varchar(8)), 5,2 ) as int) and 
+     tabprc01.vdtabprd_nmes = cast(substring(cast(bdapre01.vdprdbda_tab_x_5 as varchar(8)), 7,2 ) as int) 
+WHERE   bdapre01. "vdprdbda_bandprec_5" <> 0 
+AND         bdapre01. "vdprdbda_cancsn" = 0 
 AND             ( 
                                 bdapre01. "vdprdbda_id" = @CODIGO_BANDA 
-                OR              @CODIGO_BANDA = 0 ) 
-AND             LEFT(Cast( tabprc01.vdtabprd_dtvgf AS VARCHAR(8)),4 )>= LEFT(Cast(Curdate() - 365 AS CHAR(4)),4)
+                OR              @CODIGO_BANDA = 0 )
+and LEFT(Cast( tabprc01.vdtabprd_dtvgf AS VARCHAR(8)),4 )>= LEFT(Cast(Curdate() - 365 AS CHAR(4)),4)
 UNION ALL 
-SELECT DISTINCT(bdapre01. "vdprdbda_id" )    AS CODIGO_BANDA_PRECO_ERP, 
-                bdapre01.vdprdbda_bandprec_7 AS QUANTIDADE , 
-                bdapre01.vdprdbda_tab_x_7    AS CODIGO_TABPRECO_ERP, 
-                bdapre01.vdprdbda_descto_7   AS DESCONTO_MAXIMO 
+SELECT DISTINCT(bdapre01. "vdprdbda_id" )                   AS CODIGO_BANDA_PRECO_ERP,
+                bdapre01.vdprdbda_bandprec_6                AS QUANTIDADE , 
+                bdapre01.vdprdbda_tab_x_6                  AS CODIGO_TABPRECO_ERP, 
+                bdapre01.vdprdbda_descto_6                  AS DESCONTO_MAXIMO 
 FROM             bdapre01 
 INNER JOIN       tabprc01 
-ON              bdapre01. "vdprdbda_fam" = tabprc01. "vdtabprd_cfam" 
-AND             bdapre01. "vdprdbda_prd" = tabprc01. "vdtabprd_nro" 
-WHERE            bdapre01. "vdprdbda_bandprec_7" <> 0 
-AND             bdapre01. "vdprdbda_cancsn" = 0 
+on tabprc01.vdtabprd_ano = cast(substring(cast(bdapre01.vdprdbda_tab_x_6 as varchar(8)), 1,4 ) as int) and 
+     tabprc01.vdtabprd_mes = cast(substring(cast(bdapre01.vdprdbda_tab_x_6 as varchar(8)), 5,2 ) as int) and 
+     tabprc01.vdtabprd_nmes = cast(substring(cast(bdapre01.vdprdbda_tab_x_6 as varchar(8)), 7,2 ) as int) 
+WHERE   bdapre01. "vdprdbda_bandprec_6" <> 0 
+AND         bdapre01. "vdprdbda_cancsn" = 0 
 AND             ( 
                                 bdapre01. "vdprdbda_id" = @CODIGO_BANDA 
-                OR              @CODIGO_BANDA = 0 ) 
-AND             LEFT(Cast( tabprc01.vdtabprd_dtvgf AS VARCHAR(8)),4 )>= LEFT(Cast(Curdate() - 365 AS CHAR(4)),4)
+                OR              @CODIGO_BANDA = 0 )
+and LEFT(Cast( tabprc01.vdtabprd_dtvgf AS VARCHAR(8)),4 )>= LEFT(Cast(Curdate() - 365 AS CHAR(4)),4)
 UNION ALL 
-SELECT DISTINCT(bdapre01. "vdprdbda_id" )    AS CODIGO_BANDA_PRECO_ERP, 
-                bdapre01.vdprdbda_bandprec_8 AS QUANTIDADE , 
-                bdapre01.vdprdbda_tab_x_8    AS CODIGO_TABPRECO_ERP, 
-                bdapre01.vdprdbda_descto_8   AS DESCONTO_MAXIMO 
+SELECT DISTINCT(bdapre01. "vdprdbda_id" )                   AS CODIGO_BANDA_PRECO_ERP,
+                bdapre01.vdprdbda_bandprec_7                AS QUANTIDADE , 
+                bdapre01.vdprdbda_tab_x_7                  AS CODIGO_TABPRECO_ERP, 
+                bdapre01.vdprdbda_descto_7                  AS DESCONTO_MAXIMO 
 FROM             bdapre01 
 INNER JOIN       tabprc01 
-ON              bdapre01. "vdprdbda_fam" = tabprc01. "vdtabprd_cfam" 
-AND             bdapre01. "vdprdbda_prd" = tabprc01. "vdtabprd_nro" 
-WHERE            bdapre01. "vdprdbda_bandprec_8" <> 0 
-AND             bdapre01. "vdprdbda_cancsn" = 0 
+on tabprc01.vdtabprd_ano = cast(substring(cast(bdapre01.vdprdbda_tab_x_7 as varchar(8)), 1,4 ) as int) and 
+     tabprc01.vdtabprd_mes = cast(substring(cast(bdapre01.vdprdbda_tab_x_7 as varchar(8)), 5,2 ) as int) and 
+     tabprc01.vdtabprd_nmes = cast(substring(cast(bdapre01.vdprdbda_tab_x_7 as varchar(8)), 7,2 ) as int) 
+WHERE   bdapre01. "vdprdbda_bandprec_7" <> 0 
+AND         bdapre01. "vdprdbda_cancsn" = 0 
 AND             ( 
                                 bdapre01. "vdprdbda_id" = @CODIGO_BANDA 
-                OR              @CODIGO_BANDA = 0 ) 
-AND             LEFT(Cast( tabprc01.vdtabprd_dtvgf AS VARCHAR(8)),4 )>= LEFT(Cast(Curdate() - 365 AS CHAR(4)),4)
+                OR              @CODIGO_BANDA = 0 )
+and LEFT(Cast( tabprc01.vdtabprd_dtvgf AS VARCHAR(8)),4 )>= LEFT(Cast(Curdate() - 365 AS CHAR(4)),4)
 UNION ALL 
-SELECT DISTINCT(bdapre01. "vdprdbda_id" )    AS CODIGO_BANDA_PRECO_ERP, 
-                bdapre01.vdprdbda_bandprec_9 AS QUANTIDADE , 
-                bdapre01.vdprdbda_tab_x_9    AS CODIGO_TABPRECO_ERP, 
-                bdapre01.vdprdbda_descto_9   AS DESCONTO_MAXIMO 
+SELECT DISTINCT(bdapre01. "vdprdbda_id" )                   AS CODIGO_BANDA_PRECO_ERP,
+                bdapre01.vdprdbda_bandprec_8                AS QUANTIDADE , 
+                bdapre01.vdprdbda_tab_x_8                  AS CODIGO_TABPRECO_ERP, 
+                bdapre01.vdprdbda_descto_8                  AS DESCONTO_MAXIMO 
 FROM             bdapre01 
 INNER JOIN       tabprc01 
-ON              bdapre01. "vdprdbda_fam" = tabprc01. "vdtabprd_cfam" 
-AND             bdapre01. "vdprdbda_prd" = tabprc01. "vdtabprd_nro" 
-
-WHERE            bdapre01. "vdprdbda_bandprec_9" <> 0 
-AND             bdapre01. "vdprdbda_cancsn" = 0 
+on tabprc01.vdtabprd_ano = cast(substring(cast(bdapre01.vdprdbda_tab_x_8 as varchar(8)), 1,4 ) as int) and 
+     tabprc01.vdtabprd_mes = cast(substring(cast(bdapre01.vdprdbda_tab_x_8 as varchar(8)), 5,2 ) as int) and 
+     tabprc01.vdtabprd_nmes = cast(substring(cast(bdapre01.vdprdbda_tab_x_8 as varchar(8)), 7,2 ) as int) 
+WHERE   bdapre01. "vdprdbda_bandprec_8" <> 0 
+AND         bdapre01. "vdprdbda_cancsn" = 0 
 AND             ( 
                                 bdapre01. "vdprdbda_id" = @CODIGO_BANDA 
-                OR              @CODIGO_BANDA = 0 ) 
-AND             LEFT(Cast( tabprc01.vdtabprd_dtvgf AS VARCHAR(8)),4 )>= LEFT(Cast(Curdate() - 365 AS CHAR(4)),4) ;
+                OR              @CODIGO_BANDA = 0 )
+and LEFT(Cast( tabprc01.vdtabprd_dtvgf AS VARCHAR(8)),4 )>= LEFT(Cast(Curdate() - 365 AS CHAR(4)),4)
+UNION ALL 
+SELECT DISTINCT(bdapre01. "vdprdbda_id" )                   AS CODIGO_BANDA_PRECO_ERP,
+                bdapre01.vdprdbda_bandprec_9                AS QUANTIDADE , 
+                bdapre01.vdprdbda_tab_x_9                  AS CODIGO_TABPRECO_ERP, 
+                bdapre01.vdprdbda_descto_9                  AS DESCONTO_MAXIMO 
+FROM             bdapre01 
+INNER JOIN       tabprc01 
+on tabprc01.vdtabprd_ano = cast(substring(cast(bdapre01.vdprdbda_tab_x_9 as varchar(8)), 1,4 ) as int) and 
+     tabprc01.vdtabprd_mes = cast(substring(cast(bdapre01.vdprdbda_tab_x_9 as varchar(8)), 5,2 ) as int) and 
+     tabprc01.vdtabprd_nmes = cast(substring(cast(bdapre01.vdprdbda_tab_x_9 as varchar(8)), 7,2 ) as int) 
+WHERE   bdapre01. "vdprdbda_bandprec_9" <> 0 
+AND         bdapre01. "vdprdbda_cancsn" = 0 
+AND             ( 
+                                bdapre01. "vdprdbda_id" = @CODIGO_BANDA 
+                OR              @CODIGO_BANDA = 0 )
+and LEFT(Cast( tabprc01.vdtabprd_dtvgf AS VARCHAR(8)),4 )>= LEFT(Cast(Curdate() - 365 AS CHAR(4)),4) ;
 
 CREATE OR replace VIEW  vw_banda_preco_rest 
 AS 
@@ -1449,9 +1458,8 @@ SELECT
 FROM
      TXPALM01,
      PAROCO01
-WHERE
-    txpalm01."vdcnftxp_tabela_1" <> 0
-    and (
+WHERE    
+     (
         concat(
             case when length(Cast(txpalm01."vdcnftxp_tpcobr" AS VARCHAR(2))) = 1 then '0' || Cast(txpalm01."vdcnftxp_tpcobr" AS VARCHAR(2)) else Cast(txpalm01."vdcnftxp_tpcobr" AS VARCHAR(2)) end,
             case when length(Cast(txpalm01."vdcnftxp_cpg" AS VARCHAR(2))) = 1 then '0' || Cast(txpalm01."vdcnftxp_cpg" AS VARCHAR(2)) else Cast(txpalm01."vdcnftxp_cpg" AS VARCHAR(2)) end
@@ -1471,9 +1479,8 @@ SELECT
 FROM
      TXPALM01,
      PAROCO01
-WHERE
-    txpalm01."vdcnftxp_tabela_2" <> 0
-    and (
+WHERE    
+     (
         concat(
             case when length(Cast(txpalm01."vdcnftxp_tpcobr" AS VARCHAR(2))) = 1 then '0' || Cast(txpalm01."vdcnftxp_tpcobr" AS VARCHAR(2)) else Cast(txpalm01."vdcnftxp_tpcobr" AS VARCHAR(2)) end,
             case when length(Cast(txpalm01."vdcnftxp_cpg" AS VARCHAR(2))) = 1 then '0' || Cast(txpalm01."vdcnftxp_cpg" AS VARCHAR(2)) else Cast(txpalm01."vdcnftxp_cpg" AS VARCHAR(2)) end
@@ -1493,9 +1500,8 @@ SELECT
 FROM
      TXPALM01,
      PAROCO01
-WHERE
-    txpalm01."vdcnftxp_tabela_3" <> 0
-    and (
+WHERE    
+     (
         concat(
             case when length(Cast(txpalm01."vdcnftxp_tpcobr" AS VARCHAR(2))) = 1 then '0' || Cast(txpalm01."vdcnftxp_tpcobr" AS VARCHAR(2)) else Cast(txpalm01."vdcnftxp_tpcobr" AS VARCHAR(2)) end,
             case when length(Cast(txpalm01."vdcnftxp_cpg" AS VARCHAR(2))) = 1 then '0' || Cast(txpalm01."vdcnftxp_cpg" AS VARCHAR(2)) else Cast(txpalm01."vdcnftxp_cpg" AS VARCHAR(2)) end
@@ -1515,9 +1521,8 @@ SELECT
 FROM
      TXPALM01,
      PAROCO01
-WHERE
-    txpalm01."vdcnftxp_tabela_4" <> 0
-    and (
+WHERE    
+     (
         concat(
             case when length(Cast(txpalm01."vdcnftxp_tpcobr" AS VARCHAR(2))) = 1 then '0' || Cast(txpalm01."vdcnftxp_tpcobr" AS VARCHAR(2)) else Cast(txpalm01."vdcnftxp_tpcobr" AS VARCHAR(2)) end,
             case when length(Cast(txpalm01."vdcnftxp_cpg" AS VARCHAR(2))) = 1 then '0' || Cast(txpalm01."vdcnftxp_cpg" AS VARCHAR(2)) else Cast(txpalm01."vdcnftxp_cpg" AS VARCHAR(2)) end
@@ -1537,9 +1542,8 @@ SELECT
 FROM
      TXPALM01,
      PAROCO01
-WHERE
-    txpalm01."vdcnftxp_tabela_5" <> 0
-    and (
+WHERE    
+     (
         concat(
             case when length(Cast(txpalm01."vdcnftxp_tpcobr" AS VARCHAR(2))) = 1 then '0' || Cast(txpalm01."vdcnftxp_tpcobr" AS VARCHAR(2)) else Cast(txpalm01."vdcnftxp_tpcobr" AS VARCHAR(2)) end,
             case when length(Cast(txpalm01."vdcnftxp_cpg" AS VARCHAR(2))) = 1 then '0' || Cast(txpalm01."vdcnftxp_cpg" AS VARCHAR(2)) else Cast(txpalm01."vdcnftxp_cpg" AS VARCHAR(2)) end
@@ -1559,9 +1563,8 @@ SELECT
 FROM
      TXPALM01,
      PAROCO01
-WHERE
-    txpalm01."vdcnftxp_tabela2_1" <> 0
-    and (
+WHERE    
+     (
         concat(
             case when length(Cast(txpalm01."vdcnftxp_tpcobr" AS VARCHAR(2))) = 1 then '0' || Cast(txpalm01."vdcnftxp_tpcobr" AS VARCHAR(2)) else Cast(txpalm01."vdcnftxp_tpcobr" AS VARCHAR(2)) end,
             case when length(Cast(txpalm01."vdcnftxp_cpg" AS VARCHAR(2))) = 1 then '0' || Cast(txpalm01."vdcnftxp_cpg" AS VARCHAR(2)) else Cast(txpalm01."vdcnftxp_cpg" AS VARCHAR(2)) end
@@ -1581,9 +1584,8 @@ SELECT
 FROM
      TXPALM01,
      PAROCO01
-WHERE
-    txpalm01."vdcnftxp_tabela2_2" <> 0
-    and (
+WHERE    
+     (
         concat(
             case when length(Cast(txpalm01."vdcnftxp_tpcobr" AS VARCHAR(2))) = 1 then '0' || Cast(txpalm01."vdcnftxp_tpcobr" AS VARCHAR(2)) else Cast(txpalm01."vdcnftxp_tpcobr" AS VARCHAR(2)) end,
             case when length(Cast(txpalm01."vdcnftxp_cpg" AS VARCHAR(2))) = 1 then '0' || Cast(txpalm01."vdcnftxp_cpg" AS VARCHAR(2)) else Cast(txpalm01."vdcnftxp_cpg" AS VARCHAR(2)) end
@@ -1603,9 +1605,8 @@ SELECT
 FROM
      TXPALM01,
      PAROCO01
-WHERE
-    txpalm01."vdcnftxp_tabela2_3" <> 0
-    and (
+WHERE    
+     (
         concat(
             case when length(Cast(txpalm01."vdcnftxp_tpcobr" AS VARCHAR(2))) = 1 then '0' || Cast(txpalm01."vdcnftxp_tpcobr" AS VARCHAR(2)) else Cast(txpalm01."vdcnftxp_tpcobr" AS VARCHAR(2)) end,
             case when length(Cast(txpalm01."vdcnftxp_cpg" AS VARCHAR(2))) = 1 then '0' || Cast(txpalm01."vdcnftxp_cpg" AS VARCHAR(2)) else Cast(txpalm01."vdcnftxp_cpg" AS VARCHAR(2)) end
@@ -1625,9 +1626,8 @@ SELECT
 FROM
      TXPALM01,
      PAROCO01
-WHERE
-    txpalm01."vdcnftxp_tabela2_4" <> 0
-    and (
+WHERE    
+     (
         concat(
             case when length(Cast(txpalm01."vdcnftxp_tpcobr" AS VARCHAR(2))) = 1 then '0' || Cast(txpalm01."vdcnftxp_tpcobr" AS VARCHAR(2)) else Cast(txpalm01."vdcnftxp_tpcobr" AS VARCHAR(2)) end,
             case when length(Cast(txpalm01."vdcnftxp_cpg" AS VARCHAR(2))) = 1 then '0' || Cast(txpalm01."vdcnftxp_cpg" AS VARCHAR(2)) else Cast(txpalm01."vdcnftxp_cpg" AS VARCHAR(2)) end
@@ -1647,9 +1647,8 @@ SELECT
 FROM
      TXPALM01,
      PAROCO01
-WHERE
-    txpalm01."vdcnftxp_tabela2_5" <> 0
-    and (
+WHERE    
+     (
         concat(
             case when length(Cast(txpalm01."vdcnftxp_tpcobr" AS VARCHAR(2))) = 1 then '0' || Cast(txpalm01."vdcnftxp_tpcobr" AS VARCHAR(2)) else Cast(txpalm01."vdcnftxp_tpcobr" AS VARCHAR(2)) end,
             case when length(Cast(txpalm01."vdcnftxp_cpg" AS VARCHAR(2))) = 1 then '0' || Cast(txpalm01."vdcnftxp_cpg" AS VARCHAR(2)) else Cast(txpalm01."vdcnftxp_cpg" AS VARCHAR(2)) end
@@ -1669,9 +1668,8 @@ SELECT
 FROM
      TXPALM01,
      PAROCO01
-WHERE
-    txpalm01."vdcnftxp_tabela2_6" <> 0
-    and (
+WHERE    
+     (
         concat(
             case when length(Cast(txpalm01."vdcnftxp_tpcobr" AS VARCHAR(2))) = 1 then '0' || Cast(txpalm01."vdcnftxp_tpcobr" AS VARCHAR(2)) else Cast(txpalm01."vdcnftxp_tpcobr" AS VARCHAR(2)) end,
             case when length(Cast(txpalm01."vdcnftxp_cpg" AS VARCHAR(2))) = 1 then '0' || Cast(txpalm01."vdcnftxp_cpg" AS VARCHAR(2)) else Cast(txpalm01."vdcnftxp_cpg" AS VARCHAR(2)) end
@@ -1691,9 +1689,8 @@ SELECT
 FROM
      TXPALM01,
      PAROCO01
-WHERE
-    txpalm01."vdcnftxp_tabela2_7" <> 0
-    and (
+WHERE    
+     (
         concat(
             case when length(Cast(txpalm01."vdcnftxp_tpcobr" AS VARCHAR(2))) = 1 then '0' || Cast(txpalm01."vdcnftxp_tpcobr" AS VARCHAR(2)) else Cast(txpalm01."vdcnftxp_tpcobr" AS VARCHAR(2)) end,
             case when length(Cast(txpalm01."vdcnftxp_cpg" AS VARCHAR(2))) = 1 then '0' || Cast(txpalm01."vdcnftxp_cpg" AS VARCHAR(2)) else Cast(txpalm01."vdcnftxp_cpg" AS VARCHAR(2)) end
@@ -1713,9 +1710,8 @@ SELECT
 FROM
      TXPALM01,
      PAROCO01
-WHERE
-    txpalm01."vdcnftxp_tabela2_8" <> 0
-    and (
+WHERE    
+     (
         concat(
             case when length(Cast(txpalm01."vdcnftxp_tpcobr" AS VARCHAR(2))) = 1 then '0' || Cast(txpalm01."vdcnftxp_tpcobr" AS VARCHAR(2)) else Cast(txpalm01."vdcnftxp_tpcobr" AS VARCHAR(2)) end,
             case when length(Cast(txpalm01."vdcnftxp_cpg" AS VARCHAR(2))) = 1 then '0' || Cast(txpalm01."vdcnftxp_cpg" AS VARCHAR(2)) else Cast(txpalm01."vdcnftxp_cpg" AS VARCHAR(2)) end
@@ -1735,9 +1731,8 @@ SELECT
 FROM
      TXPALM01,
      PAROCO01
-WHERE
-    txpalm01."vdcnftxp_tabela2_9" <> 0
-    and (
+WHERE    
+     (
         concat(
             case when length(Cast(txpalm01."vdcnftxp_tpcobr" AS VARCHAR(2))) = 1 then '0' || Cast(txpalm01."vdcnftxp_tpcobr" AS VARCHAR(2)) else Cast(txpalm01."vdcnftxp_tpcobr" AS VARCHAR(2)) end,
             case when length(Cast(txpalm01."vdcnftxp_cpg" AS VARCHAR(2))) = 1 then '0' || Cast(txpalm01."vdcnftxp_cpg" AS VARCHAR(2)) else Cast(txpalm01."vdcnftxp_cpg" AS VARCHAR(2)) end
@@ -1757,9 +1752,8 @@ SELECT
 FROM
      TXPALM01,
      PAROCO01
-WHERE
-    txpalm01."vdcnftxp_tabela2_10" <> 0
-    and (
+WHERE    
+     (
         concat(
             case when length(Cast(txpalm01."vdcnftxp_tpcobr" AS VARCHAR(2))) = 1 then '0' || Cast(txpalm01."vdcnftxp_tpcobr" AS VARCHAR(2)) else Cast(txpalm01."vdcnftxp_tpcobr" AS VARCHAR(2)) end,
             case when length(Cast(txpalm01."vdcnftxp_cpg" AS VARCHAR(2))) = 1 then '0' || Cast(txpalm01."vdcnftxp_cpg" AS VARCHAR(2)) else Cast(txpalm01."vdcnftxp_cpg" AS VARCHAR(2)) end
@@ -1780,8 +1774,7 @@ FROM
      TXPALM01,
      PAROCO01
 WHERE
-    txpalm01."vdcnftxp_tabela3_1" <> 0
-    and (
+     (
         concat(
             case when length(Cast(txpalm01."vdcnftxp_tpcobr" AS VARCHAR(2))) = 1 then '0' || Cast(txpalm01."vdcnftxp_tpcobr" AS VARCHAR(2)) else Cast(txpalm01."vdcnftxp_tpcobr" AS VARCHAR(2)) end,
             case when length(Cast(txpalm01."vdcnftxp_cpg" AS VARCHAR(2))) = 1 then '0' || Cast(txpalm01."vdcnftxp_cpg" AS VARCHAR(2)) else Cast(txpalm01."vdcnftxp_cpg" AS VARCHAR(2)) end
@@ -1802,8 +1795,7 @@ FROM
      TXPALM01,
      PAROCO01
 WHERE
-    txpalm01."vdcnftxp_tabela3_2" <> 0
-    and (
+     (
         concat(
             case when length(Cast(txpalm01."vdcnftxp_tpcobr" AS VARCHAR(2))) = 1 then '0' || Cast(txpalm01."vdcnftxp_tpcobr" AS VARCHAR(2)) else Cast(txpalm01."vdcnftxp_tpcobr" AS VARCHAR(2)) end,
             case when length(Cast(txpalm01."vdcnftxp_cpg" AS VARCHAR(2))) = 1 then '0' || Cast(txpalm01."vdcnftxp_cpg" AS VARCHAR(2)) else Cast(txpalm01."vdcnftxp_cpg" AS VARCHAR(2)) end
@@ -1823,9 +1815,8 @@ SELECT
 FROM
      TXPALM01,
      PAROCO01
-WHERE
-    txpalm01."vdcnftxp_tabela3_3" <> 0
-    and (
+WHERE    
+    (
         concat(
             case when length(Cast(txpalm01."vdcnftxp_tpcobr" AS VARCHAR(2))) = 1 then '0' || Cast(txpalm01."vdcnftxp_tpcobr" AS VARCHAR(2)) else Cast(txpalm01."vdcnftxp_tpcobr" AS VARCHAR(2)) end,
             case when length(Cast(txpalm01."vdcnftxp_cpg" AS VARCHAR(2))) = 1 then '0' || Cast(txpalm01."vdcnftxp_cpg" AS VARCHAR(2)) else Cast(txpalm01."vdcnftxp_cpg" AS VARCHAR(2)) end
@@ -1845,9 +1836,8 @@ SELECT
 FROM
      TXPALM01,
      PAROCO01
-WHERE
-    txpalm01."vdcnftxp_tabela3_4" <> 0
-    and (
+WHERE    
+    (
         concat(
             case when length(Cast(txpalm01."vdcnftxp_tpcobr" AS VARCHAR(2))) = 1 then '0' || Cast(txpalm01."vdcnftxp_tpcobr" AS VARCHAR(2)) else Cast(txpalm01."vdcnftxp_tpcobr" AS VARCHAR(2)) end,
             case when length(Cast(txpalm01."vdcnftxp_cpg" AS VARCHAR(2))) = 1 then '0' || Cast(txpalm01."vdcnftxp_cpg" AS VARCHAR(2)) else Cast(txpalm01."vdcnftxp_cpg" AS VARCHAR(2)) end
@@ -1867,9 +1857,8 @@ SELECT
 FROM
      TXPALM01,
      PAROCO01
-WHERE
-    txpalm01."vdcnftxp_tabela3_5" <> 0
-    and (
+WHERE    
+    (
         concat(
             case when length(Cast(txpalm01."vdcnftxp_tpcobr" AS VARCHAR(2))) = 1 then '0' || Cast(txpalm01."vdcnftxp_tpcobr" AS VARCHAR(2)) else Cast(txpalm01."vdcnftxp_tpcobr" AS VARCHAR(2)) end,
             case when length(Cast(txpalm01."vdcnftxp_cpg" AS VARCHAR(2))) = 1 then '0' || Cast(txpalm01."vdcnftxp_cpg" AS VARCHAR(2)) else Cast(txpalm01."vdcnftxp_cpg" AS VARCHAR(2)) end
@@ -1889,9 +1878,8 @@ SELECT
 FROM
      TXPALM01,
      PAROCO01
-WHERE
-    txpalm01."vdcnftxp_tabela3_6" <> 0
-    and (
+WHERE    
+    (
         concat(
             case when length(Cast(txpalm01."vdcnftxp_tpcobr" AS VARCHAR(2))) = 1 then '0' || Cast(txpalm01."vdcnftxp_tpcobr" AS VARCHAR(2)) else Cast(txpalm01."vdcnftxp_tpcobr" AS VARCHAR(2)) end,
             case when length(Cast(txpalm01."vdcnftxp_cpg" AS VARCHAR(2))) = 1 then '0' || Cast(txpalm01."vdcnftxp_cpg" AS VARCHAR(2)) else Cast(txpalm01."vdcnftxp_cpg" AS VARCHAR(2)) end
@@ -1912,8 +1900,7 @@ FROM
      TXPALM01,
      PAROCO01
 WHERE
-    txpalm01."vdcnftxp_tabela3_7" <> 0
-    and (
+     (
         concat(
             case when length(Cast(txpalm01."vdcnftxp_tpcobr" AS VARCHAR(2))) = 1 then '0' || Cast(txpalm01."vdcnftxp_tpcobr" AS VARCHAR(2)) else Cast(txpalm01."vdcnftxp_tpcobr" AS VARCHAR(2)) end,
             case when length(Cast(txpalm01."vdcnftxp_cpg" AS VARCHAR(2))) = 1 then '0' || Cast(txpalm01."vdcnftxp_cpg" AS VARCHAR(2)) else Cast(txpalm01."vdcnftxp_cpg" AS VARCHAR(2)) end
@@ -1934,8 +1921,7 @@ FROM
      TXPALM01,
      PAROCO01
 WHERE
-    txpalm01."vdcnftxp_tabela3_8" <> 0
-    and (
+     (
         concat(
             case when length(Cast(txpalm01."vdcnftxp_tpcobr" AS VARCHAR(2))) = 1 then '0' || Cast(txpalm01."vdcnftxp_tpcobr" AS VARCHAR(2)) else Cast(txpalm01."vdcnftxp_tpcobr" AS VARCHAR(2)) end,
             case when length(Cast(txpalm01."vdcnftxp_cpg" AS VARCHAR(2))) = 1 then '0' || Cast(txpalm01."vdcnftxp_cpg" AS VARCHAR(2)) else Cast(txpalm01."vdcnftxp_cpg" AS VARCHAR(2)) end
@@ -3333,6 +3319,3 @@ FROM
     LEFT JOIN VW_DADOS_OCORRENCIA ON CODIGO_OCORRENCIA = VDPEDIPE_OCOKD
 WHERE
    vdpedipe_nit = @numero_pedido OR @numero_pedido = 0;
-
-  
-  
